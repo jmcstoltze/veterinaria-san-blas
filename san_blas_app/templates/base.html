@@ -1,0 +1,221 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/jpg" href="{% static 'img/favicon.jpg' %}">
+        <title>Veterinaria San Blas</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <!-- Enlace a Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+
+    <!-- Navbar -->
+    {% block 'navbar' %}
+    <div>
+        <nav id="barra_navegacion" class="navbar navbar-expand-lg navbar-custom">
+            <div class="container">
+                
+                <!-- Logo -->
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <a href="{% url 'dashboard_admin' %}" class="navbar-brand">
+                            <img id="logo" src="{% static 'img/logo.png' %}" alt="Logo" width="60px">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'inicio' %}" class="navbar-brand">
+                            <img id="logo" src="{% static 'img/logo.png' %}" alt="Logo" width="60px">
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'inicio' %}" class="navbar-brand">
+                        <img id="logo" src="{% static 'img/logo.png' %}" alt="Logo" width="60px">
+                    </a>
+                {% endif %}
+                            
+                <!-- Botón del toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Elementos de navegación -->
+                <div class="collapse navbar-collapse" id="navbarNav">    
+                    <ul class="navbar-nav">
+                        
+                        {% if user.is_authenticated %}
+                            {% if user.is_superuser %} <!-- Opciones para administrador -->
+                                <li class="nav-item p-3">
+                                    <a class="nav-link" href="{% url 'dashboard_admin' %}">Dashboard</a>
+                                </li>
+                                <li class="nav-item p-3">
+                                    <a class="nav-link" href="">Clientes</a>
+                                </li>                         
+                                <li class="nav-item p-3">
+                                    <a class="nav-link" href="">Pacientes</a>
+                                </li>
+                                <li class="nav-item p-3">
+                                    <a class="nav-link" href="">Reportes</a>
+                                </li>                                                                         
+                            {% else %} <!-- Opciones para usuario logeado -->
+                                <li class="nav-item p-3">
+                                    <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
+                                </li>
+                                <li class="nav-item p-3">
+                                    <a class="nav-link" href="{% url 'reservar_hora' %}">Reservar</a>
+                                </li>                         
+                                <li class="nav-item p-3">
+                                    <a class="nav-link" href="{% url 'mascotas' %}">Mis Mascotas</a>
+                                </li>
+                                <li class="nav-item p-3">
+                                    <a class="nav-link" href="">Comentarios</a>
+                                </li>                    
+                            {% endif %}
+                        {% else %} <!-- Opciones para usuario no registrado -->
+                            <li class="nav-item p-3">
+                                <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
+                            </li>
+                            <li class="nav-item p-3">
+                                <a class="nav-link" href="{% url 'inicio_sesion' %}">Reservar</a>
+                            </li>                         
+                            <li class="nav-item p-3">
+                                <a class="nav-link" href="{% url 'inicio_sesion' %}">Vacunatorio</a>
+                            </li>
+                            <li class="nav-item p-3">
+                                <a class="nav-link" href="">Contacto</a>
+                            </li>
+                        {% endif %}
+                        
+                                                
+                        <ul class="navbar-nav">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item p-3">
+                                <a class="nav-link nav-link-box" href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item p-3">
+                                <a class="nav-link nav-link-box" href="{% url 'inicio_sesion' %}">Iniciar sesión</a>
+                            </li>
+                            <li class="nav-item p-3">
+                                <a class="nav-link nav-link-box" href="{% url 'registro' %}">Registrarse</a>
+                            </li>
+                        {% endif %}
+                        </ul>
+                    </ul>
+                </div>                
+
+                <!-- Imagen de usuario y nombre -->
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %} <!-- Visualización para administrador -->
+                        <a href="{% url 'dashboard_admin' %}" class="no-underline">
+                            <div class="nav-item p-3">
+                                <img src="{% static 'img/generic_user.jpg' %}" alt="User Icon" class="rounded me-2" width="40">
+                                <span>@{{ request.user.username }}</span> <!-- Muestra nombre de usuario -->
+                            </div>                    
+                        </a>
+                    {% else %} <!-- Visualización para usuario -->
+                        <a href="{% url 'dashboard' %}" class="no-underline">
+                            <div class="nav-item p-3">
+                                <img src="{% static 'img/generic_user.jpg' %}" alt="User Icon" class="rounded me-2" width="40">
+                                <span>@{{ request.user.username }}</span> <!-- Muestra nombre de usuario -->
+                            </div>                    
+                        </a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+    {% endblock %}
+
+    <!-- Header -->
+    {% block 'header' %}
+    <div>
+        <header>        
+            <!-- Carrusel de imágenes -->
+            <div id="carrusel_header" class="carousel slide" data-bs-ride="carousel">
+      
+                <!-- Indicadores de imágenes -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carrusel_header" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#carrusel_header" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#carrusel_header" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#carrusel_header" data-bs-slide-to="3"></button>
+                    <button type="button" data-bs-target="#carrusel_header" data-bs-slide-to="4"></button>
+                </div>
+          
+                <!-- Contenido de la diapositiva -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img id="imagen_carrusel" src="{% static 'img/header1.jpg' %}" alt="header1" class="d-block" style="width:100%">
+                    </div>
+                    <div class="carousel-item">
+                        <img id="imagen_carrusel" src="{% static 'img/header2.jpg' %}" alt="header2" class="d-block" style="width:100%">
+                    </div>
+                    <div class="carousel-item">
+                        <img id="imagen_carrusel" src="{% static 'img/header3.jpg' %}" alt="header3" class="d-block" style="width:100%">
+                    </div>
+                    <div class="carousel-item">
+                        <img id="imagen_carrusel" src="{% static 'img/header4.jpg' %}" alt="header4" class="d-block" style="width:100%">
+                    </div>
+                    <div class="carousel-item">
+                        <img id="imagen_carrusel" src="{% static 'img/header5.jpeg' %}" alt="header5" class="d-block" style="width:100%">
+                    </div>
+                </div>
+          
+                <!-- Controles laterales -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carrusel_header" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carrusel_header" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </header>
+    </div>
+    {% endblock %}
+    
+    <!-- Contenido de la página -->
+    {% block 'content' %}
+    <div>
+        <!-- Contenido -->
+    </div>
+    {% endblock %}
+    
+    <!-- Footer de la página-->
+    {% block 'endblock' %}
+    <div id="pie_pagina">
+        <footer>
+            <div class="container">
+                
+                <!-- Iconos de redes sociales -->
+                <div id="redes_sociales">
+                    <span href="#" class="fa fa-facebook"></span>
+                    <span href="#" class="fa fa-whatsapp"></span>
+                    <span href="#" class="fa fa-instagram"></span>                                        
+                </div>
+                <br><br>
+                <!-- Enlace para suscribirse al newsletter -->
+            <div>
+            <div>
+                <a href="">Formulario de Contacto |</a>
+                <a href="">Suscríbete a nuestro Newsletter</a>
+            </div>
+            <hr>
+            </div>
+                <span>© 2024 Veterinaria San Blas</span>
+            </div>
+        </footer>
+    </div>
+    {% endblock %}
+     
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+  </body>
+</html>

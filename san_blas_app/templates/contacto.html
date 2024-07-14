@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="contacto">
+        <div class="container">                
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+
+                <!-- Formulario de contacto -->
+                <div class="card shadow-lg p-5">
+                    <h2>Formulario de Contacto</h2>
+                    <hr><br>
+                    <p>Completa el formulario y pronto nos pondremos en contacto.</p>
+                    <br>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="nombres" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" placeholder="Ingresa tus nombres" id="nombres" name="nombres" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" placeholder="Ingresa tus apellidos" id="apellidos" name="apellidos" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" placeholder="Ingrese su email" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comentarios" class="form-label">Comentarios</label>
+                            <textarea class="form-control" placeholder="Escribe tus comentarios aquí" id="comentarios" name="comentarios" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>    
+            </div>
+        </div>            
+    </content>
+</div>
+{% endblock %}

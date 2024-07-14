@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="listado_mascotas">
+        <div class="container">                
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+                <!-- Listado de mascotas -->
+                <div class="card shadow-lg p-5">
+                    <h2>Tus Mascotas Registradas</h2>
+                    <hr><br>                                                          
+                    <!-- Listado -->
+                    <div class="list-group">
+                        {% if mascotas %}
+                            {% for mascota in mascotas %}
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <h5 class="mb-1">{{ mascota.nombre }}</h5>
+                                    <p class="mb-1">Especie: {{ mascota.get_especie_display }}</p>
+                                    <p class="mb-1">Raza: {{ mascota.raza }}</p>
+                                    <p class="mb-1">Edad: {{ mascota.edad }} meses</p>
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            <div class="alert alert-success" role="alert">
+                                <center>{{ message }}</center>
+                            </div>                                
+                        {% endif %}
+                    </div>
+                    <br>
+                    <a href="{% url 'registro_mascota' %}" class="btn btn-primary">Agregar Nueva Mascota</a>
+                </div>                        
+            </div>
+        </div>            
+    </content>
+</div>
+{% endblock %}

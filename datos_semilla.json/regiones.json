@@ -1,0 +1,128 @@
+[
+    {
+        "model": "san_blas_app.region",
+        "pk": 1,
+        "fields": {
+            "nombre_region": "I Región Tarapacá"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 2,
+        "fields": {
+            "nombre_region": "II Región Antofagasta"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 3,
+        "fields": {
+            "nombre_region": "III Región de Atacama"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 4,
+        "fields": {
+            "nombre_region": "IV Región de Coquimbo"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 5,
+        "fields": {
+            "nombre_region": "V Región de Valparaíso"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 6,
+        "fields": {
+            "nombre_region": "VI Región del Libertador Gral. Bernardo O'Higgins"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 7,
+        "fields": {
+            "nombre_region": "VII Región del Maule"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 8,
+        "fields": {
+            "nombre_region": "VIII Región del Biobío"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 9,
+        "fields": {
+            "nombre_region": "IX Región de La Araucanía"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 8,
+        "fields": {
+            "nombre_region": "VIII Región del Biobío"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 9,
+        "fields": {
+            "nombre_region": "IX Región de La Araucanía"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 10,
+        "fields": {
+            "nombre_region": "X Región de Los Lagos"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 11,
+        "fields": {
+            "nombre_region": "XI Región de Aysén"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 12,
+        "fields": {
+            "nombre_region": "XII Región de Magallanes"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 13,
+        "fields": {
+            "nombre_region": "Región Metropolitana de Santiago"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 14,
+        "fields": {
+            "nombre_region": "XIV Región de Los Ríos"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 15,
+        "fields": {
+            "nombre_region": "XV Región de Arica y Parinacota"
+        }
+    },
+    {
+        "model": "san_blas_app.region",
+        "pk": 16,
+        "fields": {
+            "nombre_region": "XVI Región del Ñuble"
+        }
+    }
+]

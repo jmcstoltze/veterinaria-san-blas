@@ -1,0 +1,3402 @@
+[
+    {
+        "model": "san_blas_app.horario",
+        "pk": 1,
+        "fields": {
+            "fecha": "2024-07-10T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 2,
+        "fields": {
+            "fecha": "2024-07-10T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 3,
+        "fields": {
+            "fecha": "2024-07-10T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 4,
+        "fields": {
+            "fecha": "2024-07-10T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 5,
+        "fields": {
+            "fecha": "2024-07-10T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 6,
+        "fields": {
+            "fecha": "2024-07-10T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 7,
+        "fields": {
+            "fecha": "2024-07-10T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 8,
+        "fields": {
+            "fecha": "2024-07-10T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 9,
+        "fields": {
+            "fecha": "2024-07-10T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 10,
+        "fields": {
+            "fecha": "2024-07-10T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 11,
+        "fields": {
+            "fecha": "2024-07-10T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 12,
+        "fields": {
+            "fecha": "2024-07-10T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 13,
+        "fields": {
+            "fecha": "2024-07-10T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 14,
+        "fields": {
+            "fecha": "2024-07-10T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 15,
+        "fields": {
+            "fecha": "2024-07-10T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 16,
+        "fields": {
+            "fecha": "2024-07-10T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 17,
+        "fields": {
+            "fecha": "2024-07-11T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 18,
+        "fields": {
+            "fecha": "2024-07-11T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 19,
+        "fields": {
+            "fecha": "2024-07-11T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 20,
+        "fields": {
+            "fecha": "2024-07-11T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 21,
+        "fields": {
+            "fecha": "2024-07-11T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 22,
+        "fields": {
+            "fecha": "2024-07-11T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 23,
+        "fields": {
+            "fecha": "2024-07-11T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 24,
+        "fields": {
+            "fecha": "2024-07-11T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 25,
+        "fields": {
+            "fecha": "2024-07-11T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 26,
+        "fields": {
+            "fecha": "2024-07-11T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 27,
+        "fields": {
+            "fecha": "2024-07-11T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 28,
+        "fields": {
+            "fecha": "2024-07-11T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 29,
+        "fields": {
+            "fecha": "2024-07-11T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 30,
+        "fields": {
+            "fecha": "2024-07-11T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 31,
+        "fields": {
+            "fecha": "2024-07-11T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 32,
+        "fields": {
+            "fecha": "2024-07-11T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 33,
+        "fields": {
+            "fecha": "2024-07-12T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 34,
+        "fields": {
+            "fecha": "2024-07-12T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 35,
+        "fields": {
+            "fecha": "2024-07-12T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 36,
+        "fields": {
+            "fecha": "2024-07-12T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 37,
+        "fields": {
+            "fecha": "2024-07-12T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 38,
+        "fields": {
+            "fecha": "2024-07-12T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 39,
+        "fields": {
+            "fecha": "2024-07-12T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 40,
+        "fields": {
+            "fecha": "2024-07-12T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 41,
+        "fields": {
+            "fecha": "2024-07-12T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 42,
+        "fields": {
+            "fecha": "2024-07-12T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 43,
+        "fields": {
+            "fecha": "2024-07-12T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 44,
+        "fields": {
+            "fecha": "2024-07-12T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 45,
+        "fields": {
+            "fecha": "2024-07-12T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 46,
+        "fields": {
+            "fecha": "2024-07-12T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 47,
+        "fields": {
+            "fecha": "2024-07-12T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 48,
+        "fields": {
+            "fecha": "2024-07-12T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 49,
+        "fields": {
+            "fecha": "2024-07-13T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 50,
+        "fields": {
+            "fecha": "2024-07-13T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 51,
+        "fields": {
+            "fecha": "2024-07-13T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 52,
+        "fields": {
+            "fecha": "2024-07-13T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 53,
+        "fields": {
+            "fecha": "2024-07-13T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 54,
+        "fields": {
+            "fecha": "2024-07-13T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 55,
+        "fields": {
+            "fecha": "2024-07-13T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 56,
+        "fields": {
+            "fecha": "2024-07-13T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 57,
+        "fields": {
+            "fecha": "2024-07-13T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 58,
+        "fields": {
+            "fecha": "2024-07-15T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 59,
+        "fields": {
+            "fecha": "2024-07-15T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 60,
+        "fields": {
+            "fecha": "2024-07-15T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 61,
+        "fields": {
+            "fecha": "2024-07-15T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 62,
+        "fields": {
+            "fecha": "2024-07-15T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 63,
+        "fields": {
+            "fecha": "2024-07-15T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 64,
+        "fields": {
+            "fecha": "2024-07-15T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 65,
+        "fields": {
+            "fecha": "2024-07-15T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 66,
+        "fields": {
+            "fecha": "2024-07-15T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 67,
+        "fields": {
+            "fecha": "2024-07-15T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 68,
+        "fields": {
+            "fecha": "2024-07-15T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 69,
+        "fields": {
+            "fecha": "2024-07-15T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 70,
+        "fields": {
+            "fecha": "2024-07-15T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 71,
+        "fields": {
+            "fecha": "2024-07-15T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 72,
+        "fields": {
+            "fecha": "2024-07-15T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 73,
+        "fields": {
+            "fecha": "2024-07-15T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 74,
+        "fields": {
+            "fecha": "2024-07-16T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 75,
+        "fields": {
+            "fecha": "2024-07-16T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 76,
+        "fields": {
+            "fecha": "2024-07-16T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 77,
+        "fields": {
+            "fecha": "2024-07-16T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 78,
+        "fields": {
+            "fecha": "2024-07-16T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 79,
+        "fields": {
+            "fecha": "2024-07-16T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 80,
+        "fields": {
+            "fecha": "2024-07-16T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 81,
+        "fields": {
+            "fecha": "2024-07-16T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 82,
+        "fields": {
+            "fecha": "2024-07-16T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 83,
+        "fields": {
+            "fecha": "2024-07-16T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 84,
+        "fields": {
+            "fecha": "2024-07-16T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 85,
+        "fields": {
+            "fecha": "2024-07-16T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 86,
+        "fields": {
+            "fecha": "2024-07-16T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 87,
+        "fields": {
+            "fecha": "2024-07-16T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 88,
+        "fields": {
+            "fecha": "2024-07-16T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 89,
+        "fields": {
+            "fecha": "2024-07-16T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 90,
+        "fields": {
+            "fecha": "2024-07-17T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 91,
+        "fields": {
+            "fecha": "2024-07-17T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 92,
+        "fields": {
+            "fecha": "2024-07-17T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 93,
+        "fields": {
+            "fecha": "2024-07-17T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 94,
+        "fields": {
+            "fecha": "2024-07-17T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 95,
+        "fields": {
+            "fecha": "2024-07-17T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 96,
+        "fields": {
+            "fecha": "2024-07-17T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 97,
+        "fields": {
+            "fecha": "2024-07-17T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 98,
+        "fields": {
+            "fecha": "2024-07-17T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 99,
+        "fields": {
+            "fecha": "2024-07-17T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 100,
+        "fields": {
+            "fecha": "2024-07-17T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 101,
+        "fields": {
+            "fecha": "2024-07-17T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 102,
+        "fields": {
+            "fecha": "2024-07-17T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 103,
+        "fields": {
+            "fecha": "2024-07-17T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 104,
+        "fields": {
+            "fecha": "2024-07-17T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 105,
+        "fields": {
+            "fecha": "2024-07-17T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 106,
+        "fields": {
+            "fecha": "2024-07-18T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 107,
+        "fields": {
+            "fecha": "2024-07-18T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 108,
+        "fields": {
+            "fecha": "2024-07-18T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 109,
+        "fields": {
+            "fecha": "2024-07-18T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 110,
+        "fields": {
+            "fecha": "2024-07-18T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 111,
+        "fields": {
+            "fecha": "2024-07-18T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 112,
+        "fields": {
+            "fecha": "2024-07-18T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 113,
+        "fields": {
+            "fecha": "2024-07-18T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 114,
+        "fields": {
+            "fecha": "2024-07-18T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 115,
+        "fields": {
+            "fecha": "2024-07-18T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 116,
+        "fields": {
+            "fecha": "2024-07-18T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 117,
+        "fields": {
+            "fecha": "2024-07-18T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 118,
+        "fields": {
+            "fecha": "2024-07-18T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 119,
+        "fields": {
+            "fecha": "2024-07-18T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 120,
+        "fields": {
+            "fecha": "2024-07-18T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 121,
+        "fields": {
+            "fecha": "2024-07-18T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 122,
+        "fields": {
+            "fecha": "2024-07-19T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 123,
+        "fields": {
+            "fecha": "2024-07-19T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 124,
+        "fields": {
+            "fecha": "2024-07-19T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 125,
+        "fields": {
+            "fecha": "2024-07-19T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 126,
+        "fields": {
+            "fecha": "2024-07-19T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 127,
+        "fields": {
+            "fecha": "2024-07-19T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 128,
+        "fields": {
+            "fecha": "2024-07-19T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 129,
+        "fields": {
+            "fecha": "2024-07-19T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 130,
+        "fields": {
+            "fecha": "2024-07-19T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 131,
+        "fields": {
+            "fecha": "2024-07-19T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 132,
+        "fields": {
+            "fecha": "2024-07-19T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 133,
+        "fields": {
+            "fecha": "2024-07-19T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 134,
+        "fields": {
+            "fecha": "2024-07-19T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 135,
+        "fields": {
+            "fecha": "2024-07-19T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 136,
+        "fields": {
+            "fecha": "2024-07-19T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 137,
+        "fields": {
+            "fecha": "2024-07-19T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 138,
+        "fields": {
+            "fecha": "2024-07-20T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 139,
+        "fields": {
+            "fecha": "2024-07-20T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 140,
+        "fields": {
+            "fecha": "2024-07-20T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 141,
+        "fields": {
+            "fecha": "2024-07-20T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 142,
+        "fields": {
+            "fecha": "2024-07-20T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 143,
+        "fields": {
+            "fecha": "2024-07-20T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 144,
+        "fields": {
+            "fecha": "2024-07-20T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 145,
+        "fields": {
+            "fecha": "2024-07-20T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 146,
+        "fields": {
+            "fecha": "2024-07-20T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 147,
+        "fields": {
+            "fecha": "2024-07-20T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 148,
+        "fields": {
+            "fecha": "2024-07-20T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 149,
+        "fields": {
+            "fecha": "2024-07-20T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 150,
+        "fields": {
+            "fecha": "2024-07-20T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 151,
+        "fields": {
+            "fecha": "2024-07-20T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 152,
+        "fields": {
+            "fecha": "2024-07-20T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 153,
+        "fields": {
+            "fecha": "2024-07-20T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 154,
+        "fields": {
+            "fecha": "2024-07-21T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 155,
+        "fields": {
+            "fecha": "2024-07-21T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 156,
+        "fields": {
+            "fecha": "2024-07-21T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 157,
+        "fields": {
+            "fecha": "2024-07-21T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 158,
+        "fields": {
+            "fecha": "2024-07-21T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 159,
+        "fields": {
+            "fecha": "2024-07-21T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 160,
+        "fields": {
+            "fecha": "2024-07-21T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 161,
+        "fields": {
+            "fecha": "2024-07-21T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 162,
+        "fields": {
+            "fecha": "2024-07-21T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 163,
+        "fields": {
+            "fecha": "2024-07-21T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 164,
+        "fields": {
+            "fecha": "2024-07-21T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 165,
+        "fields": {
+            "fecha": "2024-07-21T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 166,
+        "fields": {
+            "fecha": "2024-07-21T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 167,
+        "fields": {
+            "fecha": "2024-07-21T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 168,
+        "fields": {
+            "fecha": "2024-07-21T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 169,
+        "fields": {
+            "fecha": "2024-07-21T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 170,
+        "fields": {
+            "fecha": "2024-07-22T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 171,
+        "fields": {
+            "fecha": "2024-07-22T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 172,
+        "fields": {
+            "fecha": "2024-07-22T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 173,
+        "fields": {
+            "fecha": "2024-07-22T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 174,
+        "fields": {
+            "fecha": "2024-07-22T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 175,
+        "fields": {
+            "fecha": "2024-07-22T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 176,
+        "fields": {
+            "fecha": "2024-07-22T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 177,
+        "fields": {
+            "fecha": "2024-07-22T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 178,
+        "fields": {
+            "fecha": "2024-07-22T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 179,
+        "fields": {
+            "fecha": "2024-07-22T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 180,
+        "fields": {
+            "fecha": "2024-07-22T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 181,
+        "fields": {
+            "fecha": "2024-07-22T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 182,
+        "fields": {
+            "fecha": "2024-07-22T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 183,
+        "fields": {
+            "fecha": "2024-07-22T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 184,
+        "fields": {
+            "fecha": "2024-07-22T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 185,
+        "fields": {
+            "fecha": "2024-07-22T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 186,
+        "fields": {
+            "fecha": "2024-07-23T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 187,
+        "fields": {
+            "fecha": "2024-07-23T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 188,
+        "fields": {
+            "fecha": "2024-07-23T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 189,
+        "fields": {
+            "fecha": "2024-07-23T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 190,
+        "fields": {
+            "fecha": "2024-07-23T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 191,
+        "fields": {
+            "fecha": "2024-07-23T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 192,
+        "fields": {
+            "fecha": "2024-07-23T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 193,
+        "fields": {
+            "fecha": "2024-07-23T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 194,
+        "fields": {
+            "fecha": "2024-07-23T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 195,
+        "fields": {
+            "fecha": "2024-07-23T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 196,
+        "fields": {
+            "fecha": "2024-07-23T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 197,
+        "fields": {
+            "fecha": "2024-07-23T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 198,
+        "fields": {
+            "fecha": "2024-07-23T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 199,
+        "fields": {
+            "fecha": "2024-07-23T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 200,
+        "fields": {
+            "fecha": "2024-07-23T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 201,
+        "fields": {
+            "fecha": "2024-07-23T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 202,
+        "fields": {
+            "fecha": "2024-07-24T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 203,
+        "fields": {
+            "fecha": "2024-07-24T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 204,
+        "fields": {
+            "fecha": "2024-07-24T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 205,
+        "fields": {
+            "fecha": "2024-07-24T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 206,
+        "fields": {
+            "fecha": "2024-07-24T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 207,
+        "fields": {
+            "fecha": "2024-07-24T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 208,
+        "fields": {
+            "fecha": "2024-07-24T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 209,
+        "fields": {
+            "fecha": "2024-07-24T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 210,
+        "fields": {
+            "fecha": "2024-07-24T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 211,
+        "fields": {
+            "fecha": "2024-07-24T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 212,
+        "fields": {
+            "fecha": "2024-07-24T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 213,
+        "fields": {
+            "fecha": "2024-07-24T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 214,
+        "fields": {
+            "fecha": "2024-07-24T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 215,
+        "fields": {
+            "fecha": "2024-07-24T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 216,
+        "fields": {
+            "fecha": "2024-07-24T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 217,
+        "fields": {
+            "fecha": "2024-07-24T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 218,
+        "fields": {
+            "fecha": "2024-07-25T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 219,
+        "fields": {
+            "fecha": "2024-07-25T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 220,
+        "fields": {
+            "fecha": "2024-07-25T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 221,
+        "fields": {
+            "fecha": "2024-07-25T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 222,
+        "fields": {
+            "fecha": "2024-07-25T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 223,
+        "fields": {
+            "fecha": "2024-07-25T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 224,
+        "fields": {
+            "fecha": "2024-07-25T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 225,
+        "fields": {
+            "fecha": "2024-07-25T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 226,
+        "fields": {
+            "fecha": "2024-07-25T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 227,
+        "fields": {
+            "fecha": "2024-07-25T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 228,
+        "fields": {
+            "fecha": "2024-07-25T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 229,
+        "fields": {
+            "fecha": "2024-07-25T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 230,
+        "fields": {
+            "fecha": "2024-07-25T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 231,
+        "fields": {
+            "fecha": "2024-07-25T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 232,
+        "fields": {
+            "fecha": "2024-07-25T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 233,
+        "fields": {
+            "fecha": "2024-07-25T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 234,
+        "fields": {
+            "fecha": "2024-07-26T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 235,
+        "fields": {
+            "fecha": "2024-07-26T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 236,
+        "fields": {
+            "fecha": "2024-07-26T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 237,
+        "fields": {
+            "fecha": "2024-07-26T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 238,
+        "fields": {
+            "fecha": "2024-07-26T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 239,
+        "fields": {
+            "fecha": "2024-07-26T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 240,
+        "fields": {
+            "fecha": "2024-07-26T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 241,
+        "fields": {
+            "fecha": "2024-07-26T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 242,
+        "fields": {
+            "fecha": "2024-07-26T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 243,
+        "fields": {
+            "fecha": "2024-07-26T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 244,
+        "fields": {
+            "fecha": "2024-07-26T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 245,
+        "fields": {
+            "fecha": "2024-07-26T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 246,
+        "fields": {
+            "fecha": "2024-07-26T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 247,
+        "fields": {
+            "fecha": "2024-07-26T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 248,
+        "fields": {
+            "fecha": "2024-07-26T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 249,
+        "fields": {
+            "fecha": "2024-07-26T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 250,
+        "fields": {
+            "fecha": "2024-07-27T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 251,
+        "fields": {
+            "fecha": "2024-07-27T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 252,
+        "fields": {
+            "fecha": "2024-07-27T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 253,
+        "fields": {
+            "fecha": "2024-07-27T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 254,
+        "fields": {
+            "fecha": "2024-07-27T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 255,
+        "fields": {
+            "fecha": "2024-07-27T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 256,
+        "fields": {
+            "fecha": "2024-07-27T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 257,
+        "fields": {
+            "fecha": "2024-07-27T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 258,
+        "fields": {
+            "fecha": "2024-07-27T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 259,
+        "fields": {
+            "fecha": "2024-07-27T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 260,
+        "fields": {
+            "fecha": "2024-07-27T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 261,
+        "fields": {
+            "fecha": "2024-07-27T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 262,
+        "fields": {
+            "fecha": "2024-07-27T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 263,
+        "fields": {
+            "fecha": "2024-07-27T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 264,
+        "fields": {
+            "fecha": "2024-07-27T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 265,
+        "fields": {
+            "fecha": "2024-07-27T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 266,
+        "fields": {
+            "fecha": "2024-07-28T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 267,
+        "fields": {
+            "fecha": "2024-07-28T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 268,
+        "fields": {
+            "fecha": "2024-07-28T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 269,
+        "fields": {
+            "fecha": "2024-07-28T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 270,
+        "fields": {
+            "fecha": "2024-07-28T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 271,
+        "fields": {
+            "fecha": "2024-07-28T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 272,
+        "fields": {
+            "fecha": "2024-07-28T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 273,
+        "fields": {
+            "fecha": "2024-07-28T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 274,
+        "fields": {
+            "fecha": "2024-07-28T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 275,
+        "fields": {
+            "fecha": "2024-07-28T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 276,
+        "fields": {
+            "fecha": "2024-07-28T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 277,
+        "fields": {
+            "fecha": "2024-07-28T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 278,
+        "fields": {
+            "fecha": "2024-07-28T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 279,
+        "fields": {
+            "fecha": "2024-07-28T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 280,
+        "fields": {
+            "fecha": "2024-07-28T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 281,
+        "fields": {
+            "fecha": "2024-07-28T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 282,
+        "fields": {
+            "fecha": "2024-07-29T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 283,
+        "fields": {
+            "fecha": "2024-07-29T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 284,
+        "fields": {
+            "fecha": "2024-07-29T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 285,
+        "fields": {
+            "fecha": "2024-07-29T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 286,
+        "fields": {
+            "fecha": "2024-07-29T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 287,
+        "fields": {
+            "fecha": "2024-07-29T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 288,
+        "fields": {
+            "fecha": "2024-07-29T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 289,
+        "fields": {
+            "fecha": "2024-07-29T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 290,
+        "fields": {
+            "fecha": "2024-07-29T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 291,
+        "fields": {
+            "fecha": "2024-07-29T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 292,
+        "fields": {
+            "fecha": "2024-07-29T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 293,
+        "fields": {
+            "fecha": "2024-07-29T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 294,
+        "fields": {
+            "fecha": "2024-07-29T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 295,
+        "fields": {
+            "fecha": "2024-07-29T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 296,
+        "fields": {
+            "fecha": "2024-07-29T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 297,
+        "fields": {
+            "fecha": "2024-07-29T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 298,
+        "fields": {
+            "fecha": "2024-07-30T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 299,
+        "fields": {
+            "fecha": "2024-07-30T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 300,
+        "fields": {
+            "fecha": "2024-07-30T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 301,
+        "fields": {
+            "fecha": "2024-07-30T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 302,
+        "fields": {
+            "fecha": "2024-07-30T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 303,
+        "fields": {
+            "fecha": "2024-07-30T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 304,
+        "fields": {
+            "fecha": "2024-07-30T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 305,
+        "fields": {
+            "fecha": "2024-07-30T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 306,
+        "fields": {
+            "fecha": "2024-07-30T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 307,
+        "fields": {
+            "fecha": "2024-07-30T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 308,
+        "fields": {
+            "fecha": "2024-07-30T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 309,
+        "fields": {
+            "fecha": "2024-07-30T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 310,
+        "fields": {
+            "fecha": "2024-07-30T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 311,
+        "fields": {
+            "fecha": "2024-07-30T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 312,
+        "fields": {
+            "fecha": "2024-07-30T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 313,
+        "fields": {
+            "fecha": "2024-07-30T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 314,
+        "fields": {
+            "fecha": "2024-07-31T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 315,
+        "fields": {
+            "fecha": "2024-07-31T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 316,
+        "fields": {
+            "fecha": "2024-07-31T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 317,
+        "fields": {
+            "fecha": "2024-07-31T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 318,
+        "fields": {
+            "fecha": "2024-07-31T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 319,
+        "fields": {
+            "fecha": "2024-07-31T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 320,
+        "fields": {
+            "fecha": "2024-07-31T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 321,
+        "fields": {
+            "fecha": "2024-07-31T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 322,
+        "fields": {
+            "fecha": "2024-07-31T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 323,
+        "fields": {
+            "fecha": "2024-07-31T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 324,
+        "fields": {
+            "fecha": "2024-07-31T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 325,
+        "fields": {
+            "fecha": "2024-07-31T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 326,
+        "fields": {
+            "fecha": "2024-07-31T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 327,
+        "fields": {
+            "fecha": "2024-07-31T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 328,
+        "fields": {
+            "fecha": "2024-07-31T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 329,
+        "fields": {
+            "fecha": "2024-07-31T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 330,
+        "fields": {
+            "fecha": "2024-08-01T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 331,
+        "fields": {
+            "fecha": "2024-08-01T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 332,
+        "fields": {
+            "fecha": "2024-08-01T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 333,
+        "fields": {
+            "fecha": "2024-08-01T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 334,
+        "fields": {
+            "fecha": "2024-08-01T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 335,
+        "fields": {
+            "fecha": "2024-08-01T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 336,
+        "fields": {
+            "fecha": "2024-08-01T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 337,
+        "fields": {
+            "fecha": "2024-08-01T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 338,
+        "fields": {
+            "fecha": "2024-08-01T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 339,
+        "fields": {
+            "fecha": "2024-08-01T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 340,
+        "fields": {
+            "fecha": "2024-08-01T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 341,
+        "fields": {
+            "fecha": "2024-08-01T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 342,
+        "fields": {
+            "fecha": "2024-08-01T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 343,
+        "fields": {
+            "fecha": "2024-08-01T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 344,
+        "fields": {
+            "fecha": "2024-08-01T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 345,
+        "fields": {
+            "fecha": "2024-08-01T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 346,
+        "fields": {
+            "fecha": "2024-08-02T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 347,
+        "fields": {
+            "fecha": "2024-08-02T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 348,
+        "fields": {
+            "fecha": "2024-08-02T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 349,
+        "fields": {
+            "fecha": "2024-08-02T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 350,
+        "fields": {
+            "fecha": "2024-08-02T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 351,
+        "fields": {
+            "fecha": "2024-08-02T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 352,
+        "fields": {
+            "fecha": "2024-08-02T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 353,
+        "fields": {
+            "fecha": "2024-08-02T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 354,
+        "fields": {
+            "fecha": "2024-08-02T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 355,
+        "fields": {
+            "fecha": "2024-08-02T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 356,
+        "fields": {
+            "fecha": "2024-08-02T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 357,
+        "fields": {
+            "fecha": "2024-08-02T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 358,
+        "fields": {
+            "fecha": "2024-08-02T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 359,
+        "fields": {
+            "fecha": "2024-08-02T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 360,
+        "fields": {
+            "fecha": "2024-08-02T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 361,
+        "fields": {
+            "fecha": "2024-08-02T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 362,
+        "fields": {
+            "fecha": "2024-08-03T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 363,
+        "fields": {
+            "fecha": "2024-08-03T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 364,
+        "fields": {
+            "fecha": "2024-08-03T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 365,
+        "fields": {
+            "fecha": "2024-08-03T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 366,
+        "fields": {
+            "fecha": "2024-08-03T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 367,
+        "fields": {
+            "fecha": "2024-08-03T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 368,
+        "fields": {
+            "fecha": "2024-08-03T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 369,
+        "fields": {
+            "fecha": "2024-08-03T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 370,
+        "fields": {
+            "fecha": "2024-08-03T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 371,
+        "fields": {
+            "fecha": "2024-08-03T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 372,
+        "fields": {
+            "fecha": "2024-08-03T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 373,
+        "fields": {
+            "fecha": "2024-08-03T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 374,
+        "fields": {
+            "fecha": "2024-08-03T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 375,
+        "fields": {
+            "fecha": "2024-08-03T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 376,
+        "fields": {
+            "fecha": "2024-08-03T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 377,
+        "fields": {
+            "fecha": "2024-08-03T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 378,
+        "fields": {
+            "fecha": "2024-08-04T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 379,
+        "fields": {
+            "fecha": "2024-08-04T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 380,
+        "fields": {
+            "fecha": "2024-08-04T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 381,
+        "fields": {
+            "fecha": "2024-08-04T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 382,
+        "fields": {
+            "fecha": "2024-08-04T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 383,
+        "fields": {
+            "fecha": "2024-08-04T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 384,
+        "fields": {
+            "fecha": "2024-08-04T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 385,
+        "fields": {
+            "fecha": "2024-08-04T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 386,
+        "fields": {
+            "fecha": "2024-08-04T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 387,
+        "fields": {
+            "fecha": "2024-08-04T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 388,
+        "fields": {
+            "fecha": "2024-08-04T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 389,
+        "fields": {
+            "fecha": "2024-08-04T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 390,
+        "fields": {
+            "fecha": "2024-08-04T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 391,
+        "fields": {
+            "fecha": "2024-08-04T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 392,
+        "fields": {
+            "fecha": "2024-08-04T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 393,
+        "fields": {
+            "fecha": "2024-08-04T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 394,
+        "fields": {
+            "fecha": "2024-08-05T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 395,
+        "fields": {
+            "fecha": "2024-08-05T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 396,
+        "fields": {
+            "fecha": "2024-08-05T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 397,
+        "fields": {
+            "fecha": "2024-08-05T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 398,
+        "fields": {
+            "fecha": "2024-08-05T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 399,
+        "fields": {
+            "fecha": "2024-08-05T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 400,
+        "fields": {
+            "fecha": "2024-08-05T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 401,
+        "fields": {
+            "fecha": "2024-08-05T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 402,
+        "fields": {
+            "fecha": "2024-08-05T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 403,
+        "fields": {
+            "fecha": "2024-08-05T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 404,
+        "fields": {
+            "fecha": "2024-08-05T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 405,
+        "fields": {
+            "fecha": "2024-08-05T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 406,
+        "fields": {
+            "fecha": "2024-08-05T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 407,
+        "fields": {
+            "fecha": "2024-08-05T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 408,
+        "fields": {
+            "fecha": "2024-08-05T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 409,
+        "fields": {
+            "fecha": "2024-08-05T18:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 410,
+        "fields": {
+            "fecha": "2024-08-06T09:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 411,
+        "fields": {
+            "fecha": "2024-08-06T09:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 412,
+        "fields": {
+            "fecha": "2024-08-06T10:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 413,
+        "fields": {
+            "fecha": "2024-08-06T10:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 414,
+        "fields": {
+            "fecha": "2024-08-06T11:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 415,
+        "fields": {
+            "fecha": "2024-08-06T11:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 416,
+        "fields": {
+            "fecha": "2024-08-06T12:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 417,
+        "fields": {
+            "fecha": "2024-08-06T12:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 418,
+        "fields": {
+            "fecha": "2024-08-06T13:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 419,
+        "fields": {
+            "fecha": "2024-08-06T15:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 420,
+        "fields": {
+            "fecha": "2024-08-06T15:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 421,
+        "fields": {
+            "fecha": "2024-08-06T16:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 422,
+        "fields": {
+            "fecha": "2024-08-06T16:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 423,
+        "fields": {
+            "fecha": "2024-08-06T17:00:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 424,
+        "fields": {
+            "fecha": "2024-08-06T17:30:00",
+            "disponible": true
+        }
+    },
+    {
+        "model": "san_blas_app.horario",
+        "pk": 425,
+        "fields": {
+            "fecha": "2024-08-06T18:00:00",
+            "disponible": true
+        }
+    }
+]

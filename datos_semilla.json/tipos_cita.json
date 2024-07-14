@@ -1,0 +1,58 @@
+[
+    {
+        "model": "san_blas_app.tipocita",
+        "pk": 1,
+        "fields": {
+            "tipo": "general"
+        }
+    },
+    {
+        "model": "san_blas_app.tipocita",
+        "pk": 2,
+        "fields": {
+            "tipo": "vacuna"
+        }
+    },
+    {
+        "model": "san_blas_app.tipocita",
+        "pk": 3,
+        "fields": {
+            "tipo": "preventiva"
+        }
+    },
+    {
+        "model": "san_blas_app.tipocita",
+        "pk": 4,
+        "fields": {
+            "tipo": "cirugía esterilización"
+        }
+    },
+    {
+        "model": "san_blas_app.tipocita",
+        "pk": 5,
+        "fields": {
+            "tipo": "cirugía tumor menor"
+        }
+    },
+    {
+        "model": "san_blas_app.tipocita",
+        "pk": 6,
+        "fields": {
+            "tipo": "certificado"
+        }
+    },
+    {
+        "model": "san_blas_app.tipocita",
+        "pk": 7,
+        "fields": {
+            "tipo": "destartraje"
+        }
+    },
+    {
+        "model": "san_blas_app.tipocita",
+        "pk": 8,
+        "fields": {
+            "tipo": "tratamiento/curación"
+        }
+    }
+]

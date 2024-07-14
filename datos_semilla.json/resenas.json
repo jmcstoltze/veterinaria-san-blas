@@ -1,0 +1,42 @@
+[
+    {
+        "model": "san_blas_app.resena",
+        "pk": 1,
+        "fields": {
+            "fecha": "2024-07-01",
+            "calificacion": 5,
+            "comentario": "Me encantó este lugar, excelente atención al cliente.",
+            "usuario": 1
+        }
+    },
+    {
+        "model": "san_blas_app.resena",
+        "pk": 2,
+        "fields": {
+            "fecha": "2024-07-02",
+            "calificacion": 4,
+            "comentario": "Buena experiencia en general.",
+            "usuario": 2
+        }
+    },
+    {
+        "model": "san_blas_app.resena",
+        "pk": 3,
+        "fields": {
+            "fecha": "2024-07-03",
+            "calificacion": 5,
+            "comentario": "Excelente servicio, me explicaron todo detalladamente.",
+            "usuario": 5
+        }
+    },
+    {
+        "model": "san_blas_app.resena",
+        "pk": 4,
+        "fields": {
+            "fecha": "2024-07-04",
+            "calificacion": 4,
+            "comentario": "Muy buen trato hacia mi mascota, volveré.",
+            "usuario": 1
+        }
+    }
+]

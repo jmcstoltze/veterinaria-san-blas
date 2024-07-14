@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="listado_pacientes">
+
+        <div class="container">                
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+
+                <!-- Listado de pacientes -->
+                <div class="card shadow-lg p-5">
+                    <h2>Listado de Pacientes</h2>
+                    <hr><br>                            
+
+                    <!-- Buscador -->
+                    <form action="" method="get" class="mb-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar por nombre de paciente">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+                    </form>
+
+                        <!-- Crear nuevo paciente -->
+                        <a href="" class="btn btn-primary">Agregar Nuevo Paciente</a>
+                        <br>
+
+                        <!-- Listado -->
+                        <div class="list-group">                                                                
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Bella</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Persian</p>
+                                <p class="mb-1">Edad: 3 años</p>                                    
+                                <p class="mb-1">Dueñ@: Ana López</p>                                    
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Bella</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Beagle</p>
+                                <p class="mb-1">Edad: 2 años</p>
+                                <p class="mb-1">Dueñ@: Carla Muñoz</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Charlie</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Poodle</p>
+                                <p class="mb-1">Edad: 1 año</p>
+                                <p class="mb-1">Dueñ@: David Gómez</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Coco</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Bengal</p>
+                                <p class="mb-1">Edad: 4 años</p>
+                                <p class="mb-1">Dueñ@: Juan Pérez</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Daisy</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Golden Retriever</p>
+                                <p class="mb-1">Edad: 3 años</p>
+                                <p class="mb-1">Dueñ@: Laura Torres</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Felix</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Domestic Shorthair</p>
+                                <p class="mb-1">Edad: 2 años</p>
+                                <p class="mb-1">Dueñ@: Ana López</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Jack</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Boxer</p>
+                                <p class="mb-1">Edad: 5 años</p>
+                                <p class="mb-1">Dueñ@: Miguel Fernández</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Leo</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Maine Coon</p>
+                                <p class="mb-1">Edad: 4 años</p>
+                                <p class="mb-1">Dueñ@: Carmen Rivera</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Loki</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Ragdoll</p>
+                                <p class="mb-1">Edad: 3 años</p>
+                                <p class="mb-1">Dueñ@: Sofía Rodríguez</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Lola</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: French Bulldog</p>
+                                <p class="mb-1">Edad: 2 años</p>
+                                <p class="mb-1">Dueñ@: Laura Torres</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Luna</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Siamese</p>
+                                <p class="mb-1">Edad: 2 años</p>
+                                <p class="mb-1">Dueñ@: María García</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Max</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: German Shepherd</p>
+                                <p class="mb-1">Edad: 4 años</p>
+                                <p class="mb-1">Dueñ@: Juan Pérez</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Milo</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Cocker Spaniel</p>
+                                <p class="mb-1">Edad: 3 años</p>
+                                <p class="mb-1">Dueñ@: Andrés Martínez</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Mimi</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: British Shorthair</p>
+                                <p class="mb-1">Edad: 2 años</p>
+                                <p class="mb-1">Dueñ@: Carla Muñoz</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Nala</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Sphynx</p>
+                                <p class="mb-1">Edad: 1 año</p>
+                                <p class="mb-1">Dueñ@: David Gómez</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Nina</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Scottish Fold</p>
+                                <p class="mb-1">Edad: 3 años</p>
+                                <p class="mb-1">Dueñ@: Laura Torres</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Rocky</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Chihuahua</p>
+                                <p class="mb-1">Edad: 2 años</p>
+                                <p class="mb-1">Dueñ@: Miguel Fernández</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Simba</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Border Collie</p>
+                                <p class="mb-1">Edad: 4 años</p>
+                                <p class="mb-1">Dueñ@: Carmen Rivera</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Tommy</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Labrador Retriever</p>
+                                <p class="mb-1">Edad: 4 años</p>
+                                <p class="mb-1">Dueñ@: María García</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Nala</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Sphynx</p>
+                                <p class="mb-1">Edad: 1 año</p>
+                                <p class="mb-1">Dueñ@: David Gómez</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Nina</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Scottish Fold</p>
+                                <p class="mb-1">Edad: 3 años</p>
+                                <p class="mb-1">Dueñ@: Laura Torres</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Rocky</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Chihuahua</p>
+                                <p class="mb-1">Edad: 2 años</p>
+                                <p class="mb-1">Dueñ@: Miguel Fernández</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Simba</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Border Collie</p>
+                                <p class="mb-1">Edad: 4 años</p>
+                                <p class="mb-1">Dueñ@: Carmen Rivera</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Tommy</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Labrador Retriever</p>
+                                <p class="mb-1">Edad: 4 años</p>
+                                <p class="mb-1">Dueñ@: María García</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Nala</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Sphynx</p>
+                                <p class="mb-1">Edad: 1 año</p>
+                                <p class="mb-1">Dueñ@: David Gómez</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Nina</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Scottish Fold</p>
+                                <p class="mb-1">Edad: 3 años</p>
+                                <p class="mb-1">Dueñ@: Laura Torres</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Rocky</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Chihuahua</p>
+                                <p class="mb-1">Edad: 2 años</p>
+                                <p class="mb-1">Dueñ@: Miguel Fernández</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Simba</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Border Collie</p>
+                                <p class="mb-1">Edad: 4 años</p>
+                                <p class="mb-1">Dueñ@: Carmen Rivera</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Tommy</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Labrador Retriever</p>
+                                <p class="mb-1">Edad: 4 años</p>
+                                <p class="mb-1">Dueñ@: María García</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Nala</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Sphynx</p>
+                                <p class="mb-1">Edad: 1 año</p>
+                                <p class="mb-1">Dueñ@: David Gómez</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Nina</h5>
+                                <p class="mb-1">Especie: Felina</p>
+                                <p class="mb-1">Raza: Scottish Fold</p>
+                                <p class="mb-1">Edad: 3 años</p>
+                                <p class="mb-1">Dueñ@: Laura Torres</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Rocky</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Chihuahua</p>
+                                <p class="mb-1">Edad: 2 años</p>
+                                <p class="mb-1">Dueñ@: Miguel Fernández</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Simba</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Border Collie</p>
+                                <p class="mb-1">Edad: 4 años</p>
+                                <p class="mb-1">Dueñ@: Carmen Rivera</p>
+                            </a>
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Tommy</h5>
+                                <p class="mb-1">Especie: Canina</p>
+                                <p class="mb-1">Raza: Labrador Retriever</p>
+                                <p class="mb-1">Edad: 4 años</p>
+                                <p class="mb-1">Dueñ@: María García</p>
+                            </a>                                
+                        </div>
+                        <br>                            
+                    </div>                        
+                </div>
+            </div>            
+    </content>
+</div>
+{% endblock %}

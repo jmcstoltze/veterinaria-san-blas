@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <section id="registro">
+        <div class="container">
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+                <!-- Formulario de registro -->
+                <div class="card shadow-lg p-5">
+                    <h2>Editar Información</h2>
+                    <hr><br>
+                <p>Actualiza la información en los campos.</p>
+                <br>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="rut" class="form-label">Rut</label>
+                        <input type="text" class="form-control" value="1111-1" placeholder="Ingresa tu RUT" id="rut" name="rut" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" value="María" placeholder="Ingresa tu nombre" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellidos" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" value="López" placeholder="Ingresa tus apellidos" id="apellidos" name="apellidos" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" value="maria_lopez@mail.com" placeholder="Ingrese su email" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control" value="+569 9999999" placeholder="Ingresa tu teléfono" id="telefono" name="telefono" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="calle" class="form-label">Calle</label>
+                        <input type="text" class="form-control" value="Av Siempre Viva" placeholder="Ingresa tu calle" id="calle" name="calle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numero" class="form-label">Número</label>
+                        <input type="text" class="form-control" value="21" placeholder="Ingresa el número" id="numero" name="numero" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="departamento" class="form-label">Departamento</label>
+                        <input type="text" class="form-control" value="21" placeholder="Ingresa el departamento (opcional)" id="departamento" name="departamento">
+                    </div>                                        
+                    <!-- Comuna -->
+                    <div class="mb-3">
+                        <label for="comuna" class="form-label">Comuna:</label>
+                        <select class="form-select" id="comuna" name="comuna" required>
+                            <option value="" selected disabled>{{  }}</option>                            
+                            {% for comuna in comunas %}
+                                <option value="{{ comuna.id }}">{{ comuna.nombre_comuna }}</option>
+                            {% endfor %}
+                        </select>
+                    </div> 
+                    <button type="submit" class="btn btn-primary" onclick="">Actualizar Información</button>
+                </form>
+            </div>
+        </div>        
+    </section>
+</div>
+{% endblock %}

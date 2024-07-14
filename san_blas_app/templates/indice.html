@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="bienvenida">                                         
+        <div class="container">               
+            <div class="row">
+                <div class="col-lg-4 mb-4">                            
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'reservar_hora' %}" class="no-underline">
+                            <!-- Contenedor sombreado tipo card-->
+                            <div class="card shadow-lg p-5 custom-card" style="background-color: #87cf56;">
+                                <h2>Reserva tu Hora</h2>
+                                <hr><br>
+                                <img src="{% static 'img/card1.jpg' %}" class="card-img custom-width" alt="Card1">
+                            </div>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'inicio_sesion' %}" class="no-underline">
+                            <!-- Contenedor sombreado tipo card-->
+                            <div class="card shadow-lg p-5 custom-card" style="background-color: #87cf56;">
+                                <h2>Reserva tu Hora</h2>
+                                <hr><br>
+                                <img src="{% static 'img/card1.jpg' %}" class="card-img custom-width" alt="Card1">
+                            </div>
+                        </a>
+                    {% endif %}                                        
+                </div>
+                <div class="col-lg-4 mb-4">                            
+                        <!-- Contenedor sombreado tipo card-->
+                        <div class="card shadow-lg p-5">
+                            <h2>Veterinaria San Blas</h2>
+                            <hr><br>
+                            <p>Ofrecemos una amplia gama de servicios, desde consultas hasta procedimientos quirúrgicos y cuidados preventivos.</p>
+                            <p>Cada mascota es un miembro invaluable de la familia, y tratamos a cada uno de nuestros pacientes con la misma dedicación y cariño.</p>                                    
+                        </div>                            
+                </div>
+                <div class="col-lg-4 mb-4">
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser %}
+                            <a href="{% url 'consulta' %}" class="no-underline">
+                                <!-- Contenedor sombreado tipo card-->
+                                <div class="card shadow-lg p-5 custom-card" style="background-color: #7264C9;">
+                                    <h2>Vacunatorio</h2>
+                                    <hr><br>
+                                    <img src="{% static 'img/card2.jpg' %}" class="card-img custom-width" alt="Card2">
+                                </div>
+                            </a>                        
+                        {% else %}
+                        <a href="{% url 'vacunatorio' %}" class="no-underline">
+                            <!-- Contenedor sombreado tipo card-->
+                            <div class="card shadow-lg p-5 custom-card" style="background-color: #7264C9;">
+                                <h2>Vacunatorio</h2>
+                                <hr><br>
+                                <img src="{% static 'img/card2.jpg' %}" class="card-img custom-width" alt="Card2">
+                            </div>
+                        </a>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'inicio_sesion' %}" class="no-underline">
+                            <!-- Contenedor sombreado tipo card-->
+                            <div class="card shadow-lg p-5 custom-card" style="background-color: #7264C9;">
+                                <h2>Vacunatorio</h2>
+                                <hr><br>
+                                <img src="{% static 'img/card2.jpg' %}" class="card-img custom-width" alt="Card2">
+                            </div>
+                        </a>
+                    {% endif %}
+                    
+                </div>                                       
+            </div>                    
+        </div>
+            
+        <!-- Sección de comentarios -->
+        <div class="container">                
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+                <!-- Comentarios de usuarios -->
+                <div class="card shadow-lg p-5">
+                    <h2>Comentarios</h2>
+                    <hr><br>
+                                                                        
+                    <!-- Listado de Comentarios -->
+                    <div class="list-group">
+                        
+                        <!-- Reseñas de Usuarios -->
+                        {% for resena in resenas %}
+                        <span class="list-group-item list-group-item-action">                                    
+                            <h5 class="mb-1">{{ resena.usuario.get_full_name }}</h5>
+                            <p class="mb-1">@{{ resena.usuario.username }}</p>
+                            <p class="mb-1">{{ resena.fecha|date:"d-m-Y" }}</p>
+                            <p class="mb-1">{{ resena.calificacion }} estrellas</p>
+                            <p class="custom-comment mb-1">{{ resena.comentario }}</p>                                                                         
+                        </span>
+                        {% endfor %}
+                    </div>
+
+                </div>                        
+            </div>
+        </div>
+    </content>
+</div>
+{% endblock %}

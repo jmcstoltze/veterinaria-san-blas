@@ -1,0 +1,32 @@
+[
+    {
+        "model": "san_blas_app.contacto",
+        "pk": 1,
+        "fields": {
+            "nombres": "Nombre1",
+            "apellidos": "Apellido1",
+            "email": "email1@example.com",
+            "mensaje": "Mensaje de prueba 1"
+        }
+    },
+    {
+        "model": "san_blas_app.contacto",
+        "pk": 2,
+        "fields": {
+            "nombres": "Nombre2",
+            "apellidos": "Apellido2",
+            "email": "email2@example.com",
+            "mensaje": "Mensaje de prueba 2"
+        }
+    },
+    {
+        "model": "san_blas_app.contacto",
+        "pk": 3,
+        "fields": {
+            "nombres": "Nombre3",
+            "apellidos": "Apellido3",
+            "email": "email3@example.com",
+            "mensaje": "Mensaje de prueba 3"
+        }
+    }
+]

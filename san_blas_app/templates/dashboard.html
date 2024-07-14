@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="dashboard">            
+        <div class="container">                    
+            <div class="row">
+                <div class="col-lg-4 mb-4">                            
+                    <a href="{% url 'mascotas' %}" class="no-underline">
+                        <!-- Contenedor sombreado tipo card-->
+                        <div class="card shadow-lg p-5 custom-card" style="background-color: #7264C9;">
+                            <h2>Mis Mascotas</h2>
+                            <hr><br>
+                            <img src="{% static 'img/card3.jpg' %}" class="card-img custom-width" alt="Card3">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 mb-4">                            
+                    <!-- Contenedor sombreado tipo card-->
+                    <div class="card shadow-lg p-5">
+                        <h2>¡Hola {{ nombre }}!</h2>
+                        <hr><br>
+                        <p>¿Qué deseas hacer hoy?</p>
+                        <p><a href="{% url 'reservar_hora' %}">Reservar cita</a></p>
+                        <p><a href="">Administrar agendamientos</a></p>
+                        <p><a href="{% url 'vacunatorio' %}">Ir al vacunatorio</a></p>
+                        <p><a href="">Dejar opiniones y comentarios</a></p>                                                                       
+                    </div>                            
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <a href="" class="no-underline">
+                        <!-- Contenedor sombreado tipo card-->
+                        <div class="card shadow-lg p-5 custom-card" style="background-color: #87cf56;">
+                            <h2>Tu Perfil</h2>
+                            <hr><br>
+                            <img src="{% static 'img/card4.jpg' %}" class="card-img custom-width" alt="Card4">
+                        </div>
+                    </a>
+                </div>                                       
+            </div>                    
+        </div>            
+    </content>
+</div>
+{% endblock %}

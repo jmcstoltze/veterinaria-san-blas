@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="newsletter">
+        <div class="container">                
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+
+                <!-- Formulario para recibir newsletter -->
+                <div class="card shadow-lg p-5">
+                    <h2>Suscribir Newsletter</h2>
+                    <hr><br>
+                        
+                    <p>Suscríbete a nuestro newsletter para recibir las últimas noticias, promociones exclusivas y consejos útiles para el cuidado de tu mascota.</p>
+                    <br>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" placeholder="Ingresa tu nombre completo" id="nombre_completo" name="nombre_completo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" placeholder="Ingresa tu nombre completo" id="nombre_completo" name="nombre_completo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" placeholder="Ingrese su email" id="correo_electronico" name="correo_electronico" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Suscribirse</button>
+                    </form>
+                </div>    
+            </div>
+        </div>            
+    </content>
+</div>
+{% endblock %}

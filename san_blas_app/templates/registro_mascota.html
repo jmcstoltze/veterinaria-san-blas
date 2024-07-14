@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <section id="registro_mascota">
+        <div class="container">
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+                <!-- Formulario de registro de mascota -->
+                <div class="card shadow-lg p-5">
+                    <h2>Registro de Mascota</h2>
+                    <hr><br>
+                    <p>Completa el formulario para registrar mascota.</p>
+                    <br>
+                    <!-- Mensaje de éxito -->
+                    {% if success_message %}
+                        <div class="alert alert-success" role="alert">
+                            {{ success_message }}
+                        </div>
+                    {% endif %}
+                    <!-- Mensaje de error -->
+                    {% if error_message %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error_message }}
+                        </div>
+                    {% endif %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+                        {% if user.is_superuser %}
+                            <div class="mb-3">
+                                <label for="rut" class="form-label">Rut Cliente</label>
+                                <select class="form-control" id="rut" name="rut" required>
+                                    <option value="">Selecciona el rut</option>
+                                    <option value="rut1">1111-1</option>
+                                    <option value="rut2">2222-2</option>
+                                </select>
+                            </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label for="chip" class="form-label">Chip (opcional)</label>
+                            <input type="text" class="form-control" placeholder="Ingresa chip" id="chip" name="chip">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" placeholder="Ingresa nombre" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="especie" class="form-label">Especie</label>
+                            <select class="form-control" id="especie" name="especie" required>
+                                <option value="">Selecciona especie</option>
+                                <option value="Canina">Canina</option>
+                                <option value="Felina">Felina</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="raza" class="form-label">Raza</label>
+                            <input type="text" class="form-control" placeholder="Ingresa raza" id="raza" name="raza" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edad" class="form-label">Edad (en meses)</label>
+                            <input type="text" class="form-control" placeholder="Ingresa edad" id="edad" name="edad" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sexo" class="form-label">Sexo</label>
+                            <select class="form-control" id="sexo" name="sexo" required>
+                                <option value="">Selecciona el sexo</option>
+                                <option value="Macho">Macho</option>
+                                <option value="Hembra">Hembra</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="esterilizado" class="form-label">Esterilizada</label>
+                            <select class="form-control" id="esterilizado" name="esterilizado" required>
+                                <option value="">¿Está esterilizada?</option>
+                                <option value="Sí">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrar Mascota</button>
+                    </form>
+                </div>
+            </div>
+        </div>            
+    </section>
+</div>
+{% endblock %}

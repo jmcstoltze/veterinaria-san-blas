@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="reportes">
+        <div class="container">                
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+                <!-- Listado de citas médicas -->
+                <div class="card shadow-lg p-5">
+                    <h2>Reportes de Pacientes</h2>
+                    <hr><br>                            
+                    <!-- Buscador por paciente-->
+                    <form action="" method="GET" class="mb-3">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar por nombre de paciente">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+                    </form>                                        
+                    <br>
+                    <!-- Listado de resultados de la búsqueda -->
+                    <div class="list-group">                                                                                                
+                        <span href="" class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">Bella</h5>
+                            <p class="mb-1">Especie: Canina</p>
+                            <p class="mb-1">Raza: Beagle</p>
+                            <p class="mb-1">Edad: 2 años</p>
+                            <p class="mb-1">Dueñ@: Carla Muñoz</p>
+
+                            <!-- Botón para generar reporte del paciente -->
+                            <form action="{% url 'generar_reporte' %}" method="POST" class="mt-2">
+                                {% csrf_token %}
+                                <input type="hidden" name="paciente" value="Bella">
+                                <button type="submit" class="btn btn-secondary">Generar Reporte</button>
+                            </form>
+                        </span>
+                        <span href="" class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">Charlie</h5>
+                            <p class="mb-1">Especie: Canina</p>
+                            <p class="mb-1">Raza: Poodle</p>
+                            <p class="mb-1">Edad: 1 año</p>
+                            <p class="mb-1">Dueñ@: David Gómez</p>
+
+                            <!-- Botón para generar reporte del paciente -->
+                            <form action="{% url 'generar_reporte' %}" method="POST" class="mt-2">
+                                {% csrf_token %}
+                                <input type="hidden" name="paciente" value="Bella">
+                                <button type="submit" class="btn btn-secondary">Generar Reporte</button>
+                            </form>
+                        </span>
+                    </div>
+                    <br>                            
+                </div>                        
+            </div>
+        </div>            
+    </content>
+</div>
+{% endblock %}

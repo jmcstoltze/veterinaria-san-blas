@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <!-- Sección de comentarios -->
+    <content id="comentarios">
+        <div class="container">                
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+
+                <!-- Comentarios de usuarios -->
+                <div class="card shadow-lg p-5">
+                    <h2>Comentarios</h2>
+                    <hr><br>
+                                                                            
+                    <!-- Listado de Comentarios -->
+                    <div class="list-group">
+                        <span class="list-group-item list-group-item-action">                                    
+                            <h5 class="mb-1">Juan Pérez</h5>
+                            <p class="mb-1">@juanp</p>
+                            <p class="mb-1">2024-06-28</p>
+                            <p class="mb-1">5 estrellas</p>
+                            <p class="custom-comment mb-1">Excelente atención, muy profesional y amable. Mi mascota recibió el mejor cuidado posible.</p>                                                                         
+                        </span>
+                        <span class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">María López</h5>
+                            <p class="mb-1">@marial</p>
+                            <p class="mb-1">2024-06-27</p>
+                            <p class="mb-1">4 estrellas</p>
+                            <p class="custom-comment mb-1">Buen servicio, pero la espera fue un poco larga. En general, satisfecho con la atención.</p>                                                                          
+                        </span>                                
+                        <span class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">Carlos Sánchez</h5>
+                            <p class="mb-1">@carloss</p>
+                            <p class="mb-1">2024-06-26</p>
+                            <p class="mb-1">3 estrellas</p>
+                            <p class="custom-comment mb-1">La atención fue adecuada, pero creo que podría mejorar en algunos aspectos.</p>                                                                          
+                        </span>                                
+                        <span class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">Ana Martínez</h5>
+                            <p class="mb-1">@anam</p>
+                            <p class="mb-1">2024-06-25</p>
+                            <p class="mb-1">5 estrellas</p>
+                            <p class="custom-comment mb-1">¡Fantástico! La veterinaria San Blas es la mejor opción para el cuidado de nuestras mascotas.</p>                                                                          
+                        </span>                                
+                    </div>
+
+                    <!-- Formulario para Ingresar Nuevo Comentario -->
+                    <div class="list-group mt-3">
+                        <form action="" method="post" class="list-group-item list-group-item-action">
+                            {% csrf_token %}
+                            <h5 class="mb-1">Nuevo Comentario</h5>
+                            <div class="form-group">
+                                <label for="calificacion">Calificación:</label>
+                                <select id="calificacion" name="calificacion" class="form-control mb-1">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="comentario">Comentarios:</label>
+                                <textarea id="comentario" name="comentario" class="form-control mb-1" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+                        </form>
+                    </div>                        
+                </div>
+            </div>            
+        </div>
+    </content>
+</div>
+{% endblock %}

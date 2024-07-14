@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="perfil_paciente">
+            <div class="container">                
+                <div class="mx-auto text-justify" style="max-width: 600px;">
+
+                    <!-- Perfil de Mascota -->
+                    <div class="card shadow-lg p-5">
+                        <h2>Perfil de Paciente</h2>
+                        <hr><br>
+                                                                            
+                        <!-- Campos subdivididos -->
+                        <div class="list-group">
+                            <span class="list-group-item list-group-item-action">                                    
+                                    <h5 class="mb-1">Nombre</h5>
+                                    <p class="mb-1">Bella</p>                                        
+                            </span>
+                            <span class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Chip</h5>
+                                    <p class="mb-1">987654321FEDCBA</p>                                    
+                            </span>
+                            <span class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Información</h5>
+                                    <p class="mb-1">Especie: Felina</p>
+                                    <p class="mb-1">Raza: Persian</p>
+                                    <p class="mb-1">Edad: 3 años</p>
+                                    <p class="mb-1">Sexo: Hembra</p>
+                                    <p class="mb-1">Esterilización: Sí</p>
+                            </span>
+                            <a href="cliente_perfil.html" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Información Cliente</h5>
+                                    <p class="mb-1">Nombre: Ana López</p>
+                                    <p class="mb-1">Rut: 222-2</p>
+                                    <p class="mb-1">Email: ana_lopez@mail.com</p>
+                                    <p class="mb-1">Teléfono: +569 88888888</p>
+                                    <p class="mb-1">Dirección: San Ruperto #345, Colina, Región Metropolitana</p>                                        
+                            </a>
+                            <span class="list-group-item list-group-item-action">                                    
+                                <p>
+                                    <a href="">Formulario de atención | </a>
+                                    <a href="">Agendar consulta  | </a>                                        
+                                    <a href="">Volver</a>
+                                </p>
+                                
+                            </span>                                  
+                        </div>
+                        <br>
+                        <a href="" class="btn btn-primary">Editar información</a>
+                        <br>
+                        <a href="" class="btn btn-delete" style="background-color: red; border-color: red;">Eliminar paciente</a>
+                    </div>                        
+                </div>
+            </div>            
+    </content>
+</div>
+{% endblock %}

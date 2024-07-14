@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <section id="registro">
+        <div class="container">
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+                <!-- Formulario de actualización -->
+                <div class="card shadow-lg p-5">
+                    <h2>Editar Información</h2>
+                    <hr><br>
+                <p>Actualiza la información en los campos.</p>
+                <br>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="chip" class="form-label">Chip</label>
+                        <input type="text" class="form-control" value="1234567890ABCDEF" placeholder="Ingresa el número de chip" id="chip" name="chip" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" value="Luna" placeholder="Ingresa el nombre de la mascota" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="especie" class="form-label">Especie</label>
+                        <input type="text" class="form-control" value="Gato" placeholder="Ingresa la especie (ej. Perro, Gato)" id="especie" name="especie" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="raza" class="form-label">Raza</label>
+                        <input type="text" class="form-control" value="Siamese" placeholder="Ingrese la raza de la mascota" id="raza" name="raza" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="text" class="form-control" value="8 meses" placeholder="Ingresa la edad de la mascota" id="edad" name="edad" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sexo" class="form-label">Sexo</label>
+                        <select class="form-control" id="sexo" name="sexo" required>
+                            <option value="">Hembra</option>
+                            <option value="Macho">Macho</option>
+                            <option value="Hembra">Hembra</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="esterilizado" class="form-label">Esterilizado</label>
+                        <select class="form-control" id="esterilizado" name="esterilizado" required>
+                            <option value="">Sí</option>
+                            <option value="Sí">Sí</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>                                        
+                    <button type="submit" class="btn btn-primary">Actualizar Información</button>
+                </form>
+            </div>
+        </div>        
+    </section>
+</div>
+{% endblock %}

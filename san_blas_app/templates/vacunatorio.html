@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="vacunatorio_menu">
+
+        <div class="container">                
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+
+                <!-- Para seleccionar mascota -->
+                <div class="card shadow-lg p-5">
+                    <h2>Vacunatorio</h2>
+                    <hr><br>
+
+                    {% if message %}                            
+                        <div class="alert alert-success" role="alert">
+                            {{ message }}
+                        </div>
+                    {% else %}                                
+                        <p>Selecciona la mascota para acceder al vacunatorio</p>
+                        <br>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <!-- Selector de Mascota -->
+                            <div class="mb-3">
+                                <select id="mascota" name="mascota" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione mascota</option>
+                                    {% for mascota in mascotas %}
+                                        <option value="{{ mascota.id }}">{{ mascota.nombre }}</option>                                             
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Ver Historial</button>
+                        </form>
+                    {% endif %}                    
+                </div>                        
+            </div>
+        </div>            
+    </content>
+</div>
+{% endblock %}

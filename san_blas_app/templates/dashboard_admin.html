@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="dashboard">            
+        <div class="container">                    
+            <div class="row">
+                <div class="col-lg-4 mb-4">                            
+                    <a href="" class="no-underline">
+                        <!-- Contenedor sombreado tipo card-->
+                        <div class="card shadow-lg p-5 custom-card" style="background-color: #87cf56;">
+                            <h2>Pacientes</h2>
+                            <hr><br>
+                            <img src="{% static 'img/card3.jpg' %}" class="card-img custom-width" alt="Card3">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 mb-4">                            
+                    <a href="{% url 'agenda' %}" class="no-underline">
+                        <!-- Contenedor sombreado tipo card-->
+                        <div class="card shadow-lg p-5 custom-card">
+                            <h2>Agenda</h2>
+                            <hr><br>
+                            <img src="{% static 'img/agenda.jpeg' %}" class="card-img custom-width" alt="Agenda">
+                        </div>
+                    </a>                            
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <a href="" class="no-underline">
+                        <!-- Contenedor sombreado tipo card-->
+                        <div class="card shadow-lg p-5 custom-card" style="background-color: #7264C9;">
+                            <h2>Clientes</h2>
+                            <hr><br>
+                            <img src="{% static 'img/card4.jpg' %}" class="card-img custom-width" alt="Card4">
+                        </div>
+                    </a>
+                </div>                                       
+            </div>                    
+        </div>            
+    </content>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <section id="registro">
+        <div class="container">
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+                <!-- Formulario de registro -->
+                <div class="card shadow-lg p-5">
+                    <h2>Formulario de Registro</h2>
+                    <hr><br>
+                <p>Completa el formulario para registrarte.</p>
+                <br>
+                
+                <!-- Mensaje de éxito -->
+                {% if success_message %}
+                    <div class="alert alert-success" role="alert">
+                        {{ success_message }}
+                    </div>
+                {% endif %}
+                <!-- Mensaje de error -->
+                {% if error_message %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error_message }}
+                    </div>
+                {% endif %}
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Nombre de Usuario</label>
+                        <input maxlength="20" type="text" class="form-control" placeholder="" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input maxlength="20" type="password" class="form-control" placeholder="" id="password" name="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="repeat_password" class="form-label">Repite Contraseña</label>
+                        <input maxlength="20" type="password" class="form-control" placeholder="" id="repeat_password" name="repeat_password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rut" class="form-label">Rut (sin puntos, con guión)</label>
+                        <input maxlength="10" type="text" class="form-control" placeholder="" id="rut" name="rut" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombres</label>
+                        <input maxlength="80" type="text" class="form-control" placeholder="" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellidos" class="form-label">Apellidos</label>
+                        <input maxlength="80" type="text" class="form-control" placeholder="" id="apellidos" name="apellidos" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input maxlength="80" type="email" class="form-control" placeholder="" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input maxlength="10" type="tel" class="form-control" placeholder="" id="telefono" name="telefono" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="calle" class="form-label">Calle</label>
+                        <input maxlength="80" type="text" class="form-control" placeholder="" id="calle" name="calle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numero" class="form-label">Número</label>
+                        <input maxlength="20" type="text" class="form-control" placeholder="" id="numero" name="numero" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="departamento" class="form-label">Depto (opcional)</label>
+                        <input maxlength="20" type="text" class="form-control" placeholder="" id="departamento" name="departamento">
+                    </div>
+                    <!-- Selector de comuna -->
+                    <div class="mb-3">
+                        <label for="comuna" class="form-label">Comuna:</label>
+                        <select class="form-select" id="comuna" name="comuna" required>
+                            <option value="" selected disabled>Seleccione comuna</option>
+                            {% for comuna in comunas %}
+                                <option value="{{ comuna.nombre_comuna }}">{{ comuna.nombre_comuna }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                </form>                            
+            </div>
+        </div>                 
+    </section>
+</div>
+{% endblock %}

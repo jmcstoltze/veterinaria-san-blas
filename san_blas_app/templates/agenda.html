@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="agenda">
+
+        <div class="container">                
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+
+                <!-- Listado de citas médicas -->
+                <div class="card shadow-lg p-5">
+                    <h2>Agenda de Citas Médicas</h2>
+                    <hr><br>                            
+
+                    <!-- Buscador -->
+                    <form action="" method="GET" class="mb-3">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar por nombre de paciente o dueño">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+                    </form>
+
+                    <!-- Crear nueva cita y nueva consulta-->
+                    <br>
+                    <a href="{% url 'reservar_hora' %}" class="btn btn-primary">Agendar Cita</a><br>
+                    <a href="{% url 'consulta' %}" class="btn btn-primary">Nueva Consulta</a>
+                    <br>
+
+                    <!-- Listado -->
+                    <div class="list-group">                                                                                                
+                        {% for cita in citas %}
+                            <a href="" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">{{ cita.tipo }}</h5>
+                                <p class="mb-1">Fecha: {{ cita.fecha|date:"Y-m-d" }}</p>
+                                <p class="mb-1">Hora: {{ cita.fecha|time:"H:i A" }}</p>
+                                {% if cita.paciente %}
+                                    <p class="mb-1">Paciente: {{ cita.paciente }}</p>
+                                    <p class="mb-1">Dueño: {{ cita.dueño }}</p>
+                                {% else %}
+                                <p class="mb-1">Disponible</p>
+                                {% endif %}
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <br>                            
+                </div>                        
+            </div>
+        </div>            
+    </content>
+</div>
+{% endblock %}

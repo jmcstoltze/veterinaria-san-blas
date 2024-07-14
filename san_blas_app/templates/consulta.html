@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="consulta">
+        <div class="container">                
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+                <!-- Formulario de consulta -->
+                <div class="card shadow-lg p-5">
+                    <h2>Formulario de Consulta</h2>
+                    <hr><br>                    
+                    <!-- Mensaje de éxito -->
+                    {% if success_message %}
+                        <div class="alert alert-success" role="alert">
+                            {{ success_message }}
+                        </div>
+                        {% if button %}
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="consulta_id" value="{{ consulta_id }}">
+                                <input type="hidden" name="mascota_id" value="{{ mascota_id }}">
+                                <button type="submit" class="btn btn-primary">Registre la Vacuna</button>
+                                <br><br>
+                            </form>                            
+                        {% endif %}
+                    {% endif %}
+                    <!-- Mensaje de error -->
+                    {% if error_message %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error_message }}
+                        </div>
+                    {% endif %}                    
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="tipo" class="form-label">Tipo</label>
+                            <select class="form-control" id="tipo" name="tipo" required>
+                                <option value="">Seleccione tipo de consulta</option>
+                                    {% for tipo_cita in tipos_cita %}    
+                                        <option value="{{ tipo_cita.id }}">{{ tipo_cita.tipo }}</option>                                
+                                    {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mascota" class="form-label">Mascota | Dueño</label>
+                            <select class="form-control" id="mascota" name="mascota" required>
+                                <option value="" disabled selected>Seleccione mascota</option>
+                                    {% for mascota in mascotas %}
+                                        <option value="{{ mascota.id }}">{{ mascota.nombre }} | Cliente: {{ mascota.cliente.rut }}</option>
+                                    {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción | Motivo</label>
+                            <textarea placeholder="(obligatorio)" class="form-control" id="descripcion" name="descripcion" rows="3" maxlength="255" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="evaluacion" class="form-label">Evaluación | Curso</label>
+                            <textarea placeholder="" class="form-control" id="evaluacion" name="evaluacion" rows="3" maxlength="255"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="antecedentes" class="form-label">Antecedentes</label>
+                            <textarea placeholder="" class="form-control" id="antecedentes" name="antecedentes" rows="3" maxlength="255"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="examen" class="form-label">Examen | Observaciones</label>
+                            <textarea placeholder="" class="form-control" id="examen" name="examen" rows="3" maxlength="255"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="diagnostico" class="form-label">Diagnóstico | Prediagnóstico</label>
+                            <textarea placeholder="" class="form-control" id="diagnostico" name="diagnostico" rows="3" maxlength="255"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tratamiento" class="form-label">Tratamiento | Indicaciones</label>
+                            <textarea placeholder="" class="form-control" id="tratamiento" name="tratamiento" rows="3" maxlength="255"></textarea>
+                        </div>                            
+                        <button type="submit" class="btn btn-primary">Registrar Consulta</button>
+                    </form>
+                </div>                
+            </div>
+        </div>            
+    </content>
+</div>
+{% endblock %}

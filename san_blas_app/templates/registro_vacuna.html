@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <section id="registro_mascota">
+        <div class="container">
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+                <!-- Formulario de registro de mascota -->
+                <div class="card shadow-lg p-5">
+                    <h2>Registro de Vacuna</h2>
+                    <hr><br>
+                    <p>Completa el formulario para registrar vacuna.</p>
+                    <br>
+                    <!-- Mensaje de éxito -->
+                    {% if success_message %}
+                        <div class="alert alert-success" role="alert">
+                            {{ success_message }}
+                        </div>
+                    {% endif %}
+                    <!-- Mensaje de error -->
+                    {% if error_message %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error_message }}
+                        </div>
+                    {% endif %}
+                    <form action="" method="post">
+                        {% csrf_token %}                        
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Tipo de vacuna</label>
+                            <select class="form-control" id="typt" name="type" required>
+                                <option value="">Selecciona tipo</option>
+                                {% for tipo in tipos_vacuna %}
+                                    <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>                                
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrar Vacuna</button>
+                    </form>
+                </div>
+            </div>
+        </div>            
+    </section>
+</div>
+{% endblock %}

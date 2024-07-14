@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="vacunas_mascota">
+
+        <div class="container">                
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+
+                <!-- Historial de vacunas mascota -->
+                <div class="card shadow-lg p-5">
+                    <h2>Historial de vacunas</h2>
+                    <hr><br>                                                                            
+                    <!-- Campos subdivididos -->
+                    <div class="list-group">                                                
+                        {% if message %}
+                            <br>
+                            <div class="alert alert-success" role="alert">
+                                {{ message }}
+                            </div>
+                        {% else %}
+                            <span class="list-group-item list-group-item-action">                                    
+                                <h4 class="mb-1">Nombre Mascota</h4>
+                                <p class="mb-1">{{ mascota.nombre|capfirst }}</p>                                        
+                            </span>
+                            {% for tipo, info in vacunas_por_tipo.items %}
+                                <span class="list-group-item list-group-item-action">
+                                    <h5 class="mb-1">{{ tipo }}</h5>
+                                    <p class="mb-1"><strong>Próxima vacunación: {{ info.proxima_fecha|date:"d-m-Y" }}</strong></p>
+                                    {% for vacuna in info.vacunas %}
+                                        <p class="mb-1">Fecha de vacunación: {{ vacuna.fecha|date:"d-m-Y" }}</p>
+                                    {% endfor %}                                                        
+                                </span>                
+                            {% endfor %}  
+                        {% endif %}                                              
+                        <span class="list-group-item list-group-item-action">                                    
+                            <p>
+                                <a href="{% url 'dashboard' %}">Volver al dashboard | </a>
+                                <a href="{% url 'mascotas' %}">Ir a tus mascotas</a>
+                            </p>                                                                    
+                        </span>                                  
+                    </div>
+                    <br>
+                    <a href="{% url 'reservar_hora' %}" class="btn btn-primary">Agendar nueva vacuna</a>
+                </div>                        
+            </div>
+        </div>            
+    </content>
+</div>
+{% endblock %}

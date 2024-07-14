@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="reserva">
+        <div class="container">                
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+
+                <!-- Formulario de contacto -->
+                <div class="card shadow-lg p-5">
+                    <h2>Agendamiento de Cita</h2>
+                    <hr><br>
+                    <p>Selecciona la información requerida para la cita</p>                        
+                    <br>
+
+                    <!-- Mensaje de éxito -->
+                    {% if success_message %}
+                        <div class="alert alert-success" role="alert">
+                            {{ success_message }}
+                        </div>
+                    {% endif %}
+                    <!-- Mensaje de error -->
+                    {% if error_message %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error_message }}
+                        </div>
+                    {% endif %}
+
+                    <form action="" method="post">
+                        
+                        {% csrf_token %}
+                        <!-- Selector de Mascota -->
+                        <div class="mb-3">
+                            <label for="pet" class="form-label">Mascota</label>
+                            <select id="pet" name="pet" class="form-control" required>
+                                <option value="" disabled selected>Seleccione mascota</option>
+                                    {% for mascota in mascotas %}
+                                        <option value="{{ mascota.id }}">{{ mascota.nombre }}</option>                                             
+                                    {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Selector de Tipo de Agendamiento -->
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Tipo de agendamiento</label>
+                            <select id="type" name="type" class="form-control" required>
+                                <option value="" disabled selected>Seleccione tipo</option>
+                                    {% for tipo_cita in tipos_cita %}
+                                        <option value="{{ tipo_cita.id }}">{{ tipo_cita.tipo }}</option>
+                                    {% endfor %}
+                            </select>
+                        </div>                
+
+                        <!-- Selector de horario disponible -->
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Horario</label>
+                            <select id="date" name="date" class="form-control" required>
+                                <option value="" disabled selected>Seleccione fecha y hora</option>
+                                {% for horario in horarios_disponibles %}
+                                <option value="{{ horario.id }}">{{ horario.fecha|date:'Y-m-d' }} | {{ horario.fecha|date:'H:i' }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Agendar</button>                                                                
+                        </div>
+                    </form>
+                </div>                        
+            </div>
+        </div>                
+    </content>
+</div>
+{% endblock %}
