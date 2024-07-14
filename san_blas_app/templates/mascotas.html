@@ -14,7 +14,7 @@
                         {% if mascotas %}
                             {% for mascota in mascotas %}
                                 <a href="#" class="list-group-item list-group-item-action">
-                                    <h5 class="mb-1">{{ mascota.nombre }}</h5>
+                                    <h5 class="mb-1">{{ mascota.nombre|capfirst }}</h5>
                                     <p class="mb-1">Especie: {{ mascota.get_especie_display }}</p>
                                     <p class="mb-1">Raza: {{ mascota.raza }}</p>
                                     <p class="mb-1">Edad: {{ mascota.edad }} meses</p>

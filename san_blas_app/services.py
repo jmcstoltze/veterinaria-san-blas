@@ -76,7 +76,7 @@ def crear_usuario(username, password, nombres, apellidos, email):
 
 def crear_direccion(cliente, calle, numero, nombre_comuna, depto=None):
     # Busca la comuna por nombre
-    nombre_comuna = nombre_comuna.capitalize()
+    nombre_comuna = nombre_comuna.title()
     comuna = Comuna.objects.get(nombre_comuna=nombre_comuna)
 
     # Crea la dirección con los datos proporcionados
@@ -113,11 +113,11 @@ def crear_mascota(nombre, especie, edad, sexo, raza, esterilizada, usuario, chip
     # Crea la mascota asociada al cliente
     mascota = Mascota.objects.create(
         chip=chip,
-        nombre=nombre,
+        nombre=nombre.title(),
         especie=especie,
         edad=edad,
         sexo=sexo,
-        raza=raza,
+        raza=raza.capitalize(),
         esterilizada=esterilizada,
         cliente=cliente
     )
