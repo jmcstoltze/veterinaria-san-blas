@@ -85,7 +85,7 @@
                         <!-- Reseñas de Usuarios -->
                         {% for resena in resenas %}
                         <span class="list-group-item list-group-item-action">                                    
-                            <h5 class="mb-1">{{ resena.usuario.get_full_name }}</h5>
+                            <h5 class="mb-1">{{ resena.usuario.first_name|capfirst }} {{ resena.usuario.last_name|capfirst }}</h5>
                             <p class="mb-1">@{{ resena.usuario.username }}</p>
                             <p class="mb-1">{{ resena.fecha|date:"d-m-Y" }}</p>
                             <p class="mb-1">{{ resena.calificacion }} estrellas</p>

@@ -46,7 +46,7 @@
                             <select id="type" name="type" class="form-control" required>
                                 <option value="" disabled selected>Seleccione tipo</option>
                                     {% for tipo_cita in tipos_cita %}
-                                        <option value="{{ tipo_cita.id }}">{{ tipo_cita.tipo }}</option>
+                                        <option value="{{ tipo_cita.id }}">{{ tipo_cita.tipo|capfirst }}</option>
                                     {% endfor %}
                             </select>
                         </div>                

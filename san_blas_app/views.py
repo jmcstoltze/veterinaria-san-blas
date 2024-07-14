@@ -105,7 +105,7 @@ def inicio_sesion(request):
 @login_required
 def dashboard(request):
     # Rescata el primer nombre del user, en caso de que tenga dos nombres, toma solo el primero
-    nombre = obtener_primer_nombre_usuario(request.user)
+    nombre = obtener_primer_nombre_usuario(request.user).title()
     return render(request, "dashboard.html", {'nombre': nombre})
 
 @login_required
