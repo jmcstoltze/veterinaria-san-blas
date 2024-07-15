@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import dj_database_url
+import os
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -86,6 +89,10 @@ DATABASES = {
     }
 }
 
+database_url = "postgresql://san_blas_db_5ba1_user:Dez7HLKyFnuZDZW0VFWP78Oc5fuxED6t@dpg-cq9f7nqju9rs73b534eg-a.oregon-postgres.render.com/san_blas_db_5ba1"
+DATABASES['default'] = dj_database_url.parse(database_url) ###########################################################
+
+#postgresql://san_blas_db_5ba1_user:Dez7HLKyFnuZDZW0VFWP78Oc5fuxED6t@dpg-cq9f7nqju9rs73b534eg-a.oregon-postgres.render.com/san_blas_db_5ba1
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
