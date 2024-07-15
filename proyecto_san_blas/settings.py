@@ -130,12 +130,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-# STATIC_URL = '/static/'
-STATIC_URL = os.environ.get("STATIC_URL")
+# si no funciona intentar con:
+STATIC_URL = '/san_blas_app/static/'
 
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_ROOT = os.environ.get("STATIC_ROOT")
+'''
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
 
+]'''
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
