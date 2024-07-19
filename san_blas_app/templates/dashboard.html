@@ -22,16 +22,16 @@
                         <hr><br>
                         <p>¿Qué deseas hacer hoy?</p>
                         <p><a href="{% url 'reservar_hora' %}">Reservar cita</a></p>
-                        <p><a href="">Administrar agendamientos</a></p>
+                        <p><a href="{% url 'agendamientos' %}">Administrar agendamientos</a></p>
                         <p><a href="{% url 'vacunatorio' %}">Ir al vacunatorio</a></p>
                         <p><a href="">Dejar opiniones y comentarios</a></p>                                                                       
                     </div>                            
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <a href="" class="no-underline">
+                    <a href="{% url 'perfil_usuario' %}" class="no-underline">
                         <!-- Contenedor sombreado tipo card-->
                         <div class="card shadow-lg p-5 custom-card" style="background-color: #87cf56;">
-                            <h2>Tu Perfil</h2>
+                            <h2>Mi Perfil</h2>
                             <hr><br>
                             <img src="{% static 'img/card4.jpg' %}" class="card-img custom-width" alt="Card4">
                         </div>

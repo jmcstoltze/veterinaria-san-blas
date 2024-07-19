@@ -4,10 +4,13 @@ from django.db.models.functions import TruncDate
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+
 from san_blas_app.services import crear_cliente, crear_mascota, crear_reserva, crear_consulta, crear_vacuna
+from san_blas_app.services import obtener_reservas_cliente, eliminar_reserva
+from san_blas_app.services import actualizar_usuario
 from san_blas_app.services import listar_resenas, listar_comunas_metropolitana
 from san_blas_app.services import nombre_usuario_existe, mascota_existe, mascota_existe_global, obtener_listado_chips
-from san_blas_app.services import obtener_usuario,obtener_primer_nombre_usuario, obtener_ruts_clientes
+from san_blas_app.services import obtener_usuario,obtener_primer_nombre_usuario, obtener_ruts_clientes, obtener_cliente
 from san_blas_app.services import obtener_horarios_disponibles, obtener_horarios_reservados, obtener_horarios_disponibles_sin_tope
 from san_blas_app.services import obtener_mascotas_cliente, obtener_mascotas,obtener_mascota
 from san_blas_app.services import obtener_tipos_cita, obtener_tipos_vacuna, obtener_vacunas_mascotas
@@ -163,7 +166,84 @@ def registro_mascota(request):
 
     return render(request, "registro_mascota.html", {'listado': listado_ruts})
 
-############# Sesión de administrador o superusuario #####################
+# Vista de perfil de usuario
+@login_required
+def perfil_usuario(request):
+    cliente = obtener_cliente(request.user) # Obtiene los datos del cliente logeado
+    return render(request, "perfil_usuario.html", {"cliente": cliente}) # Retorna la vista y pasa el usuario al contexto
+
+# Vista de edición de perfil
+@login_required
+def editar_usuario(request):
+    comunas = listar_comunas_metropolitana() # Obtiene comunas de la región metropolitana
+    cliente = obtener_cliente(request.user) # Obtiene los datos del cliente del usuario logeado
+
+    if request.method == "POST":
+        # Obtiene los datos del formulario
+        rut = cliente.rut
+        nombres = request.POST.get('nombres')
+        apellidos = request.POST.get('apellidos')
+        email = request.POST.get('email')
+        telefono = request.POST.get('telefono')
+
+        # Actualiza dirección
+        calle = request.POST.get('calle')
+        numero = request.POST.get('numero')
+        depto = request.POST.get('departamento', '')
+        nombre_comuna = request.POST.get('comuna')
+        
+        
+        try:
+            # Edita la información del cliente
+            actualizar_usuario(rut, nombres, apellidos, email, telefono, calle, numero, nombre_comuna, depto)
+            success_message = '¡Datos actualizados correctamente!'
+            # Retorna la vista con mensaje al contexto
+            return render(request, "editar_usuario.html", {'comunas':comunas, 'success_message': success_message, 'cliente': cliente})
+        except Exception as e:
+            # Maneja excepción
+            return render(request, "editar_usuario.html", {'comunas': comunas, 'error_message': str(e), 'cliente': cliente})
+    return render(request, "editar_usuario.html", {'comunas': comunas, 'cliente': cliente}) # Retorna vista y contexto
+
+@login_required
+def citas_usuario(request):
+
+    reservas = obtener_reservas_cliente(request.user) # Obtiene las reservas del cliente
+
+    if request.method == 'POST':
+        reserva_id = request.POST.get('reserva_id')
+        action = request.POST.get('action')
+
+        # Pendiente implementar el modificar
+        if action == 'eliminar':
+            eliminar_reserva(reserva_id) # Elimina reserva por id
+            delete_message = "Reserva eliminada"
+            reservas = obtener_reservas_cliente(request.user) # Obtiene las reservas del cliente
+
+            # Si no existen reservas pasa un mensaje
+            if not reservas:
+                empty_message = "No tienes citas reservadas"
+                return render(request, "agendamientos.html", {'reservas': reservas, 'empty_message': empty_message})
+            return render(request, "agendamientos.html", {'reservas': reservas, 'delete_message': delete_message})
+
+    # Si no existen reservas pasa un mensaje adecuado
+    if not reservas:
+        empty_message = "No tienes citas reservadas"
+        return render(request, "agendamientos.html", {'reservas': reservas, 'empty_message': empty_message})
+    return render(request, "agendamientos.html", {'reservas': reservas})
+
+
+'''
+@login_required
+def eliminar_cita(request, reserva_id):
+    if request.method == 'POST':
+        eliminar_cita(reserva_id)
+        delete_message = "Reserva eliminada"
+        return redirect("agendamientos.html", {'delete_message': delete_message})
+    pass '''
+
+
+##########################################################################################################################
+############# Sesión de administrador o superusuario #####################################################################
 
 @login_required
 def dashboard_admin(request):
@@ -352,7 +432,9 @@ def vacunas_mascota(request, mascota_id):
     # Renderiza la vista entregando la mascota al contexto y sus vacunas clasficadas
     return render(request, "vacunas_mascota.html", contexto)
 
-############# Para cerrar la sesión ####################################################################
+
+############# Para cerrar la sesión ######################################################################################
+
 @login_required
 def cerrar_sesion(request):
     logout(request) # Solicitud de cierre de sesión
