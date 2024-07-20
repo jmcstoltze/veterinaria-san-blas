@@ -31,12 +31,12 @@
                     <div class="list-group">                                                                                                
                         {% for cita in citas %}
                             <a href="" class="list-group-item list-group-item-action">
-                                <h5 class="mb-1">{{ cita.tipo }}</h5>
+                                <h5 class="mb-1">{{ cita.tipo|title }}</h5>
                                 <p class="mb-1">Fecha: {{ cita.fecha|date:"Y-m-d" }}</p>
                                 <p class="mb-1">Hora: {{ cita.fecha|time:"H:i A" }}</p>
                                 {% if cita.paciente %}
-                                    <p class="mb-1">Paciente: {{ cita.paciente }}</p>
-                                    <p class="mb-1">Dueño: {{ cita.dueño }}</p>
+                                    <p class="mb-1"><i>Paciente: {{ cita.paciente|title }}</i></p>
+                                    <p class="mb-1"><i>Dueño: {{ cita.dueño|title }}</i></p>
                                 {% else %}
                                 <p class="mb-1">Disponible</p>
                                 {% endif %}

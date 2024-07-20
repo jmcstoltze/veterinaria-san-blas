@@ -1,4 +1,7 @@
-from .models import Cliente, Mascota, Consulta, Resena, Direccion, Comuna, Region, TipoCita, Horario, Reserva, Vacuna, TipoVacuna
+from .models import Cliente, Consulta, Resena, Direccion, Comuna, Region
+from .models import Mascota, Reserva, Horario, Vacuna, TipoVacuna, TipoCita
+from .models import Contacto, Newsletter
+
 from django.contrib.auth.models import User
 
 from django.db.models import Q
@@ -7,59 +10,26 @@ from django.db import transaction
 from django.utils import timezone
 from datetime import timedelta
 
-from .utils import proxima_fecha_vacunacion
+from .utils import proxima_fecha_vacunacion # Funciones para calcular la fecha de vacunación
+from .utils import utc_to_local
 
 
 '''
-Métodos necesarios para implementar las funcionalidades de la aplicación:
-
 CREATE
-- Registrar cliente: el usuario debe poder registrarse a sí mismo y el administrador debe poder crear un cliente o usuario
-- Para crear un cliente debe crearse un usuario y también una direción. El orden sería: 1. Crear el User, 2. Crear el cliente, 3. Crear la dirección
 
-- Cliente o administrador deben poder crear una mascota o paciente.
-- Se manejará por separado: crear mascota y crear paciente. Esto debido a que el cliente siempre estará logeado, en cambio, si lo creao el admin, debe manejarse la excepción de que el usuario o cliente no exista.
-- Hay que asegurarse que la función crear mascota reciba como parámetro el usuario con sessión iniciada desde views.py
-- Para crear paciente debemos asegurarnos de que la vista tenga un selector que despliegue todo los ruts de los clientes.
-
-- Función para crear una reserva, recibiendo como parámetro el tipo, el horario y la mascota
-
-- Función para crear una vacuna a partir del id de consulta, de mascota y de  tipo de vacuna
------ proxima fecha
 
 READ
-- Buscar cliente o clientes: esta función debe retornar un lista de clientes que puede estar vacía o contener uno o más usuario. El parámetro de la búsqueda puede ser el nombre, el apellido, utilizando coincidencias parciales.
 
-- Función para leer los comentarios o reseñas desde la db y desplegarlos en la vista que corresponda
-- Función para leer todas la comunas DE LA REGIÓN METROPOLITANA que se cargarán en los selectores de las vistas
-- Métodos para validar usuarios y obtener usuarios
 
-- Método para obtener un listado de mascotas de un cliente o usuario
-- Método que retorne el primer nombre de un usuario (en caso de que tenga dos nombre, entregar solo el primero)
-- Se necesita obtener los rut de los clientes
-
-- Se necesita saber si una mascota existe a partir del su nombre y del cliente/usuario asociado a la mascota
-- Se necesita saber si una mascota existe en el contexto global, cuando es el administrador quien registra
-- Se debe verificar que el chip ingresado no exista en el global
-
-- Se necesita obtener los horarios disponibles, tanto reservado, como no reservados para mostrarlos en forma de agenda.
-- También obtener todas las reservas
-
-- Se requiere obtener mascotas según cliente (usuario)
-- Se requiere obtener todas las mascotas
-
-- Se requiere obtener los tipos de citas médicas que existen
-
-- Se requiere lista las vacunas de una mascota. El parámetro es el id de la mascota
-- Función para obtener una mascota según id
+UPDATE
 
 
 DELETE
 
 
 '''
-
-# Funciones del tipo Create #########################################
+#########################################################################################################################################
+# Funciones del tipo Create #############################################################################################################
 
 def crear_usuario(username, password, nombres, apellidos, email):
     # Crea un nuevo usuario
@@ -123,24 +93,6 @@ def crear_mascota(nombre, especie, edad, sexo, raza, esterilizada, usuario, chip
     )
     return mascota  # Retorna la mascota creada
 
-''' Es idéntica a la función anterior
-def crear_paciente(nombre, especie, edad, sexo, raza, esterilizada, rut, chip=None):
-    # Obtiene el cliente asociado al rut
-    cliente = Cliente.objects.get(rut=rut)
-        
-    # Crea la mascota asociada al cliente
-    mascota = Mascota.objects.create(
-        chip=chip,
-        nombre=nombre,
-        especie=especie,
-        edad=edad,
-        sexo=sexo,
-        raza=raza,
-        esterilizada=esterilizada,
-        cliente=cliente
-    )        
-    return mascota  # Retorna la mascota creada '''
-
 def crear_reserva(tipo_id, horario_id, mascota_id):
     # Obtiene el tipo de cita, el horario y la mascota
     tipo_cita = TipoCita.objects.get(pk=tipo_id)
@@ -164,7 +116,7 @@ def crear_consulta(tipo_id, mascota_id, descripcion, evaluacion, antecedentes, e
 
     # Obtiene los objetos relacionados con clave foránea
     tipo_cita = TipoCita.objects.get(pk=tipo_id)
-    mascota = Mascota.objects.get(pk=mascota_id)
+    mascota = Mascota.objects.get(pk=mascota_id)    
 
     # Crea la consulta
     consulta = Consulta.objects.create(
@@ -198,6 +150,36 @@ def crear_vacuna(tipo_id, mascota_id, consulta_id):
     vacuna.save()  # Guarda la vacuna con la próxima fecha actualizada
     return vacuna # Retorna la vacuna creada
 
+def crear_resena(user, comentario, calificacion):
+    # Se crea un objeto reseña y se almacena en la DB
+    nueva_resena = Resena (
+        usuario = user,
+        comentario = comentario,
+        calificacion = calificacion
+    )
+    nueva_resena.save()
+    return nueva_resena
+
+def guardar_formulario_contacto(nombres, apellidos, email, mensaje):
+    nuevo_contacto = Contacto (
+        nombres = nombres,
+        apellidos = apellidos,
+        email = email,
+        mensaje = mensaje
+    )
+    nuevo_contacto.save() # Guarda la información en la DB
+    return nuevo_contacto
+
+def registrar_suscripcion(nombres, apellidos, email):
+    nueva_suscripcion = Newsletter (
+        nombres = nombres,
+        apellidos = apellidos,
+        email = email
+    )
+    nueva_suscripcion.save()
+    return nueva_suscripcion
+    
+
 ##########################################################################
 # Funciones del tipo Read (listar y buscar) ##############################
 
@@ -217,7 +199,20 @@ def obtener_usuario(username):
         return user # Retorna el usuario
     except User.DoesNotExist:
         return None
-
+    
+def obtener_cliente(user):
+    try:
+        cliente = Cliente.objects.get(usuario=user) # Obtiene cliente en base al usuario
+        return cliente # Retorna cliente
+    except Cliente.DoesNotExist:
+        return None
+    
+def obtener_reservas_cliente(user):
+    cliente = Cliente.objects.get(usuario=user) # Obtiene cliente
+    hoy = timezone.now().date() # Obtiene fecha actual
+    reservas = Reserva.objects.filter(mascota__cliente=cliente, horario__fecha__gte=hoy) # Obtiene cliente
+    return reservas # Retorna reservas del cliente
+    
 def obtener_primer_nombre_usuario(user):
     # Rescata el primer nombre del user, en caso de que tenga dos nombres, toma solo el primero
     return user.first_name.split()[0] if user.first_name else ""
@@ -241,6 +236,7 @@ def obtener_mascota(id):
 
 def mascota_existe(user, nombre_mascota):
     cliente = Cliente.objects.get(usuario=user)
+    nombre_mascota = nombre_mascota.title()
     return Mascota.objects.filter(cliente=cliente, nombre=nombre_mascota).exists() # True si la mascota existe
 
 def mascota_existe_global(nombre_mascota, rut_cliente):
@@ -254,12 +250,18 @@ def obtener_listado_chips():
 def obtener_horarios_disponibles():
     ahora = timezone.now()
     ahora_menos_media_hora = ahora - timedelta(minutes=30)
+
+    # Define el rango de fechas para los próximos días
+    fecha_inicio = ahora.date()
+    fecha_fin = ahora.date() + timedelta(days=2)  # Incluye mañana y pasado mañana
+
     horarios_disponibles = Horario.objects.filter(
-        fecha__date=ahora.date(), # Fecha del día actual
+        #fecha__date=ahora.date(), # Fecha del día actual
+        fecha__date__range=(fecha_inicio, fecha_fin),  # Fecha entre hoy y pasado mañana
         fecha__gt=ahora_menos_media_hora, # Menor al tiempo - 30 minutos | margen de error
         disponible=True # Horarios disponibles
     )
-    # Retorna todos los horarios disponibles de la fecha actual a partir de 30 minutos atrás máximo
+    # Retorna todos los horarios disponibles de la fecha actual y dos días más a partir de 30 minutos atrás máximo
     return horarios_disponibles
 
 def obtener_horarios_disponibles_sin_tope():
@@ -274,12 +276,27 @@ def obtener_horarios_disponibles_sin_tope():
 def obtener_horarios_reservados():
     ahora = timezone.now()
     ahora_menos_media_hora = ahora - timedelta(minutes=30)
-    horarios_reservados = Horario.objects.filter(
+
+    # Horarios del mismo día con rango de 30 minutos
+    horarios_reservados_hoy = Horario.objects.filter(
         fecha__date=ahora.date(), # Fecha del día actual
         fecha__gt=ahora_menos_media_hora, # 30 minutos atrás máximo
         disponible=False # Horarios no disponibles
     )
-    # Retorna todos los horarios reservados filtrados por fecha y hora
+
+    # Horarios reservados para mañana y pasado mañana
+    fecha_inicio = ahora.date() + timedelta(days=1)  # Mañana
+    fecha_fin = ahora.date() + timedelta(days=2)  # Pasado mañana
+
+    horarios_reservados_futuros = Horario.objects.filter(
+        fecha__date__range=(fecha_inicio, fecha_fin),  # Fechas de mañana y pasado mañana
+        disponible=False  # Horarios no disponibles o reservados
+    )
+
+    # Combina los resultados
+    horarios_reservados = horarios_reservados_hoy | horarios_reservados_futuros
+
+     # Retorna las reservas asociadas a los horarios reservados de hoy, mañana y pasado
     return Reserva.objects.filter(horario__in=horarios_reservados)
 
 def obtener_tipos_cita(user):
@@ -289,8 +306,21 @@ def obtener_tipos_cita(user):
         # Retorna tipos filtrados para el usuario normal
         return TipoCita.objects.exclude(tipo__in=['cirugía esterilización', 'cirugía tumor menor'])
     
-def obtener_tipos_vacuna():
-    return TipoVacuna.objects.all() # Retorna los tipos de vacunas
+def obtener_especie_mascota(id):
+    mascota = Mascota.objects.get(id=id)
+    return mascota.especie # De acuerdo con id obtiene especie de la mascota
+
+def obtener_tipos_vacuna(especie):
+    if especie == 'Canina':
+        return TipoVacuna.objects.filter(tipo__in=['Óctuple', 'Antirrábica', 'KC']) # Retorna vacunas para perros
+    elif especie == 'Felina':
+        return TipoVacuna.objects.filter(tipo__in=['Triple felina', 'Leucemia felina', 'Antirrábica']) # Retorna vacunas para gatos
+    
+def obtener_tipos_vacuna_todos():
+    return TipoVacuna.objects.all() # Retorna todos los tipos de vacunas
+    
+def verificar_vacuna_registrada(mascota_id, consulta_id):
+    return Vacuna.objects.filter(mascota_id=mascota_id, consulta_id=consulta_id).exists() # Retorna booleano si la vacuna ya se registró
     
 def obtener_vacunas_mascotas(mascota_id):
     mascota = Mascota.objects.get(id=mascota_id)
@@ -318,11 +348,46 @@ def buscar_cliente(consulta):
     clientes = clientes.distinct()
     return clientes # Retorna ninguno, uno o más clientes
 
-# Funciones del tipo Update
+#########################################################################################################################
+# Funciones del tipo Update #############################################################################################
 
-def editar_usuario():  # Pendiente de implementación
-    pass
+def actualizar_usuario(rut, nombres, apellidos, email, telefono, calle, numero, nombre_comuna, depto=None):
+    # Obtiene el cliente con el rut
+    cliente = Cliente.objects.get(rut=rut)
+    # Actualiza los campos del cliente y usuario
+    cliente.usuario.first_name = nombres
+    cliente.usuario.last_name = apellidos
+    cliente.usuario.email = email
+    cliente.telefono = telefono
+    # Guarda los cambios
+    cliente.usuario.save()
+    cliente.save()
+    # Actualiza los campos de la dirección del cliente
+    direccion = cliente.direccion # LLama a la dirección del cliente
+    direccion.calle = calle
+    direccion.numero = numero
+    direccion.depto = depto if depto is not None else ''
+    # Obtiene la comuna con el id
+    comuna = Comuna.objects.get(nombre_comuna=nombre_comuna)
+    direccion.comuna = comuna # Setea la comuna en la dirección
+    direccion.save() # Guarda los cambios de la dirección
+    return cliente # Retorna el cliente
 
-# Funciones del tipo Delete
+'''
+# Vuelve a disponibilizar un horario
+def disponibilizar_horario(id):
+    horario = Horario.objects.get(id=id)
+    horario.disponible = True '''
 
+##########################################################################################################################
+# Funciones del tipo Delete ##############################################################################################
 
+# Elimina reserva
+def eliminar_reserva(reserva_id):
+    reserva = Reserva.objects.get(id=reserva_id)
+    
+    horario = reserva.horario
+    horario.disponible = True  # Cambia el horario a disponible
+    
+    horario.save()  # Guarda el horario actualizado
+    reserva.delete() # Elimina la reserva invocada

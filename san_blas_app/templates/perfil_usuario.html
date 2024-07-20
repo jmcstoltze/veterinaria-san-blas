@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<!-- Contenido de la página -->
+<div>
+    <content id="perfil_usuario">
+
+            <div class="container">                
+                <div class="mx-auto text-justify" style="max-width: 600px;">
+
+                    <!-- Perfil de usuario -->
+                    <div class="card shadow-lg p-5">
+                        <h2>Perfil de Usuario</h2>
+                        <hr><br>
+                                                                            
+                        <!-- Campos subdivididos -->
+                        <div class="list-group">
+                            <span class="list-group-item list-group-item-action">                                    
+                                    <h5 class="mb-1">Nombre</h5>
+                                    <p class="mb-1">{{ cliente.usuario.first_name|capfirst }} {{ cliente.usuario.last_name|capfirst }}</p>                                        
+                            </span>
+                            <span class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Contacto</h5>
+                                    <p class="mb-1">Email: {{ cliente.usuario.email }}</p>
+                                    <p class="mb-1">Teléfono: +56{{ cliente.telefono }}</p>                                
+                            </span>
+                            <span class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Dirección</h5>
+                                    <p class="mb-1">
+                                        {{ cliente.direccion.calle|title }}, {{ cliente.direccion.numero }}
+                                        {% if cliente.direccion.depto %}
+                                            , Depto {{ cliente.direccion.depto }}
+                                        {% endif %}
+                                    </p>
+                                    <p class="mb-1">
+                                        {{ cliente.direccion.comuna.nombre_comuna }}, {{ cliente.direccion.comuna.region.nombre_region }}
+                                    </p>                                
+                            </span>
+                            <span class="list-group-item list-group-item-action">
+                                
+                                <p>
+                                    <a href="{% url 'reservar_hora' %}">Reservar cita | </a>
+                                    <a href="{% url 'mascotas' %}">Tus mascotas | </a>
+                                    <a href="">Deja tus comentarios | </a>
+                                    <a href="{% url 'dashboard' %}">Volver</a>
+                                </p>
+                                
+                            </span>                                  
+                        </div>
+                        <br>
+                        <a href="{% url 'editar_usuario' %}" class="btn btn-primary">Editar información</a>
+                    </div>                        
+                </div>
+            </div>            
+    </content>
+</div>
+{% endblock %}

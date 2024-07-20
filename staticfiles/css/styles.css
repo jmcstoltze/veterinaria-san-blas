@@ -1,0 +1,769 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+  }
+  
+  body {
+    font-family: "Ubuntu", sans-serif;
+  }
+  
+  #logo {
+    margin-left: 35px;  
+    margin-right: 100px;
+  }
+  
+  #barra_navegacion {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #F2F2F2;
+  }
+  
+  #barra_navegacion .nav-link {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  .navbar-custom .nav-link {
+    color: #000;
+  }
+  
+  .navbar-custom .nav-link-box {
+    background-color: #87cf56;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+    border-radius: 5px;
+    width: 130px;
+  }
+  
+  .navbar-custom .nav-link:hover {
+    background-color: lightgray;
+    border-color: lightgray;
+    border-radius: 5px;
+  }
+  
+  #imagen_carrusel {
+    height: 300px;
+  }
+  
+  /* Estilo para los breadcrumbs*/
+  .breadcrumb-link {
+    text-decoration: none;
+    color: black;
+  }
+  
+  /*
+  .breadcrumb li {
+    font-style: italic;
+  }*/
+  
+  #bienvenida {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #bienvenida .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #bienvenida h2 {
+    text-align: center;
+  }
+  
+  #bienvenida .custom-width {
+    width: 200px;
+  }
+  
+  #bienvenida .custom-card {
+    align-items: center;
+  }
+  
+  #bienvenida .custom-card hr {
+    width: 100%; /* Para que no desaparezca el hr*/
+  }
+  
+  #bienvenida .no-underline {
+    text-decoration: none;
+  }
+  
+  #bienvenida .no-underline:hover {
+    text-decoration: none;
+  }
+
+  /* Falta reordenar el archivo */
+  #boton-resena {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #boton-resena:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+
+  #inicio_sesion {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #inicio_sesion .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #inicio_sesion h2 {
+    text-align: center;
+  }
+  
+  #inicio_sesion .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #inicio_sesion .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  #registro {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #registro .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #registro h2 {
+    text-align: center;
+  }
+  
+  #registro .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #registro .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  #dashboard {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #dashboard .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #dashboard h2 {
+    text-align: center;
+  }
+  
+  #dashboard .custom-width {
+    width: 198px;
+  }
+  
+  #dashboard .custom-card {
+    align-items: center;
+  }
+  
+  #dashboard .custom-card hr {
+    width: 100%;
+  }
+  
+  #dashboard .no-underline {
+    text-decoration: none;
+  }
+  
+  #dashboard .no-underline:hover {
+    text-decoration: none;
+  }
+  
+  /* Estilo para el registro de mascota */
+  #registro_mascota {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #registro_mascota .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #registro_mascota h2 {
+    text-align: center;
+  }
+  
+  #registro_mascota .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #registro_mascota .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  /* Estilo para el perfil de usuario */
+  #perfil_usuario {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #perfil_usuario .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #perfil_usuario h2 {
+    text-align: center;
+  }
+  
+  #perfil_usuario p {
+    text-align: justify;
+  }
+  
+  #perfil_usuario .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #perfil_usuario .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  /* Icono de usuario */
+  .no-underline {
+    text-decoration: none;
+    color: black;
+  }
+  
+  
+  #listado_mascotas {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #listado_mascotas .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #listado_mascotas h2 {
+    text-align: center;
+  }
+  
+  #listado_mascotas p {
+    text-align: justify;
+  }
+  
+  #listado_mascotas .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #listado_mascotas .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  #reserva {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #reserva .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #reserva h2 {
+    text-align: center;
+  }
+  
+  #reserva p {
+    text-align: justify;
+  }
+  
+  #reserva .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #reserva .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  #vacunatorio_menu {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #vacunatorio_menu .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #vacunatorio_menu h2 {
+    text-align: center;
+  }
+  
+  #vacunatorio_menu p {
+    text-align: justify;
+  }
+  
+  #vacunatorio_menu .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #vacunatorio_menu .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  #vacunas_mascota {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #vacunas_mascota .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #vacunas_mascota h2 {
+    text-align: center;
+  }
+  
+  #vacunas_mascota p {
+    text-align: justify;
+  }
+  
+  #vacunas_mascota .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #vacunas_mascota .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  #comentarios {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #comentarios .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #comentarios h2 {
+    text-align: center;
+  }
+  
+  #comentarios p {
+    text-align: justify;
+  }
+  
+  #comentarios .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #comentarios .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  .custom-comment {
+    font-style: italic;
+  }
+  
+  #consulta {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #consulta .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #consulta h2 {
+    text-align: center;
+  }
+  
+  #consulta p {
+    text-align: justify;
+  }
+  
+  #consulta .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #consulta .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  #contacto {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #contacto .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #contacto h2 {
+    text-align: center;
+  }
+  
+  #contacto p {
+    text-align: justify;
+  }
+  
+  #contacto .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #contacto .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  #newsletter {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #newsletter .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #newsletter h2 {
+    text-align: center;
+  }
+  
+  #newsletter p {
+    text-align: justify;
+  }
+  
+  #newsletter .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #newsletter .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  /* Estilos de vistas relacionadas con admin */
+  
+  #listado_pacientes {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #listado_pacientes .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #listado_pacientes h2 {
+    text-align: center;
+  }
+  
+  #listado_pacientes p {
+    text-align: justify;
+  }
+  
+  #listado_pacientes .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #listado_pacientes .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  #perfil_paciente {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #perfil_paciente .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #perfil_paciente h2 {
+    text-align: center;
+  }
+  
+  #perfil_paciente p {
+    text-align: justify;
+  }
+  
+  #perfil_paciente .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #perfil_paciente .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  .btn-delete {
+    color: white;
+  }
+  
+  #perfil_cliente {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #perfil_cliente .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #perfil_cliente h2 {
+    text-align: center;
+  }
+  
+  #perfil_cliente p {
+    text-align: justify;
+  }
+  
+  #perfil_cliente .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #perfil_cliente .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  #agenda {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #agenda .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #agenda h2 {
+    text-align: center;
+  }
+  
+  #agenda p {
+    text-align: justify;
+  }
+  
+  #agenda .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #agenda .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  #reportes {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #reportes .container {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: justify;
+  }
+  
+  #reportes h2 {
+    text-align: center;
+  }
+  
+  #reportes p {
+    text-align: justify;
+  }
+  
+  #reportes .btn {
+    background-color: #87cf56;
+    border-color: #87cf56;
+  }
+  
+  #reportes .btn:hover {
+    background-color: #5f9e3e;
+    border-color: #5f9e3e;
+  }
+  
+  #pie_pagina {
+    color: white;
+    background-color: #7264C9;
+    padding-top: 30px;
+    padding-bottom: 100px;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #pie_pagina a {
+    font-family: "Ubuntu", sans-serif;
+    color: white;
+    text-decoration: none;
+  }
+  
+  #redes_sociales .fa {
+    font-size: 30px;
+    padding-top: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
+  @media (max-width: 575.98px) {
+  
+    /*
+    #bienvenida .container {
+      padding-left: 50px !important;
+      padding-right: 50px !important;
+    } */
+  
+    #pie_pagina .container {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  }
+  
+  /* Fuentes importadas de Google Fonts
+  
+  .ubuntu-light {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .ubuntu-regular {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .ubuntu-medium {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .ubuntu-bold {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .ubuntu-light-italic {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .ubuntu-regular-italic {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .ubuntu-medium-italic {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  .ubuntu-bold-italic {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  */

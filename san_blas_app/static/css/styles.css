@@ -96,7 +96,19 @@
   #bienvenida .no-underline:hover {
     text-decoration: none;
   }
+
+  /* Falta reordenar el archivo */
+  /*
+  #boton-resena.btn-custom {
+    background-color: #87cf56 !important;
+    border-color: #87cf56 !important;
+  }
   
+  #boton-resena.btn-custom:hover {
+    background-color: #5f9e3e !important;
+    border-color: #5f9e3e !important;
+  }*/
+
   #inicio_sesion {
     font-family: "Ubuntu", sans-serif;
     font-size: 16px;

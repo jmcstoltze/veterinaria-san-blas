@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<!-- Contenido de la página -->
+<div>
+    <content id="vacunas_mascota">
+            <div class="container">                
+                <div class="mx-auto text-justify" style="max-width: 600px;">
+                    <!-- Historial de vacunas mascota -->
+                    <div class="card shadow-lg p-5">
+                        <h2>Mis reservas</h2>
+                        <hr><br>                                                          
+                        <!-- Listado de citas agendadas -->
+                        <div class="list-group">
+                            {% if delete_message %}
+                                <div class="alert alert-danger" role="alert">
+                                    <center>{{ delete_message }}</center>
+                                </div>
+                            {% endif %}
+                            {% if reservas %}
+                                {% for reserva in reservas %}
+                                    <span href="#" class="list-group-item list-group-item-action">
+                                        <h5 class="mb-1">{{ reserva.tipo.tipo|title }}</h5>                                        
+                                        <p class="mb-1">{{ reserva.horario.fecha|date:"l j \d\e F \d\e Y" }} | {{ reserva.horario.fecha|date:"H:i" }}</p>                                        
+                                        <p class="mb-1"><i>Paciente: {{ reserva.mascota.nombre|title }}</i></p>
+                                        <hr>
+                                        <!-- Traspasar al CSS -->
+                                        <div style="display: flex; gap: 10px; margin-left: 10px;">
+                                            <!-- Modificar -->
+                                            <form action="" method="post">
+                                                {% csrf_token %}
+                                                <!-- <input type="hidden" name="reserva_id" value="{{ reserva.id }}"> -->
+                                                <!-- <input type="hidden" name="action" value="modificar"> Pendiente -->
+                                                <button type="submit" class="btn btn-primary btn-sm">Modificar</button>
+                                            </form>
+                                            <!-- Eliminar -->
+                                            <form action="" method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="action" value="eliminar">
+                                                <input type="hidden" name="reserva_id" value="{{ reserva.id }}">                                                
+                                                <button type="submit" class="btn btn-primary btn-sm" style="background-color: red; border-color: red;">Eliminar</button>
+                                            </form>
+                                        </div>
+                                    </span>                                    
+                                {% endfor %}
+                            {% else %}
+                                <div class="alert alert-success" role="alert">
+                                    <center>{{ empty_message }}</center>
+                                </div>                                
+                            {% endif %}
+                        </div>
+                        <!-- Opciones inferiores -->
+                        <div class="list-group">                                                                                                
+                            <span class="list-group-item list-group-item-action">                                    
+                                <p>
+                                    <a href="{% url 'dashboard' %}">Volver al dashboard | </a>
+                                    <a href="{% url 'mascotas' %}">Ir a tus mascotas | </a>
+                                    <a href="{% url 'vacunatorio' %}">Ir al vacunatorio</a>
+                                </p>                                                                    
+                            </span>                                  
+                        </div>
+                        <br>
+                        <!-- Botón -->
+                        <a href="{% url 'reservar_hora' %}" class="btn btn-primary">Agendar nueva cita</a>
+                    </div>                                    
+                </div>
+            </div>            
+    </content>
+</div>
+{% endblock %}

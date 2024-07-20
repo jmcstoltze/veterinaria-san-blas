@@ -12,14 +12,14 @@
                     <!-- Mensaje de éxito -->
                     {% if success_message %}
                         <div class="alert alert-success" role="alert">
-                            {{ success_message }}
+                            <center>{{ success_message }}</center>
                         </div>
                         {% if button %}
                             <form action="" method="post">
                                 {% csrf_token %}
                                 <input type="hidden" name="consulta_id" value="{{ consulta_id }}">
                                 <input type="hidden" name="mascota_id" value="{{ mascota_id }}">
-                                <button type="submit" class="btn btn-primary">Registrar la vacuna aplicada</button>
+                                <button type="submit" class="btn btn-primary">Registre la vacuna aplicada</button>
                                 <br><br>
                             </form>                            
                         {% endif %}
@@ -27,7 +27,7 @@
                     <!-- Mensaje de error -->
                     {% if error_message %}
                         <div class="alert alert-danger" role="alert">
-                            {{ error_message }}
+                            <center>{{ error_message }}</center>
                         </div>
                     {% endif %}                    
                     <form action="" method="POST">
@@ -37,7 +37,7 @@
                             <select class="form-control" id="tipo" name="tipo" required>
                                 <option value="">Seleccione tipo de consulta</option>
                                     {% for tipo_cita in tipos_cita %}    
-                                        <option value="{{ tipo_cita.id }}">{{ tipo_cita.tipo }}</option>                                
+                                        <option value="{{ tipo_cita.id }}">{{ tipo_cita.tipo|title }}</option>                                
                                     {% endfor %}
                             </select>
                         </div>
@@ -46,7 +46,7 @@
                             <select class="form-control" id="mascota" name="mascota" required>
                                 <option value="" disabled selected>Seleccione mascota</option>
                                     {% for mascota in mascotas %}
-                                        <option value="{{ mascota.id }}">{{ mascota.nombre }} | Cliente: {{ mascota.cliente.rut }}</option>
+                                        <option value="{{ mascota.id }}">{{ mascota.nombre|title }} | Cliente: {{ mascota.cliente.rut }}</option>
                                     {% endfor %}
                             </select>
                         </div>

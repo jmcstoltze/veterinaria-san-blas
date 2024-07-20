@@ -10,8 +10,16 @@
                 <div class="card shadow-lg p-5">
                     <h2>Formulario de Contacto</h2>
                     <hr><br>
+
+                    <!-- Mensaje de éxito -->
+                    {% if success_message %}
+                        <div class="alert alert-success" role="alert">
+                            <center>{{ success_message }}</center>
+                        </div>
+                    {% endif %}
+
                     <p>Completa el formulario y pronto nos pondremos en contacto.</p>
-                    <br>
+                    <br>            
                     <form action="" method="post">
                         {% csrf_token %}
                         <div class="mb-3">
@@ -27,8 +35,8 @@
                             <input type="email" class="form-control" placeholder="Ingrese su email" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
-                            <label for="comentarios" class="form-label">Comentarios</label>
-                            <textarea class="form-control" placeholder="Escribe tus comentarios aquí" id="comentarios" name="comentarios" rows="4" required></textarea>
+                            <label for="mensaje" class="form-label">Comentarios</label>
+                            <textarea class="form-control" placeholder="Escribe tus comentarios aquí" id="mensaje" name="mensaje" rows="4" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Enviar</button>
                     </form>
