@@ -15,13 +15,13 @@
                 <!-- Mensaje de éxito -->
                 {% if success_message %}
                     <div class="alert alert-success" role="alert">
-                        {{ success_message }}
+                        <center>{{ success_message }}</center>
                     </div>
                 {% endif %}
                 <!-- Mensaje de error -->
                 {% if error_message %}
                     <div class="alert alert-danger" role="alert">
-                        {{ error_message }}
+                        <center>{{ error_message }}</center>
                     </div>
                 {% endif %}
 
@@ -40,7 +40,7 @@
                         <input maxlength="20" type="password" class="form-control" placeholder="" id="repeat_password" name="repeat_password" required>
                     </div>
                     <div class="mb-3">
-                        <label for="rut" class="form-label">Rut (sin puntos, con guión)</label>
+                        <label for="rut" class="form-label">Rut</label>
                         <input maxlength="10" type="text" class="form-control" placeholder="" id="rut" name="rut" required>
                     </div>
                     <div class="mb-3">

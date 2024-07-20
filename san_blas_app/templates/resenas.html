@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="bienvenida">       
+        <!-- Sección de comentarios -->
+        <div class="container">                          
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+                <!-- Comentarios de usuarios -->
+                <div class="card shadow-lg p-5">
+
+                    <!-- Formulario para dejar un nuevo comentario -->
+                <div>
+                    <h2>Deja tu Reseña</h2>
+                    <hr><br>
+                    <!-- Mensaje de éxito -->
+                    {% if success_message %}
+                        <div class="alert alert-success" role="alert">
+                            <center>{{ success_message }}</center>
+                        </div>
+                    {% endif %}
+                    
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="comentario" class="form-label"></label> <!-- Se omite label -->
+                            <textarea class="form-control" id="comentario" name="comentario" rows="4" placeholder="Escribe tu comentario aquí"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="calificacion" class="form-label">Calificación</label>
+                            <select class="form-select" id="calificacion" name="calificacion">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <!-- El estilo no funcionaba. Revisar -->
+                        <button type="submit" class="btn btn-custom" style="color:white; background-color: #87cf56; border-color: #87cf56;" onmouseover="this.style.backgroundColor='#5f9e3e'; this.style.borderColor='#5f9e3e';" onmouseout="this.style.backgroundColor='#87cf56'; this.style.borderColor='#87cf56';">Enviar comentario</button>
+
+                        <!-- <button id="boton-resena" type="submit" class="btn btn-custom">Enviar comentario</button> -->
+                    </form>
+                    <br><hr>
+                    </div>                                                                                          
+                    <!-- Listado de Comentarios -->
+                    <div class="list-group">                        
+                        <!-- Reseñas de Usuarios -->
+                        {% for resena in resenas %}
+                            <span class="list-group-item list-group-item-action">                                    
+                                <h5 class="mb-1">{{ resena.usuario.first_name|capfirst }} {{ resena.usuario.last_name|capfirst }}</h5>
+                                <p class="mb-1">@{{ resena.usuario.username }}</p>
+                                <p class="mb-1">{{ resena.fecha|date:"d-m-Y" }}</p>
+                                <p class="mb-1">{{ resena.calificacion }} estrellas</p>
+                                <p class="custom-comment mb-1">"{{ resena.comentario|capfirst }}"</p>                                                                         
+                            </span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </content>
+</div>
+{% endblock %}
