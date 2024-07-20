@@ -248,6 +248,8 @@ class Reserva(admin.ModelAdmin):
 # admin.site.register(Vacuna) Se personalizó CSV
 # admin.site.register(Horario) SE POSTERGA POR ZONA HORARIA
 # admin.site.register(Reserva) SE POSTERGA POR ZONA HORARIA
+
+
 admin.site.register(Resena)
 admin.site.register(Contacto)
 admin.site.register(Newsletter)

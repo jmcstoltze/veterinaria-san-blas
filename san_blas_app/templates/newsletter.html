@@ -10,22 +10,29 @@
                 <div class="card shadow-lg p-5">
                     <h2>Suscribir Newsletter</h2>
                     <hr><br>
+
+                    <!-- Mensaje de éxito -->
+                    {% if success_message %}
+                        <div class="alert alert-success" role="alert">
+                            <center>{{ success_message }}</center>
+                        </div>
+                    {% endif %}
                         
-                    <p>Suscríbete a nuestro newsletter para recibir las últimas noticias, promociones exclusivas y consejos útiles para el cuidado de tu mascota.</p>
+                    <p>Suscríbete a nuestro newsletter para recibir noticias, promociones, consejos útiles y mucho más.</p>
                     <br>
                     <form action="" method="post">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <label for="username" class="form-label">Nombres</label>
-                            <input type="text" class="form-control" placeholder="Ingresa tu nombre completo" id="nombre_completo" name="nombre_completo" required>
+                            <label for="nombres" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" placeholder="" id="nombres" name="nombres" required>
                         </div>
                         <div class="mb-3">
-                            <label for="username" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" placeholder="Ingresa tu nombre completo" id="nombre_completo" name="nombre_completo" required>
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" placeholder="" id="apellidos" name="apellidos" required>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" placeholder="Ingrese su email" id="correo_electronico" name="correo_electronico" required>
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" placeholder="" id="email" name="email" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Suscribirse</button>
                     </form>

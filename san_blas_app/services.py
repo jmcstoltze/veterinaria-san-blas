@@ -1,6 +1,6 @@
 from .models import Cliente, Consulta, Resena, Direccion, Comuna, Region
 from .models import Mascota, Reserva, Horario, Vacuna, TipoVacuna, TipoCita
-from .models import Contacto
+from .models import Contacto, Newsletter
 
 from django.contrib.auth.models import User
 
@@ -11,6 +11,7 @@ from django.utils import timezone
 from datetime import timedelta
 
 from .utils import proxima_fecha_vacunacion # Funciones para calcular la fecha de vacunación
+from .utils import utc_to_local
 
 
 '''
@@ -115,7 +116,7 @@ def crear_consulta(tipo_id, mascota_id, descripcion, evaluacion, antecedentes, e
 
     # Obtiene los objetos relacionados con clave foránea
     tipo_cita = TipoCita.objects.get(pk=tipo_id)
-    mascota = Mascota.objects.get(pk=mascota_id)
+    mascota = Mascota.objects.get(pk=mascota_id)    
 
     # Crea la consulta
     consulta = Consulta.objects.create(
@@ -168,6 +169,15 @@ def guardar_formulario_contacto(nombres, apellidos, email, mensaje):
     )
     nuevo_contacto.save() # Guarda la información en la DB
     return nuevo_contacto
+
+def registrar_suscripcion(nombres, apellidos, email):
+    nueva_suscripcion = Newsletter (
+        nombres = nombres,
+        apellidos = apellidos,
+        email = email
+    )
+    nueva_suscripcion.save()
+    return nueva_suscripcion
     
 
 ##########################################################################
@@ -296,8 +306,18 @@ def obtener_tipos_cita(user):
         # Retorna tipos filtrados para el usuario normal
         return TipoCita.objects.exclude(tipo__in=['cirugía esterilización', 'cirugía tumor menor'])
     
-def obtener_tipos_vacuna():
-    return TipoVacuna.objects.all() # Retorna los tipos de vacunas
+def obtener_especie_mascota(id):
+    mascota = Mascota.objects.get(id=id)
+    return mascota.especie # De acuerdo con id obtiene especie de la mascota
+
+def obtener_tipos_vacuna(especie):
+    if especie == 'Canina':
+        return TipoVacuna.objects.filter(tipo__in=['Óctuple', 'Antirrábica', 'KC']) # Retorna vacunas para perros
+    elif especie == 'Felina':
+        return TipoVacuna.objects.filter(tipo__in=['Triple felina', 'Leucemia felina', 'Antirrábica']) # Retorna vacunas para gatos
+    
+def verificar_vacuna_registrada(mascota_id, consulta_id):
+    return Vacuna.objects.filter(mascota_id=mascota_id, consulta_id=consulta_id).exists() # Retorna booleano si la vacuna ya se registró
     
 def obtener_vacunas_mascotas(mascota_id):
     mascota = Mascota.objects.get(id=mascota_id)

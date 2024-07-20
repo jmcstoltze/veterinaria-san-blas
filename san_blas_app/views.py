@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from san_blas_app.services import crear_cliente, crear_mascota, crear_reserva, crear_consulta, crear_vacuna
-from san_blas_app.services import listar_comunas_metropolitana, guardar_formulario_contacto
+from san_blas_app.services import listar_comunas_metropolitana, guardar_formulario_contacto, registrar_suscripcion
 from san_blas_app.services import obtener_reservas_cliente, eliminar_reserva
 from san_blas_app.services import actualizar_usuario
 from san_blas_app.services import listar_resenas, crear_resena
@@ -14,7 +14,7 @@ from san_blas_app.services import nombre_usuario_existe, mascota_existe, mascota
 from san_blas_app.services import obtener_usuario,obtener_primer_nombre_usuario, obtener_ruts_clientes, obtener_cliente
 from san_blas_app.services import obtener_horarios_disponibles, obtener_horarios_reservados, obtener_horarios_disponibles_sin_tope
 from san_blas_app.services import obtener_mascotas_cliente, obtener_mascotas,obtener_mascota
-from san_blas_app.services import obtener_tipos_cita, obtener_tipos_vacuna, obtener_vacunas_mascotas
+from san_blas_app.services import obtener_tipos_cita, obtener_tipos_vacuna, obtener_vacunas_mascotas, obtener_especie_mascota, verificar_vacuna_registrada
 
 from san_blas_app.models import TipoCita
 
@@ -362,22 +362,39 @@ def consulta(request):
 
 @login_required
 def registro_vacuna(request, consulta_id, mascota_id):
-    # Obtiene tipos de vacunas
-    tipos_vacuna = obtener_tipos_vacuna()
+    especie = obtener_especie_mascota(mascota_id) # Obtiene especie de la mascota
+    # Obtiene tipos de vacunas para la especie
+    tipos_vacuna = obtener_tipos_vacuna(especie)
+
+    vacuna_registrada = verificar_vacuna_registrada(mascota_id, consulta_id) # Verificación para que la vacuna no sea registrada más de una vez 
 
     if request.method == 'POST':
         tipo_id = request.POST.get('type')
-        try:
-            crear_vacuna(tipo_id, mascota_id, consulta_id)
-            success_message = 'Vacuna registrada correctamente.'
+        
+        # Si la vacuna no ha sido registrada
+        if not vacuna_registrada:
+            try:
+                crear_vacuna(tipo_id, mascota_id, consulta_id)
+                success_message = 'Vacuna registrada exitosamente.'
+                vacuna_registrada = True # Cambia el estado a registrada con True
+                return render(request, "registro_vacuna.html", {
+                    'tipos_vacuna': tipos_vacuna,
+                    'success_message': success_message,
+                    'vacuna_registrada': vacuna_registrada})        
+            except Exception as e:
+                error_message = str(e)
+                return render(request, "registro_vacuna.html", {
+                    'tipos_vacuna': tipos_vacuna,
+                    'error_message': error_message,
+                    'vacuna_registrada': vacuna_registrada})
+        else:
+            # Esta línea de código no debiese accederse puesto que el botón debiese estar deshabilitado
+            error_message = 'La vacuna ya ha sido registrada para esta consulta y mascota'
             return render(request, "registro_vacuna.html", {'tipos_vacuna': tipos_vacuna,
-                                                            'success_message': success_message})        
-        except Exception as e:
-            error_message = str(e)
-            return render(request, "registro_vacuna.html", {'tipos_vacuna': tipos_vacuna,
-                                                            'error_message': error_message})
+                                                            'error_message': error_message,
+                                                            'vacuna_registrada': vacuna_registrada})
 
-    return render(request, "registro_vacuna.html", {'tipos_vacuna': tipos_vacuna})
+    return render(request, "registro_vacuna.html", {'tipos_vacuna': tipos_vacuna, 'vacuna_registrada': vacuna_registrada})
 
 @login_required
 def vacunatorio(request):
@@ -441,9 +458,19 @@ def resenas_usuarios(request):
     
     return render(request, "resenas.html", {'resenas': resenas}) # Renderiza con las reseñas existentes
 
-# No requiere login el formulario de contacto
-def formulario_contacto(request):
 
+##########################################################################################################################
+############# Para cerrar sesión #########################################################################################
+@login_required
+def cerrar_sesion(request):
+    logout(request) # Solicitud de cierre de sesión
+    return redirect('inicio')  # Redirige a la página de inicio
+
+
+#############################################################################################################
+# No requieren login el formulario de contacto ##############################################################
+#############################################################################################################
+def formulario_contacto(request):
     if request.method == 'POST':
         nombres =  request.POST.get('nombres')
         apellidos = request.POST.get('apellidos')
@@ -457,11 +484,15 @@ def formulario_contacto(request):
         return render(request, "contacto.html", {'success_message': success_message})    
     return render(request, "contacto.html", {}) # Retorna la vista 
 
+def suscripcion_newsletter(request):
+    if request.method == 'POST':
+        nombres =  request.POST.get('nombres')
+        apellidos = request.POST.get('apellidos')
+        email = request.POST.get('email')
+        
+        registrar_suscripcion(nombres, apellidos, email)
 
-##########################################################################################################################
-############# Para cerrar sesión #########################################################################################
-@login_required
-def cerrar_sesion(request):
-    logout(request) # Solicitud de cierre de sesión
-    return redirect('inicio')  # Redirige a la página de inicio
+        success_message = '¡Listo! ¡Pronto recibirás nuestras noticias!'
+        return render(request, "newsletter.html", {'success_message': success_message})
 
+    return render(request, "newsletter.html", {})

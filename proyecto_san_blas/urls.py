@@ -20,7 +20,7 @@ from san_blas_app.views import indice, registro, inicio_sesion, perfil_usuario, 
 from san_blas_app.views import mascotas, registro_mascota, vacunas_mascota
 from san_blas_app.views import dashboard_admin, agenda, reservar_hora, consulta, vacunatorio
 from san_blas_app.views import registro_vacuna
-from san_blas_app.views import formulario_contacto
+from san_blas_app.views import formulario_contacto, suscripcion_newsletter
 from san_blas_app.views import cerrar_sesion
 
 urlpatterns = [
@@ -28,6 +28,7 @@ urlpatterns = [
     path('', indice, name="inicio"),
     path('home', indice, name="inicio"),
     path('home/contacto', formulario_contacto, name="contacto"),
+    path('home/newsletter', suscripcion_newsletter, name="newsletter"),
     path('register', registro, name="registro"),
     path('login', inicio_sesion, name="inicio_sesion"),
     path('home/dashboard', dashboard, name="dashboard"),

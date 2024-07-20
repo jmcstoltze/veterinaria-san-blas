@@ -44,8 +44,7 @@ def calcular_fecha_triple_leucemia(vacuna):
     else:
         return vacuna.fecha.replace(year=vacuna.fecha.year + 1)  # Luego es de manera anual
 
-'''
 # Convierte fecha a zona horaria local (América/Santiago)
 def utc_to_local(utc_dt):
     local_dt = utc_dt - timedelta(hours=3)  # Ajusta la zona horaria
-    return local_dt '''
+    return local_dt
