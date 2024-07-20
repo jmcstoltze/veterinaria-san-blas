@@ -32,12 +32,21 @@
                         <!-- Selector de Mascota -->
                         <div class="mb-3">
                             <label for="pet" class="form-label">Mascota</label>
-                            <select id="pet" name="pet" class="form-control" required>
-                                <option value="" disabled selected>Seleccione mascota</option>
-                                    {% for mascota in mascotas %}
-                                        <option value="{{ mascota.id }}">{{ mascota.nombre }}</option>                                             
-                                    {% endfor %}
-                            </select>
+                            {% if user.is_superuser %}
+                                <select id="pet" name="pet" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione mascota</option>
+                                        {% for mascota in mascotas %}
+                                            <option value="{{ mascota.id }}">{{ mascota.nombre|title }} | Cliente: {{ mascota.cliente.rut }}</option>                                             
+                                        {% endfor %}
+                                </select>
+                            {% else %}                                                    
+                                <select id="pet" name="pet" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione mascota</option>
+                                        {% for mascota in mascotas %}
+                                            <option value="{{ mascota.id }}">{{ mascota.nombre|title }}</option>                                             
+                                        {% endfor %}
+                                </select>
+                            {% endif %}
                         </div>
 
                         <!-- Selector de Tipo de Agendamiento -->
@@ -46,7 +55,7 @@
                             <select id="type" name="type" class="form-control" required>
                                 <option value="" disabled selected>Seleccione tipo</option>
                                     {% for tipo_cita in tipos_cita %}
-                                        <option value="{{ tipo_cita.id }}">{{ tipo_cita.tipo|capfirst }}</option>
+                                        <option value="{{ tipo_cita.id }}">{{ tipo_cita.tipo|title }}</option>
                                     {% endfor %}
                             </select>
                         </div>                

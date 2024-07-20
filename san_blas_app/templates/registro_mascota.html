@@ -14,18 +14,19 @@
                     <!-- Mensaje de éxito -->
                     {% if success_message %}
                         <div class="alert alert-success" role="alert">
-                            {{ success_message }}
+                            <center>{{ success_message }}</center>
                         </div>
                     {% endif %}
                     <!-- Mensaje de error -->
                     {% if error_message %}
                         <div class="alert alert-danger" role="alert">
-                            {{ error_message }}
+                            <center>{{ error_message }}</center>
                         </div>
                     {% endif %}
                     <form action="" method="post">
                         {% csrf_token %}
 
+                        <!-- Falta implementar la funcionalidad cuando es administrador -->
                         {% if user.is_superuser %}
                             <div class="mb-3">
                                 <label for="rut" class="form-label">Rut Cliente</label>
@@ -38,8 +39,8 @@
                         {% endif %}
 
                         <div class="mb-3">
-                            <label for="chip" class="form-label">Chip (opcional)</label>
-                            <input type="text" class="form-control" placeholder="Ingresa chip" id="chip" name="chip">
+                            <label for="chip" class="form-label">Chip</label>
+                            <input type="text" class="form-control" placeholder="Ingresa chip" id="chip" name="chip" required>
                         </div>
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
@@ -70,8 +71,8 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="esterilizado" class="form-label">Esterilizada</label>
-                            <select class="form-control" id="esterilizado" name="esterilizado" required>
+                            <label for="esterilizada" class="form-label">Esterilizada</label>
+                            <select class="form-control" id="esterilizada" name="esterilizada" required>
                                 <option value="">¿Está esterilizada?</option>
                                 <option value="Sí">Sí</option>
                                 <option value="No">No</option>

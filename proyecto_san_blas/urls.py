@@ -16,16 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from san_blas_app.views import indice, registro, inicio_sesion, perfil_usuario, editar_usuario, dashboard, citas_usuario
-from san_blas_app.views import mascotas, registro_mascota, vacunas_mascota #, eliminar_cita
+from san_blas_app.views import indice, registro, inicio_sesion, perfil_usuario, editar_usuario, dashboard, citas_usuario, resenas_usuarios
+from san_blas_app.views import mascotas, registro_mascota, vacunas_mascota
 from san_blas_app.views import dashboard_admin, agenda, reservar_hora, consulta, vacunatorio
 from san_blas_app.views import registro_vacuna
+from san_blas_app.views import formulario_contacto
 from san_blas_app.views import cerrar_sesion
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', indice, name="inicio"),
     path('home', indice, name="inicio"),
+    path('home/contacto', formulario_contacto, name="contacto"),
     path('register', registro, name="registro"),
     path('login', inicio_sesion, name="inicio_sesion"),
     path('home/dashboard', dashboard, name="dashboard"),
@@ -34,6 +36,7 @@ urlpatterns = [
     path('home/dashboard/mis-mascotas', mascotas, name="mascotas"),
     path('home/dashboard/reservar-cita', reservar_hora, name="reservar_hora"),
     path('home/dashboard/mis-reservas', citas_usuario, name="agendamientos"),
+    path('home/dashboard/comentarios/', resenas_usuarios, name="resenas_usuarios"),
     path('home/dashboard/vacunatorio', vacunatorio, name="vacunatorio"),
     path('home/dashboard/vacunatorio/historial-vacunas/<int:mascota_id>/', vacunas_mascota, name="vacunas_mascota"),
     path('home/dashboard-admin', dashboard_admin, name="dashboard_admin"),

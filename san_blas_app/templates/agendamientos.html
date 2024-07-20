@@ -22,7 +22,7 @@
                                     <span href="#" class="list-group-item list-group-item-action">
                                         <h5 class="mb-1">{{ reserva.tipo.tipo|title }}</h5>                                        
                                         <p class="mb-1">{{ reserva.horario.fecha|date:"l j \d\e F \d\e Y" }} | {{ reserva.horario.fecha|date:"H:i" }}</p>                                        
-                                        <p class="mb-1"><u>Paciente:</u> {{ reserva.mascota.nombre|title }}</p>
+                                        <p class="mb-1"><i>Paciente: {{ reserva.mascota.nombre|title }}</i></p>
                                         <hr>
                                         <!-- Traspasar al CSS -->
                                         <div style="display: flex; gap: 10px; margin-left: 10px;">

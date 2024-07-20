@@ -1,4 +1,7 @@
-from .models import Cliente, Mascota, Consulta, Resena, Direccion, Comuna, Region, TipoCita, Horario, Reserva, Vacuna, TipoVacuna
+from .models import Cliente, Consulta, Resena, Direccion, Comuna, Region
+from .models import Mascota, Reserva, Horario, Vacuna, TipoVacuna, TipoCita
+from .models import Contacto
+
 from django.contrib.auth.models import User
 
 from django.db.models import Q
@@ -7,7 +10,7 @@ from django.db import transaction
 from django.utils import timezone
 from datetime import timedelta
 
-from .utils import proxima_fecha_vacunacion
+from .utils import proxima_fecha_vacunacion # Funciones para calcular la fecha de vacunación
 
 
 '''
@@ -146,6 +149,27 @@ def crear_vacuna(tipo_id, mascota_id, consulta_id):
     vacuna.save()  # Guarda la vacuna con la próxima fecha actualizada
     return vacuna # Retorna la vacuna creada
 
+def crear_resena(user, comentario, calificacion):
+    # Se crea un objeto reseña y se almacena en la DB
+    nueva_resena = Resena (
+        usuario = user,
+        comentario = comentario,
+        calificacion = calificacion
+    )
+    nueva_resena.save()
+    return nueva_resena
+
+def guardar_formulario_contacto(nombres, apellidos, email, mensaje):
+    nuevo_contacto = Contacto (
+        nombres = nombres,
+        apellidos = apellidos,
+        email = email,
+        mensaje = mensaje
+    )
+    nuevo_contacto.save() # Guarda la información en la DB
+    return nuevo_contacto
+    
+
 ##########################################################################
 # Funciones del tipo Read (listar y buscar) ##############################
 
@@ -202,6 +226,7 @@ def obtener_mascota(id):
 
 def mascota_existe(user, nombre_mascota):
     cliente = Cliente.objects.get(usuario=user)
+    nombre_mascota = nombre_mascota.title()
     return Mascota.objects.filter(cliente=cliente, nombre=nombre_mascota).exists() # True si la mascota existe
 
 def mascota_existe_global(nombre_mascota, rut_cliente):
@@ -215,12 +240,18 @@ def obtener_listado_chips():
 def obtener_horarios_disponibles():
     ahora = timezone.now()
     ahora_menos_media_hora = ahora - timedelta(minutes=30)
+
+    # Define el rango de fechas para los próximos días
+    fecha_inicio = ahora.date()
+    fecha_fin = ahora.date() + timedelta(days=2)  # Incluye mañana y pasado mañana
+
     horarios_disponibles = Horario.objects.filter(
-        fecha__date=ahora.date(), # Fecha del día actual
+        #fecha__date=ahora.date(), # Fecha del día actual
+        fecha__date__range=(fecha_inicio, fecha_fin),  # Fecha entre hoy y pasado mañana
         fecha__gt=ahora_menos_media_hora, # Menor al tiempo - 30 minutos | margen de error
         disponible=True # Horarios disponibles
     )
-    # Retorna todos los horarios disponibles de la fecha actual a partir de 30 minutos atrás máximo
+    # Retorna todos los horarios disponibles de la fecha actual y dos días más a partir de 30 minutos atrás máximo
     return horarios_disponibles
 
 def obtener_horarios_disponibles_sin_tope():
@@ -235,12 +266,27 @@ def obtener_horarios_disponibles_sin_tope():
 def obtener_horarios_reservados():
     ahora = timezone.now()
     ahora_menos_media_hora = ahora - timedelta(minutes=30)
-    horarios_reservados = Horario.objects.filter(
+
+    # Horarios del mismo día con rango de 30 minutos
+    horarios_reservados_hoy = Horario.objects.filter(
         fecha__date=ahora.date(), # Fecha del día actual
         fecha__gt=ahora_menos_media_hora, # 30 minutos atrás máximo
         disponible=False # Horarios no disponibles
     )
-    # Retorna todos los horarios reservados filtrados por fecha y hora
+
+    # Horarios reservados para mañana y pasado mañana
+    fecha_inicio = ahora.date() + timedelta(days=1)  # Mañana
+    fecha_fin = ahora.date() + timedelta(days=2)  # Pasado mañana
+
+    horarios_reservados_futuros = Horario.objects.filter(
+        fecha__date__range=(fecha_inicio, fecha_fin),  # Fechas de mañana y pasado mañana
+        disponible=False  # Horarios no disponibles o reservados
+    )
+
+    # Combina los resultados
+    horarios_reservados = horarios_reservados_hoy | horarios_reservados_futuros
+
+     # Retorna las reservas asociadas a los horarios reservados de hoy, mañana y pasado
     return Reserva.objects.filter(horario__in=horarios_reservados)
 
 def obtener_tipos_cita(user):

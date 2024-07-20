@@ -60,7 +60,7 @@
                                     <a class="nav-link" href="">Pacientes</a>
                                 </li>
                                 <li class="nav-item p-3">
-                                    <a class="nav-link" href="">Reportes</a>
+                                    <a class="nav-link" href="{% url 'admin:index' %}">Reportes</a>
                                 </li>                                                                         
                             {% else %} <!-- Opciones para usuario logeado -->
                                 <li class="nav-item p-3">
@@ -73,7 +73,7 @@
                                     <a class="nav-link" href="{% url 'mascotas' %}">Mis Mascotas</a>
                                 </li>
                                 <li class="nav-item p-3">
-                                    <a class="nav-link" href="">Comentarios</a>
+                                    <a class="nav-link" href="{% url 'resenas_usuarios' %}">Comentarios</a>
                                 </li>                    
                             {% endif %}
                         {% else %} <!-- Opciones para usuario no registrado -->
@@ -87,7 +87,7 @@
                                 <a class="nav-link" href="{% url 'inicio_sesion' %}">Vacunatorio</a>
                             </li>
                             <li class="nav-item p-3">
-                                <a class="nav-link" href="">Contacto</a>
+                                <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
                             </li>
                         {% endif %}
                         
@@ -202,7 +202,7 @@
                 <!-- Enlace para suscribirse al newsletter -->
             <div>
             <div>
-                <a href="">Formulario de Contacto |</a>
+                <a href="{% url 'contacto' %}">Formulario de Contacto |</a>
                 <a href="">Suscríbete a nuestro Newsletter</a>
             </div>
             <hr>

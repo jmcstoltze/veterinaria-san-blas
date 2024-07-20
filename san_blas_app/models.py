@@ -192,9 +192,9 @@ class Horario(models.Model):
         return f"{self.fecha}"
 
     class Meta:
-        verbose_name = "Cita"
-        verbose_name_plural = "Citas"
-        ordering = ["fecha"]
+        verbose_name = "Horario"  # Si hay error es porque hubo cambio posterior a la migración
+        verbose_name_plural = "Horarios"
+        ordering = ["-fecha"] ################## se invirtió
 
 class Reserva(models.Model):
     
