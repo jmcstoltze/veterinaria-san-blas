@@ -52,7 +52,7 @@
                                 <p class="mb-1">@{{ resena.usuario.username }}</p>
                                 <p class="mb-1">{{ resena.fecha|date:"d-m-Y" }}</p>
                                 <p class="mb-1">{{ resena.calificacion }} estrellas</p>
-                                <p class="custom-comment mb-1">"{{ resena.comentario }}"</p>                                                                         
+                                <p class="custom-comment mb-1">"{{ resena.comentario|capfirst }}"</p>                                                                         
                             </span>
                         {% endfor %}
                     </div>

@@ -14,7 +14,7 @@ from san_blas_app.services import nombre_usuario_existe, mascota_existe, mascota
 from san_blas_app.services import obtener_usuario,obtener_primer_nombre_usuario, obtener_ruts_clientes, obtener_cliente
 from san_blas_app.services import obtener_horarios_disponibles, obtener_horarios_reservados, obtener_horarios_disponibles_sin_tope
 from san_blas_app.services import obtener_mascotas_cliente, obtener_mascotas,obtener_mascota
-from san_blas_app.services import obtener_tipos_cita, obtener_tipos_vacuna, obtener_vacunas_mascotas, obtener_especie_mascota, verificar_vacuna_registrada
+from san_blas_app.services import obtener_tipos_cita, obtener_tipos_vacuna, obtener_vacunas_mascotas, obtener_especie_mascota, verificar_vacuna_registrada, obtener_tipos_vacuna_todos
 
 from san_blas_app.models import TipoCita
 
@@ -415,7 +415,7 @@ def vacunatorio(request):
 
 @login_required
 def vacunas_mascota(request, mascota_id):
-    tipos_vacuna = obtener_tipos_vacuna()
+    tipos_vacuna = obtener_tipos_vacuna_todos()
     vacunas = obtener_vacunas_mascotas(mascota_id)
     mascota = obtener_mascota(mascota_id)
 
@@ -449,7 +449,7 @@ def resenas_usuarios(request):
         calificacion = request.POST.get('calificacion')
 
         crear_resena(request.user, comentario, calificacion) # Crea la reseña
-        succes_message = 'Tu comentario ha sido posteado con éxito'
+        succes_message = 'Comentario posteado con éxito'
 
         resenas = listar_resenas() # Lista las reseñas existentes
         return render(request, "resenas.html", {'resenas': resenas, 'success_message': succes_message}) # Renderiza con las reseñas existentes

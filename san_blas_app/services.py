@@ -316,6 +316,9 @@ def obtener_tipos_vacuna(especie):
     elif especie == 'Felina':
         return TipoVacuna.objects.filter(tipo__in=['Triple felina', 'Leucemia felina', 'Antirrábica']) # Retorna vacunas para gatos
     
+def obtener_tipos_vacuna_todos():
+    return TipoVacuna.objects.all() # Retorna todos los tipos de vacunas
+    
 def verificar_vacuna_registrada(mascota_id, consulta_id):
     return Vacuna.objects.filter(mascota_id=mascota_id, consulta_id=consulta_id).exists() # Retorna booleano si la vacuna ya se registró
     
