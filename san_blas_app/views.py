@@ -7,14 +7,15 @@ from django.contrib.auth.decorators import login_required
 
 from san_blas_app.services import crear_cliente, crear_mascota, crear_reserva, crear_consulta, crear_vacuna
 from san_blas_app.services import listar_comunas_metropolitana, guardar_formulario_contacto, registrar_suscripcion
-from san_blas_app.services import obtener_reservas_cliente, eliminar_reserva
-from san_blas_app.services import actualizar_usuario
+from san_blas_app.services import obtener_clientes, obtener_clientes_filtrados, obtener_reservas_cliente, eliminar_reserva
+from san_blas_app.services import actualizar_usuario, obtener_pacientes, obtener_pacientes_filtrados
 from san_blas_app.services import listar_resenas, crear_resena
 from san_blas_app.services import nombre_usuario_existe, mascota_existe, mascota_existe_global, obtener_listado_chips
 from san_blas_app.services import obtener_usuario,obtener_primer_nombre_usuario, obtener_ruts_clientes, obtener_cliente
 from san_blas_app.services import obtener_horarios_disponibles, obtener_horarios_reservados, obtener_horarios_disponibles_sin_tope
 from san_blas_app.services import obtener_mascotas_cliente, obtener_mascotas,obtener_mascota
-from san_blas_app.services import obtener_tipos_cita, obtener_tipos_vacuna, obtener_vacunas_mascotas, obtener_especie_mascota, verificar_vacuna_registrada, obtener_tipos_vacuna_todos
+from san_blas_app.services import obtener_tipos_cita, obtener_tipos_vacuna, obtener_vacunas_mascotas, obtener_especie_mascota
+from san_blas_app.services import verificar_vacuna_registrada, obtener_tipos_vacuna_todos
 
 from san_blas_app.models import TipoCita
 
@@ -168,6 +169,51 @@ def registro_mascota(request):
 
     return render(request, "registro_mascota.html", {'listado': listado_ruts})
 
+@login_required
+def vacunatorio(request):
+    mascotas = obtener_mascotas_cliente(request.user) # Obtiene mascota cliente
+
+    # Si no hay mascotas muestra mensaje
+    if not mascotas:
+        message = 'No tienes mascotas registradas'
+        return render(request, "vacunas_mascota.html", {'message': message})
+
+    # Toma el id de la mascota desde el formulario
+    if request.method == "POST":
+        mascota_id = request.POST.get('mascota')
+        # Redirige a la siguiente vista con el submit pasando como parámetro el id de la mascota
+        return redirect('vacunas_mascota', mascota_id=mascota_id)
+    # El listado de mascotas del cliente es parte del contexto
+    return render(request, "vacunatorio.html", {'mascotas' :mascotas})
+
+@login_required
+def vacunas_mascota(request, mascota_id):
+    tipos_vacuna = obtener_tipos_vacuna_todos()
+    vacunas = obtener_vacunas_mascotas(mascota_id)
+    mascota = obtener_mascota(mascota_id)
+
+    if not vacunas:
+        message = 'No existen vacunas registradas'
+
+        return render(request, "vacunas_mascota.html", {'message': message, 'mascota': mascota})
+
+    # Ordena las vacunas por tipo y fecha, indicando la
+    # próxima fecha de la última vacuna aplicada de cada tipo
+    vacunas_por_tipo = {}
+    for tipo in tipos_vacuna:
+        vacunas_tipo = vacunas.filter(tipo=tipo).order_by('-fecha')
+        if vacunas_tipo.exists():
+            vacunas_por_tipo[tipo.tipo] = {
+                'vacunas': vacunas_tipo,
+                'proxima_fecha': vacunas_tipo.first().proxima_fecha
+            }
+    contexto = {
+        'mascota': mascota,
+        'vacunas_por_tipo': vacunas_por_tipo
+    }
+    # Renderiza la vista entregando la mascota al contexto y sus vacunas clasficadas
+    return render(request, "vacunas_mascota.html", contexto)
+
 # Vista de perfil de usuario
 @login_required
 def perfil_usuario(request):
@@ -232,6 +278,23 @@ def citas_usuario(request):
         empty_message = "No tienes citas reservadas"
         return render(request, "agendamientos.html", {'reservas': reservas, 'empty_message': empty_message})
     return render(request, "agendamientos.html", {'reservas': reservas})
+
+@login_required
+def resenas_usuarios(request):
+
+    if request.method == 'POST':
+        comentario = request.POST.get('comentario')
+        calificacion = request.POST.get('calificacion')
+
+        crear_resena(request.user, comentario, calificacion) # Crea la reseña
+        succes_message = 'Comentario posteado con éxito'
+
+        resenas = listar_resenas() # Lista las reseñas existentes
+        return render(request, "resenas.html", {'resenas': resenas, 'success_message': succes_message}) # Renderiza con las reseñas existentes
+
+    resenas = listar_resenas() # Lista las reseñas existentes
+    
+    return render(request, "resenas.html", {'resenas': resenas}) # Renderiza con las reseñas existentes
 
 
 ##########################################################################################################################
@@ -365,22 +428,20 @@ def registro_vacuna(request, consulta_id, mascota_id):
     especie = obtener_especie_mascota(mascota_id) # Obtiene especie de la mascota
     # Obtiene tipos de vacunas para la especie
     tipos_vacuna = obtener_tipos_vacuna(especie)
-
     vacuna_registrada = verificar_vacuna_registrada(mascota_id, consulta_id) # Verificación para que la vacuna no sea registrada más de una vez 
-
     if request.method == 'POST':
-        tipo_id = request.POST.get('type')
-        
+        tipo_id = request.POST.get('type')        
         # Si la vacuna no ha sido registrada
         if not vacuna_registrada:
             try:
-                crear_vacuna(tipo_id, mascota_id, consulta_id)
+                vacuna = crear_vacuna(tipo_id, mascota_id, consulta_id)
                 success_message = 'Vacuna registrada exitosamente.'
-                vacuna_registrada = True # Cambia el estado a registrada con True
+                vacuna_registrada = True # Cambia el estado a registrada con True                
                 return render(request, "registro_vacuna.html", {
                     'tipos_vacuna': tipos_vacuna,
                     'success_message': success_message,
-                    'vacuna_registrada': vacuna_registrada})        
+                    'vacuna_registrada': vacuna_registrada,
+                    'vacuna': vacuna})        
             except Exception as e:
                 error_message = str(e)
                 return render(request, "registro_vacuna.html", {
@@ -396,67 +457,53 @@ def registro_vacuna(request, consulta_id, mascota_id):
 
     return render(request, "registro_vacuna.html", {'tipos_vacuna': tipos_vacuna, 'vacuna_registrada': vacuna_registrada})
 
+# Vista de listado de clientes con buscador
 @login_required
-def vacunatorio(request):
-    mascotas = obtener_mascotas_cliente(request.user) # Obtiene mascota cliente
+def clientes(request):
+    query = request.GET.get('filtro')
+    message = None
 
-    # Si no hay mascotas muestra mensaje
-    if not mascotas:
-        message = 'No tienes mascotas registradas'
-        return render(request, "vacunas_mascota.html", {'message': message})
+    if query:
+        clientes = obtener_clientes_filtrados(query) # Obtiene listado de clientes según filtro de búsqueda
+        conteo = clientes.count()  # Obtiene la cantidad de resultados
 
-    # Toma el id de la mascota desde el formulario
-    if request.method == "POST":
-        mascota_id = request.POST.get('mascota')
-        # Redirige a la siguiente vista con el submit pasando como parámetro el id de la mascota
-        return redirect('vacunas_mascota', mascota_id=mascota_id)
-    # El listado de mascotas del cliente es parte del contexto
-    return render(request, "vacunatorio.html", {'mascotas' :mascotas})
+        # Si no se obtienen clientes en la búsqueda
+        if not clientes.exists():
+            message = 'No existen coincidencias en la búsqueda'
+        return render(request, "clientes.html", {'clientes': clientes,
+                                                 'message': message,
+                                                 'conteo': conteo})
+    else:
+        clientes = obtener_clientes() # Llama al listado de clientes
+    # Si no hay clientes registrados debería indicarlo
+    if not clientes.exists():
+        message = 'No hay clientes ingresados'
+    return render(request, "clientes.html", {'clientes': clientes, 'message': message})
 
+# Vista de listado de pacientes con buscador
 @login_required
-def vacunas_mascota(request, mascota_id):
-    tipos_vacuna = obtener_tipos_vacuna_todos()
-    vacunas = obtener_vacunas_mascotas(mascota_id)
-    mascota = obtener_mascota(mascota_id)
+def pacientes(request):
+    query = request.GET.get('filtro')
+    message = None
+    conteo = None
 
-    if not vacunas:
-        message = 'No existen vacunas registradas'
+    if query:
+        pacientes = obtener_pacientes_filtrados(query) # Obtiene listado de pacientes según filtro de búsqueda
+        conteo = pacientes.count()  # Obtiene la cantidad de resultados
 
-        return render(request, "vacunas_mascota.html", {'message': message, 'mascota': mascota})
+        # Si no se obtienen clientes en la búsqueda
+        if not pacientes.exists():
+            message = 'No existen coincidencias en la búsqueda'
+        return render(request, "pacientes.html", {'pacientes': pacientes,
+                                                 'message': message,
+                                                 'conteo': conteo})
+    else:
+        pacientes = obtener_pacientes() # Llama al listado de pacientes
+    # Si no hay pacientes registrados debería indicarlo
+    if not pacientes.exists():
+        message = 'No hay pacientes ingresados'
 
-    # Ordena las vacunas por tipo y fecha, indicando la
-    # próxima fecha de la última vacuna aplicada de cada tipo
-    vacunas_por_tipo = {}
-    for tipo in tipos_vacuna:
-        vacunas_tipo = vacunas.filter(tipo=tipo).order_by('-fecha')
-        if vacunas_tipo.exists():
-            vacunas_por_tipo[tipo.tipo] = {
-                'vacunas': vacunas_tipo,
-                'proxima_fecha': vacunas_tipo.first().proxima_fecha
-            }
-    contexto = {
-        'mascota': mascota,
-        'vacunas_por_tipo': vacunas_por_tipo
-    }
-    # Renderiza la vista entregando la mascota al contexto y sus vacunas clasficadas
-    return render(request, "vacunas_mascota.html", contexto)
-
-@login_required
-def resenas_usuarios(request):
-
-    if request.method == 'POST':
-        comentario = request.POST.get('comentario')
-        calificacion = request.POST.get('calificacion')
-
-        crear_resena(request.user, comentario, calificacion) # Crea la reseña
-        succes_message = 'Comentario posteado con éxito'
-
-        resenas = listar_resenas() # Lista las reseñas existentes
-        return render(request, "resenas.html", {'resenas': resenas, 'success_message': succes_message}) # Renderiza con las reseñas existentes
-
-    resenas = listar_resenas() # Lista las reseñas existentes
-    
-    return render(request, "resenas.html", {'resenas': resenas}) # Renderiza con las reseñas existentes
+    return render(request, "pacientes.html", {'pacientes': pacientes, 'message': message, 'conteo': conteo})
 
 
 ##########################################################################################################################

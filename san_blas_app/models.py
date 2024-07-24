@@ -183,7 +183,7 @@ class Resena(models.Model):
         verbose_name_plural = "Reseñas"
         ordering = ["-fecha"]
 
-# Hace referencia a las horas que están disponibilizadas. Cuando se agenden su atributo disponible parsará a False
+# Hace referencia a las horas que están disponibilizadas. Cuando se agenden su atributo disponible pasará a False
 class Horario(models.Model):
     fecha = models.DateTimeField(null=False, blank=False)
     disponible = models.BooleanField(default=True)

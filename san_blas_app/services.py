@@ -145,7 +145,7 @@ def crear_vacuna(tipo_id, mascota_id, consulta_id):
     vacuna.proxima_fecha = proxima_fecha_vacunacion(vacuna)
 
     if vacuna.proxima_fecha is None:
-        print('no se está generando la próxima fecha')
+        print('no se está generando la próxima fecha') # Para efectos de testeo
 
     vacuna.save()  # Guarda la vacuna con la próxima fecha actualizada
     return vacuna # Retorna la vacuna creada
@@ -206,6 +206,46 @@ def obtener_cliente(user):
         return cliente # Retorna cliente
     except Cliente.DoesNotExist:
         return None
+
+# Obtiene todos lo clientes almacenados
+def obtener_clientes():
+    clientes = Cliente.objects.all()
+    return clientes # Retorna todos los clientes de la db
+
+# Obtener clientes según filtro
+def obtener_clientes_filtrados(query):
+    return Cliente.objects.filter(
+            Q(usuario__first_name__icontains=query) | 
+            Q(usuario__last_name__icontains=query) |
+            Q(usuario__email__icontains=query)
+        )
+
+# Obtiene todos lo pacientes almacenados
+def obtener_pacientes():
+    pacientes = Mascota.objects.all()
+    return pacientes # Retorna todos los clientes de la db
+
+# Obtener paciente según filtro
+def obtener_pacientes_filtrados(query):
+    return Mascota.objects.filter(Q(nombre__icontains=query))
+
+
+def buscar_cliente(consulta):
+    # Divide la consulta en palabras clave
+    terminos = consulta.split()
+
+    # Inicializa un objeto de consulta con todos los clientes
+    clientes = Cliente.objects.all()
+
+    # Filtra por cada término de búsqueda
+    for term in terminos:
+        # Filtra por coincidencias parciales en first_name o last_name
+        clientes = clientes.filter(
+            Q(usuario__first_name__icontains=term) | Q(usuario__last_name__icontains=term)
+        )
+    # Elimina registros duplicados
+    clientes = clientes.distinct()
+    return clientes # Retorna ninguno, uno o más clientes
     
 def obtener_reservas_cliente(user):
     cliente = Cliente.objects.get(usuario=user) # Obtiene cliente
@@ -331,22 +371,6 @@ def listar_resenas():
     resenas = Resena.objects.all()
     return resenas # Retorna los objetos
 
-def buscar_cliente(consulta):
-    # Divide la consulta en palabras clave
-    terminos = consulta.split()
-
-    # Inicializa un objeto de consulta con todos los clientes
-    clientes = Cliente.objects.all()
-
-    # Filtra por cada término de búsqueda
-    for term in terminos:
-        # Filtra por coincidencias parciales en first_name o last_name
-        clientes = clientes.filter(
-            Q(usuario__first_name__icontains=term) | Q(usuario__last_name__icontains=term)
-        )
-    # Elimina registros duplicados
-    clientes = clientes.distinct()
-    return clientes # Retorna ninguno, uno o más clientes
 
 #########################################################################################################################
 # Funciones del tipo Update #############################################################################################

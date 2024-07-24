@@ -19,7 +19,7 @@ from django.urls import path
 from san_blas_app.views import indice, registro, inicio_sesion, perfil_usuario, editar_usuario, dashboard, citas_usuario, resenas_usuarios
 from san_blas_app.views import mascotas, registro_mascota, vacunas_mascota
 from san_blas_app.views import dashboard_admin, agenda, reservar_hora, consulta, vacunatorio
-from san_blas_app.views import registro_vacuna
+from san_blas_app.views import registro_vacuna, clientes, pacientes
 from san_blas_app.views import formulario_contacto, suscripcion_newsletter
 from san_blas_app.views import cerrar_sesion
 
@@ -41,6 +41,8 @@ urlpatterns = [
     path('home/dashboard/vacunatorio', vacunatorio, name="vacunatorio"),
     path('home/dashboard/vacunatorio/historial-vacunas/<int:mascota_id>/', vacunas_mascota, name="vacunas_mascota"),
     path('home/dashboard-admin', dashboard_admin, name="dashboard_admin"),
+    path('home/dashboard-admin/clientes', clientes, name="clientes"),
+    path('home/dashboard-admin/pacientes', pacientes, name="pacientes"),
     path('home/dashboard-admin/consulta', consulta, name="consulta"),
     path('home/dashboard-admin/consulta/registro-vacuna/<int:consulta_id>/<int:mascota_id>', registro_vacuna, name="registro_vacuna"),
     path('home/dashboard-admin/agenda', agenda, name="agenda"),
