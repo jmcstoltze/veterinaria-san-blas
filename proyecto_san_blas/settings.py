@@ -64,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'san_blas_app.context_processors.breadcrumbs_processor' ##########################################
             ],
         },
     },

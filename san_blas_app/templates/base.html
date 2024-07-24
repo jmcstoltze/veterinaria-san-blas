@@ -178,6 +178,24 @@
         </header>
     </div>
     {% endblock %}
+
+    {% load breadcrumb_tags %}
+
+    <!-- Breadcrumbs -->
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {% breadcrumbs as breadcrumbs %}
+                {% for breadcrumb in breadcrumbs %}
+                    {% if breadcrumb.url %}
+                        <li class="breadcrumb-item"><a href="{{ breadcrumb.url }}" class="breadcrumb-link">{{ breadcrumb.title }}</a></li>
+                    {% else %}
+                        <li class="breadcrumb-item active" aria-current="page">{{ breadcrumb.title }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        </nav>
+    </div>
     
     <!-- Contenido de la página -->
     {% block 'content' %}
