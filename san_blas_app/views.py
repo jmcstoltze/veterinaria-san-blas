@@ -13,8 +13,8 @@ from san_blas_app.services import listar_resenas, crear_resena
 from san_blas_app.services import nombre_usuario_existe, mascota_existe, mascota_existe_global, obtener_listado_chips
 from san_blas_app.services import obtener_usuario,obtener_primer_nombre_usuario, obtener_ruts_clientes, obtener_cliente
 from san_blas_app.services import obtener_horarios_disponibles, obtener_horarios_reservados, obtener_horarios_disponibles_sin_tope
-from san_blas_app.services import obtener_horarios_reservados_filtrados, obtener_horarios_disponibles_filtrados
-from san_blas_app.services import obtener_mascotas_cliente, obtener_mascotas,obtener_mascota
+from san_blas_app.services import obtener_horarios_reservados_filtrados, obtener_horarios_disponibles_filtrados, obtener_cliente_por_id
+from san_blas_app.services import obtener_mascotas_cliente, obtener_mascotas,obtener_mascota, obtener_paciente
 from san_blas_app.services import obtener_tipos_cita, obtener_tipos_vacuna, obtener_vacunas_mascotas, obtener_especie_mascota
 from san_blas_app.services import verificar_vacuna_registrada, obtener_tipos_vacuna_todos
 
@@ -216,16 +216,25 @@ def vacunas_mascota(request, mascota_id):
     return render(request, "vacunas_mascota.html", contexto)
 
 # Vista de perfil de usuario
+# Cuando lo accede el administrador, viene con el id de cliente como parámetro
 @login_required
-def perfil_usuario(request):
-    cliente = obtener_cliente(request.user) # Obtiene los datos del cliente logeado
+def perfil_usuario(request, cliente_id=None):
+
+    if request.user.is_superuser:
+        cliente = obtener_cliente_por_id(cliente_id) # Obtiene el cliente a través del id
+    else:
+        cliente = obtener_cliente(request.user) # Obtiene los datos del cliente logeado
     return render(request, "perfil_usuario.html", {"cliente": cliente}) # Retorna la vista y pasa el usuario al contexto
 
-# Vista de edición de perfil
+# Vista de edición de perfil. Si es superusuario viene con id de cliente como parámetro
 @login_required
-def editar_usuario(request):
+def editar_usuario(request, cliente_id=None):
     comunas = listar_comunas_metropolitana() # Obtiene comunas de la región metropolitana
-    cliente = obtener_cliente(request.user) # Obtiene los datos del cliente del usuario logeado
+
+    if request.user.is_superuser:
+        cliente = obtener_cliente_por_id(cliente_id) # Obtiene el cliente a través del id
+    else:
+        cliente = obtener_cliente(request.user) # Obtiene los datos del cliente del usuario logeado
 
     if request.method == "POST":
         # Obtiene los datos del formulario
@@ -541,6 +550,12 @@ def pacientes(request):
         message = 'No hay pacientes ingresados'
 
     return render(request, "pacientes.html", {'pacientes': pacientes, 'message': message, 'conteo': conteo})
+
+@login_required
+def perfil_paciente(request, mascota_id):
+
+    paciente = obtener_paciente(mascota_id)
+    return render(request, "perfil_paciente.html", {'paciente': paciente})
 
 
 ##########################################################################################################################

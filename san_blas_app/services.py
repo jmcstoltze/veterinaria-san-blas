@@ -208,6 +208,9 @@ def obtener_cliente(user):
         return cliente # Retorna cliente
     except Cliente.DoesNotExist:
         return None
+    
+def obtener_cliente_por_id(id):
+    return Cliente.objects.get(id=id) # Retorna cliente de id específico
 
 # Obtiene todos lo clientes almacenados
 def obtener_clientes():
@@ -226,6 +229,10 @@ def obtener_clientes_filtrados(query):
 def obtener_pacientes():
     pacientes = Mascota.objects.all()
     return pacientes # Retorna todos los clientes de la db
+
+# Obtiene paciente por id
+def obtener_paciente(id):
+    return Mascota.objects.get(id=id) # Retorna paciente de determinado id
 
 # Obtener paciente según filtro
 def obtener_pacientes_filtrados(query):

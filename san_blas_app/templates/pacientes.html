@@ -40,7 +40,7 @@
                         <!-- Listado -->
                         {% for paciente in pacientes %}
                             <div class="list-group">                                                                                                
-                                <a href="" class="list-group-item list-group-item-action">
+                                <a href="{% url 'perfil_paciente' paciente.id %}" class="list-group-item list-group-item-action">
                                     <h5 class="mb-1">{{ paciente.nombre|title }}</h5>
                                     <p class="mb-1">Especie: {{ paciente.especie|title }}</p>
                                     <p class="mb-1">Raza: {{ paciente.raza|title }}</p>

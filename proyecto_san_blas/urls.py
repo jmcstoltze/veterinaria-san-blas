@@ -19,7 +19,7 @@ from django.urls import path
 from san_blas_app.views import indice, registro, inicio_sesion, perfil_usuario, editar_usuario, dashboard, citas_usuario, resenas_usuarios
 from san_blas_app.views import mascotas, registro_mascota, vacunas_mascota
 from san_blas_app.views import dashboard_admin, agenda, reservar_hora, consulta, vacunatorio
-from san_blas_app.views import registro_vacuna, clientes, pacientes
+from san_blas_app.views import registro_vacuna, clientes, pacientes, perfil_paciente
 from san_blas_app.views import formulario_contacto, suscripcion_newsletter
 from san_blas_app.views import cerrar_sesion
 
@@ -38,12 +38,15 @@ urlpatterns = [
     path('home/dashboard/registrar-mascota', registro_mascota, name="registro_mascota"),
     path('home/dashboard/reservar-cita', reservar_hora, name="reservar_hora"),
     path('home/dashboard/mis-reservas', citas_usuario, name="agendamientos"),
-    path('home/dashboard/comentarios/', resenas_usuarios, name="resenas_usuarios"),
+    path('home/dashboard/comentarios', resenas_usuarios, name="resenas_usuarios"),
     path('home/dashboard/vacunatorio', vacunatorio, name="vacunatorio"),
-    path('home/dashboard/vacunatorio/historial-vacunas/<int:mascota_id>/', vacunas_mascota, name="vacunas_mascota"),
+    path('home/dashboard/vacunatorio/historial-vacunas/<int:mascota_id>', vacunas_mascota, name="vacunas_mascota"),
     path('home/dashboard-admin', dashboard_admin, name="dashboard_admin"),
     path('home/dashboard-admin/clientes', clientes, name="clientes"),
+    path('home/dashboard-admin/clientes/<int:cliente_id>', perfil_usuario, name='perfil_usuario'),
+    path('home/dashboard/editar-perfil/<int:cliente_id>', editar_usuario, name="editar_usuario"),
     path('home/dashboard-admin/pacientes', pacientes, name="pacientes"),
+    path('home/dashboard-admin/pacientes/<int:mascota_id>', perfil_paciente, name="perfil_paciente"),
     path('home/dashboard-admin/agenda', agenda, name="agenda"),
     path('home/dashboard-admin/consulta', consulta, name="consulta"),
     path('home/dashboard-admin/consulta/registro-vacuna/<int:consulta_id>/<int:mascota_id>', registro_vacuna, name="registro_vacuna"),

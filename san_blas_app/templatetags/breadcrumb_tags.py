@@ -31,18 +31,36 @@ def breadcrumbs(context):
             {'title': 'Dashboard', 'url': None}
         ]
     elif url_name == 'perfil_usuario':
-        breadcrumbs = [
-            {'title': 'Inicio', 'url': '/home'},
-            {'title': 'Dashboard', 'url': '/home/dashboard'},
-            {'title': 'Perfil Usuario', 'url': None}
-        ]
+        if request.user.is_superuser: # Para el caso de superusuario
+            breadcrumbs = [
+                {'title': 'Inicio', 'url': '/home'},
+                {'title': 'Dashboard', 'url': '/home/dashboard-admin'},
+                {'title': 'Clientes', 'url': '/home/dashboard-admin/clientes'},
+                {'title': 'Perfil Cliente', 'url': None}
+            ]
+        else:
+            breadcrumbs = [
+                {'title': 'Inicio', 'url': '/home'},
+                {'title': 'Dashboard', 'url': '/home/dashboard'},
+                {'title': 'Mi Perfil', 'url': None}
+            ]
     elif url_name == 'editar_usuario':
-        breadcrumbs = [
-            {'title': 'Inicio', 'url': '/home'},
-            {'title': 'Dashboard', 'url': '/home/dashboard'},
-            {'title': 'Perfil Usuario', 'url': '/home/dashboard/mi-perfil'},
-            {'title': 'Editar Perfil', 'url': None}
-        ]
+        if request.user.is_superuser: # Para el caso de superusuario
+            cliente_id = resolve(request.path_info).kwargs.get('cliente_id')
+            breadcrumbs = [
+                {'title': 'Inicio', 'url': '/home'},
+                {'title': 'Dashboard', 'url': '/home/dashboard-admin'},
+                {'title': 'Clientes', 'url': '/home/dashboard-admin/clientes'},
+                {'title': 'Perfil Cliente', 'url': '/home/dashboard-admin/clientes/{}'.format(cliente_id)},
+                {'title': 'Editar Perfil', 'url': None}
+            ]
+        else:
+            breadcrumbs = [
+                {'title': 'Inicio', 'url': '/home'},
+                {'title': 'Dashboard', 'url': '/home/dashboard'},
+                {'title': 'Perfil Usuario', 'url': '/home/dashboard/mi-perfil'},
+                {'title': 'Editar Perfil', 'url': None}
+            ]
     elif url_name == 'mascotas':
         breadcrumbs = [
             {'title': 'Inicio', 'url': '/home'},
@@ -57,11 +75,19 @@ def breadcrumbs(context):
             {'title': 'Registro Mascota', 'url': None},
         ]
     elif url_name == 'reservar_hora':
-        breadcrumbs = [
-            {'title': 'Inicio', 'url': '/home'},
-            {'title': 'Dashboard', 'url': '/home/dashboard'},
-            {'title': 'Reservar Cita', 'url': None}
-        ]
+        if request.user.is_superuser: # Para el caso de superusuario
+            breadcrumbs = [
+                {'title': 'Inicio', 'url': '/home'},
+                {'title': 'Dashboard', 'url': '/home'},
+                {'title': 'Agenda', 'url': '/home/dashboard-admin/agenda'},
+                {'title': 'Reservar Cita', 'url': None}
+            ]
+        else:
+            breadcrumbs = [
+                {'title': 'Inicio', 'url': '/home'},
+                {'title': 'Dashboard', 'url': '/home/dashboard'},
+                {'title': 'Reservar Cita', 'url': None}
+            ]
     elif url_name == 'agendamientos':
         breadcrumbs = [
             {'title': 'Inicio', 'url': '/home'},
@@ -103,6 +129,21 @@ def breadcrumbs(context):
             {'title': 'Dashboard', 'url': '/home/dashboard-admin'},
             {'title': 'Pacientes', 'url': None}
         ]
+    elif url_name == 'perfil_paciente':
+        if request.user.is_superuser: # Para administrador
+            breadcrumbs = [
+                {'title': 'Inicio', 'url': '/home'},
+                {'title': 'Dashboard', 'url': '/home/dashboard-admin'},
+                {'title': 'Pacientes', 'url': '/home/dashboard-admin/pacientes'},
+                {'title': 'Perfil Paciente', 'url': None},
+            ]
+        else: # Para cliente
+            breadcrumbs = [
+                {'title': 'Inicio', 'url': '/home'},
+                {'title': 'Dashboard', 'url': '/home/dashboard'},
+                {'title': 'Mascotas', 'url': '/home/dashboard/mis-mascotas'},
+                {'title': 'Perfil Mascota', 'url': None},
+            ]
     elif url_name == 'agenda':
         breadcrumbs = [
             {'title': 'Inicio', 'url': '/home'},
@@ -112,7 +153,7 @@ def breadcrumbs(context):
     elif url_name == 'consulta':
         breadcrumbs = [
             {'title': 'Inicio', 'url': '/home'},
-            {'title': 'Dashboard', 'url': '/home/dashboard'},
+            {'title': 'Dashboard', 'url': '/home/dashboard-admin'},
             {'title': 'Agenda', 'url': '/home/dashboard-admin/agenda'},
             {'title': 'Consulta', 'url': None},
         ]
