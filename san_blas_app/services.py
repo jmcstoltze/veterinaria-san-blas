@@ -7,8 +7,10 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.db import transaction
 
+from django.utils.timezone import make_aware
 from django.utils import timezone
-from datetime import timedelta
+from datetime import timedelta, datetime
+from django.utils.dateparse import parse_date
 
 from .utils import proxima_fecha_vacunacion # Funciones para calcular la fecha de vacunación
 from .utils import utc_to_local
@@ -313,6 +315,24 @@ def obtener_horarios_disponibles_sin_tope():
     # Retorna todos los horarios disponibles desde la fecha y hora actual
     return horarios_disponibles
 
+# Obtiene horarios disponibles para una fecha determinada
+def obtener_horarios_disponibles_filtrados(query):    
+    # Intentar parsear la fecha del query
+    fecha = parse_date(query)
+    # Si no es una fecha la búsqueda retorna un queryset vacío
+    if not fecha:
+        return Horario.objects.none()
+    # Ajusta fecha para incluir el rango completo del día
+    start_date = make_aware(datetime.combine(fecha, datetime.min.time()))
+    end_date = make_aware(datetime.combine(fecha, datetime.max.time()))
+
+    # Filtra reservas por rango de fechas y obtiene los horarios asociados
+    reservas_filtradas = Reserva.objects.filter(horario__fecha__range=(start_date, end_date))
+    horarios = Horario.objects.filter(id__in=reservas_filtradas.values_list('horario_id', flat=True))    
+
+    return horarios # Retorna los horarios de la fecha específica
+
+# Obtiene las reservas asociadas a horarios reservados
 def obtener_horarios_reservados():
     ahora = timezone.now()
     ahora_menos_media_hora = ahora - timedelta(minutes=30)
@@ -338,6 +358,30 @@ def obtener_horarios_reservados():
 
      # Retorna las reservas asociadas a los horarios reservados de hoy, mañana y pasado
     return Reserva.objects.filter(horario__in=horarios_reservados)
+
+# Obtiene los horarios reservados por filtro de búsqueda
+def obtener_horarios_reservados_filtrados(query):
+    # Intenta parsear la fecha del query
+    fecha = parse_date(query)
+    
+    # Si el filtro es una fecha
+    if fecha:
+        # Ajusta fecha para incluir el rango completo del día
+        start_date = make_aware(datetime.combine(fecha, datetime.min.time()))
+        end_date = make_aware(datetime.combine(fecha, datetime.max.time()))
+        
+        # Filtra por rango de fechas si query es una fecha
+        return Reserva.objects.filter(
+            horario__fecha__range=(start_date, end_date)
+        )
+    # Si el filtro no es una fecha (nombre de mascota o nombre de cliente)
+    else:
+        # Filtra por nombre de mascota o cliente si query no es una fecha
+        return Reserva.objects.filter(
+            Q(mascota__nombre__icontains=query) |
+            Q(mascota__cliente__usuario__first_name__icontains=query) |
+            Q(mascota__cliente__usuario__last_name__icontains=query)
+        )
 
 def obtener_tipos_cita(user):
     if user.is_superuser:

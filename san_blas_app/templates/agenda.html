@@ -10,13 +10,26 @@
                 <!-- Listado de citas médicas -->
                 <div class="card shadow-lg p-5">
                     <h2>Agenda de Citas Médicas</h2>
-                    <hr><br>                            
+                    <hr><br>
+
+                    <!-- Mensaje de búsqueda sin resultados y conteo -->
+                    {% if message %}
+                        <div class="alert alert-warning">
+                            <center>{{ message }}</center>
+                        </div>
+                    {% endif %}
+
+                    {% if conteo %}
+                        <div class="alert alert-warning">
+                            <center>Total coincidencias: {{ conteo }}</center>
+                        </div>
+                    {% endif %}
 
                     <!-- Buscador -->
                     <form action="" method="GET" class="mb-3">
                         {% csrf_token %}
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Buscar por nombre de paciente o dueño">
+                            <input type="text" name="filtro" class="form-control" placeholder="Buscar por fecha, cliente o paciente">
                             <button type="submit" class="btn btn-primary">Buscar</button>
                         </div>
                     </form>
@@ -36,7 +49,7 @@
                                 <p class="mb-1">Hora: {{ cita.fecha|time:"H:i A" }}</p>
                                 {% if cita.paciente %}
                                     <p class="mb-1"><i>Paciente: {{ cita.paciente|title }}</i></p>
-                                    <p class="mb-1"><i>Dueño: {{ cita.dueño|title }}</i></p>
+                                    <p class="mb-1"><i>Cliente: {{ cita.dueño|title }}</i></p>
                                 {% else %}
                                 <p class="mb-1">Disponible</p>
                                 {% endif %}

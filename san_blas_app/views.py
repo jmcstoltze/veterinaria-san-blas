@@ -12,7 +12,7 @@ from san_blas_app.services import actualizar_usuario, obtener_pacientes, obtener
 from san_blas_app.services import listar_resenas, crear_resena
 from san_blas_app.services import nombre_usuario_existe, mascota_existe, mascota_existe_global, obtener_listado_chips
 from san_blas_app.services import obtener_usuario,obtener_primer_nombre_usuario, obtener_ruts_clientes, obtener_cliente
-from san_blas_app.services import obtener_horarios_disponibles, obtener_horarios_reservados, obtener_horarios_disponibles_sin_tope
+from san_blas_app.services import obtener_horarios_disponibles, obtener_horarios_reservados, obtener_horarios_disponibles_sin_tope, obtener_horarios_reservados_filtrados, obtener_horarios_disponibles_filtrados
 from san_blas_app.services import obtener_mascotas_cliente, obtener_mascotas,obtener_mascota
 from san_blas_app.services import obtener_tipos_cita, obtener_tipos_vacuna, obtener_vacunas_mascotas, obtener_especie_mascota
 from san_blas_app.services import verificar_vacuna_registrada, obtener_tipos_vacuna_todos
@@ -306,11 +306,32 @@ def dashboard_admin(request):
 
 @login_required
 def agenda(request):
-    horarios_disponibles = obtener_horarios_disponibles()
-    horarios_reservados = obtener_horarios_reservados()
+    # Obtiene el término de búsqueda
+    query = request.GET.get('filtro')
+    horarios_disponibles = []
+    message = None
+    conteo = 0
+
+    # Filtra los horarios disponibles y reservados basados en la búsqueda
+    if query:
+        # horarios_disponibles = obtener_horarios_disponibles_filtrados(query) Se necesitan?? Tal vez no.
+        horarios_reservados = obtener_horarios_reservados_filtrados(query)
+        # conteo = len(horarios_disponibles) + len(horarios_reservados)
+        conteo = horarios_reservados.count()
+
+        # if not horarios_disponibles.exists() and not horarios_reservados.exists():
+
+        if not horarios_reservados.exists():
+            message = 'No existen coincidencias en la búsqueda'
+
+    # Si no hay una solicitud de búsqueda obtiene los horarios disponibles y reservados 
+    else:
+        horarios_disponibles = obtener_horarios_disponibles()
+        horarios_reservados = obtener_horarios_reservados()
 
     # Lista de diccionarios que se pasará al contexto
     citas = []
+    
     
     # Se añaden horarios disponibles
     for horario in horarios_disponibles:
@@ -329,6 +350,21 @@ def agenda(request):
 
     # Ordena citas por fecha y hora
     citas.sort(key=lambda x: x['fecha'])
+
+    # Si hay conteo (Se solicitó búsqueda y hay coincidencias) 
+    if conteo != 0:
+        return render(request, "agenda.html", {
+            'citas': citas,
+            'conteo': conteo
+        })    
+    # Si hay mensaje (Se solicitó búsqueda pero no hay coincidencias)
+    if message != None:
+        return render(request, "agenda.html", {
+            'citas': citas,
+            'message': message
+        })
+
+    # No hay búsqueda
     return render(request, "agenda.html", {'citas': citas}) # Al contexto se pasa el conjunto de citas reservadas y no reservadas
 
 @login_required
