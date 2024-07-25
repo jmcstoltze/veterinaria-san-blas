@@ -581,5 +581,7 @@ def eliminar_cliente(id):
         mascota.delete()
 
     # Elimina la dirección y el cliente
-    direccion.delete()
+    direccion.delete()    
     cliente.delete()
+    # Elimina el usuario asociado al cliente
+    cliente.usuario.delete()
