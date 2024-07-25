@@ -347,7 +347,6 @@ def mascota_existe(user, nombre):
     except Cliente.DoesNotExist:
         return False # Al ser superusuario arroja que el cliente no existe, puesto que superusuario no tiene cliente asociado
 
-
 def mascota_existe_global(nombre_mascota, rut_cliente):
     cliente = Cliente.objects.get(rut=rut_cliente)
     # Verifica si la mascota existe para un usuario específico
@@ -526,3 +525,7 @@ def eliminar_reserva(reserva_id):
     
     horario.save()  # Guarda el horario actualizado
     reserva.delete() # Elimina la reserva invocada
+
+def eliminar_paciente(id):
+    paciente = Mascota.objects.get(id=id)
+    paciente.delete()

@@ -35,15 +35,17 @@
                                     <p class="mb-1">Sexo: {{ paciente.sexo }}</p>
                                     <p class="mb-1">Esterilización: {% if paciente.esterilizada %}Sí {% else %}No{% endif %}</p>
                             </span>
-                            <a href="{% url 'perfil_usuario' paciente.cliente.id %}" class="list-group-item list-group-item-action">
-                                <h5 class="mb-1">Información Cliente</h5>
-                                    <p class="mb-1">Nombre: {{ paciente.cliente.usuario.first_name }} {{ paciente.cliente.usuario.last_name }}</p>
-                                    <p class="mb-1">Rut: {{ paciente.cliente.rut }}</p>
-                                    <p class="mb-1">Email: {{ paciente.cliente.usuario.email }}</p>
-                                    <p class="mb-1">Teléfono: +56{{ paciente.cliente.telefono }}</p>
-                                    <p class="mb-1">Dirección:
-                                        {{ paciente.cliente.direccion.calle }} {{ paciente.cliente.direccion.numero }}, {% if paciente.cliente.direccion.dpto %}{{ paciente.cliente.direccion.depto }}, {% endif %} {{ paciente.cliente.direccion.comuna.nombre_comuna }}</p>                                        
-                            </a>
+                            {% if user.is_superuser %}
+                                <a href="{% url 'perfil_usuario' paciente.cliente.id %}" class="list-group-item list-group-item-action">
+                                    <h5 class="mb-1">Información Cliente</h5>
+                                        <p class="mb-1">Nombre: {{ paciente.cliente.usuario.first_name }} {{ paciente.cliente.usuario.last_name }}</p>
+                                        <p class="mb-1">Rut: {{ paciente.cliente.rut }}</p>
+                                        <p class="mb-1">Email: {{ paciente.cliente.usuario.email }}</p>
+                                        <p class="mb-1">Teléfono: +56{{ paciente.cliente.telefono }}</p>
+                                        <p class="mb-1">Dirección:
+                                            {{ paciente.cliente.direccion.calle }} {{ paciente.cliente.direccion.numero }}, {% if paciente.cliente.direccion.dpto %}{{ paciente.cliente.direccion.depto }}, {% endif %} {{ paciente.cliente.direccion.comuna.nombre_comuna }}</p>                                        
+                                </a>
+                            {% endif %}
                             <span class="list-group-item list-group-item-action">                                    
                                 {% if user.is_superuser %}                                
                                     <p>
