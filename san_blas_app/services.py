@@ -342,7 +342,7 @@ def mascota_existe(user, nombre_mascota):
 def mascota_existe(user, nombre):
     try:
         cliente = Cliente.objects.get(usuario=user)
-        nombre_mascota = nombre_mascota.title()
+        nombre_mascota = nombre.title()
         return Mascota.objects.filter(cliente=cliente, nombre=nombre_mascota).exists() # True si la mascota existe
     except Cliente.DoesNotExist:
         return False # Al ser superusuario arroja que el cliente no existe, puesto que superusuario no tiene cliente asociado
