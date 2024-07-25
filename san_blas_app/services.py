@@ -484,6 +484,7 @@ def listar_resenas():
 
 #########################################################################################################################
 # Funciones del tipo Update #############################################################################################
+#########################################################################################################################
 
 def actualizar_usuario(rut, nombres, apellidos, email, telefono, calle, numero, nombre_comuna, depto=None):
     # Obtiene el cliente con el rut
@@ -515,17 +516,70 @@ def disponibilizar_horario(id):
 
 ##########################################################################################################################
 # Funciones del tipo Delete ##############################################################################################
+##########################################################################################################################
 
 # Elimina reserva
 def eliminar_reserva(reserva_id):
     reserva = Reserva.objects.get(id=reserva_id)
-    
     horario = reserva.horario
     horario.disponible = True  # Cambia el horario a disponible
-    
     horario.save()  # Guarda el horario actualizado
     reserva.delete() # Elimina la reserva invocada
 
+# Elimina paciente y toda su información asociada
 def eliminar_paciente(id):
-    paciente = Mascota.objects.get(id=id)
-    paciente.delete()
+
+    # Obtiene la mascota que se va a eliminar
+    mascota = Mascota.objects.get(id=id)
+
+    # Si no se logra la acción se hace un rollback de todo
+    with transaction.atomic():
+    
+        # Obtiene las consultas y las reservas asociadas a la mascota
+        consultas = Consulta.objects.filter(mascota=mascota)
+        reservas = Reserva.objects.filter(mascota=mascota)
+    
+        # Elimina todas las vacunas asociadas a las consultas de la mascota
+        Vacuna.objects.filter(consulta__in=consultas).delete()
+        # Elimina las consultas
+        consultas.delete()
+    
+        # Disponibiliza todos los horarios asociados a las reservas
+        horarios = Horario.objects.filter(reserva__in=reservas)
+        horarios.update(disponible=True)
+        # Elimina las reservas
+        reservas.delete()
+    
+        # Elimina la mascota
+        mascota.delete()
+
+# Elimina cliente y toda su información asociada
+def eliminar_cliente(id):
+    # Obtiene el cliente que se va a eliminar
+    cliente = Cliente.objects.get(id=id)
+    direccion = Direccion.objects.get(cliente=cliente)
+
+    # Obtiene las mascotas del cliente
+    mascotas = Mascota.objects.filter(cliente=cliente)
+
+    # Si no se logra la acción se hace un rollback de todo
+    # with transaction.atomic():
+    
+    for mascota in mascotas:
+        consultas = Consulta.objects.filter(mascota=mascota)
+        reservas = Reserva.objects.filter(mascota=mascota)
+        # Elimina todas las vacunas asociadas a las consultas de la mascota
+        Vacuna.objects.filter(consulta__in=consultas).delete()
+        # Elimina las consultas
+        consultas.delete()
+        # Disponibiliza todos los horarios asociados a las reservas
+        horarios = Horario.objects.filter(reserva__in=reservas)
+        horarios.update(disponible=True)
+        # Elimina las reservas
+        reservas.delete()
+        # Elimina el cliente
+        mascota.delete()
+
+    # Elimina la dirección y el cliente
+    direccion.delete()
+    cliente.delete()

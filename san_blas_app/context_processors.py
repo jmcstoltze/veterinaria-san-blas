@@ -17,10 +17,16 @@ def breadcrumbs_processor(request):
             {'title': 'Newsletter', 'url': None}            
         ]
     elif url_name == 'registro':
-        breadcrumbs = [
+        if request.user.is_superuser: # Para el caso de superusuario
             {'title': 'Inicio', 'url': '/home'},
-            {'title': 'Registro', 'url': None}            
-        ]
+            {'title': 'Dashboard', 'url': '/home/dashboard-admin'},
+            {'title': 'Clientes', 'url': '/home/dashboard-admin/clientes'},
+            {'title': 'Nuevo Cliente', 'url': None}
+        else:
+            breadcrumbs = [
+                {'title': 'Inicio', 'url': '/home'},
+                {'title': 'Registro', 'url': None}            
+            ]        
     elif url_name == 'dashboard':
         breadcrumbs = [
             {'title': 'Inicio', 'url': '/home'},

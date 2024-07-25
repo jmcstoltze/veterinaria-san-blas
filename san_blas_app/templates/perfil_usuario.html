@@ -62,7 +62,15 @@
                         <br>
                         {% if user.is_superuser %}
                             <a href="{% url 'editar_usuario' cliente.id %}" class="btn btn-primary">Editar información</a><br>
-                            <a href="" class="btn btn-primary" style="background-color: red; border-color: red;">Eliminar cliente</a>
+                            <!-- <a href="{% url 'confirmacion_cliente' cliente.id %}" class="btn btn-primary" style="background-color: red; border-color: red;">Eliminar cliente</a> -->
+
+                            <!-- Eliminar -->
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="eliminar">                                
+                                <input type="hidden" name="id_cliente" value="{{ cliente.id }}">                                                
+                                <button type="submit" class="btn btn-primary" style="background-color: red; border-color: red; width: 100%;">Eliminar</button>
+                            </form>
                         {% else %}
                             <a href="{% url 'editar_usuario' %}" class="btn btn-primary">Editar información</a>
                         {% endif %}                        

@@ -67,7 +67,17 @@
                         {% if user.is_superuser %}
                             <a href="" class="btn btn-primary">Editar información</a>
                             <br>
-                            <a href="" class="btn btn-delete" style="background-color: red; border-color: red; color: white;">Eliminar paciente</a>
+                            <!--
+                            <a href="" class="btn btn-delete" style="background-color: red; border-color: red; color: white;">Eliminar paciente</a> -->
+
+                            <!-- Eliminar -->
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="eliminar">
+                                <!-- <input type="hidden" name="cliente_id" value="{{ paciente.cliente.id }}"> -->
+                                <input type="hidden" name="paciente_id" value="{{ paciente.id }}">                                                
+                                <button type="submit" class="btn btn-primary" style="background-color: red; border-color: red; width: 100%;">Eliminar</button>
+                            </form>
                         {% else %}
                             <a href="" class="btn btn-primary">Editar información</a>
                         {% endif %}

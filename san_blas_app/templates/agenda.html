@@ -37,13 +37,13 @@
                     <!-- Crear nueva cita y nueva consulta-->
                     <br>
                     <a href="{% url 'reservar_hora' %}" class="btn btn-primary">Agendar Cita</a><br>
-                    <a href="{% url 'consulta' %}" class="btn btn-primary">Nueva Consulta</a>
+                    <a href="{% url 'consulta' %}" class="btn btn-primary">Formulario de Consulta</a>
                     <br>
 
                     <!-- Listado -->
                     <div class="list-group">                                                                                                
                         {% for cita in citas %}
-                            <a href="" class="list-group-item list-group-item-action">
+                            <a href="{% url 'consulta' %}" class="list-group-item list-group-item-action">
                                 <h5 class="mb-1">{{ cita.tipo|title }}</h5>
                                 <p class="mb-1">Fecha: {{ cita.fecha|date:"Y-m-d" }}</p>
                                 <p class="mb-1">Hora: {{ cita.fecha|time:"H:i A" }}</p>

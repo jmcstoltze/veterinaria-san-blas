@@ -19,6 +19,7 @@ from san_blas_app.services import obtener_horarios_reservados_filtrados, obtener
 from san_blas_app.services import obtener_mascotas_cliente, obtener_mascotas,obtener_mascota, obtener_paciente
 from san_blas_app.services import obtener_tipos_cita, obtener_tipos_vacuna, obtener_vacunas_mascotas, obtener_especie_mascota
 from san_blas_app.services import verificar_vacuna_registrada, obtener_tipos_vacuna_todos
+from san_blas_app.services import eliminar_paciente, eliminar_cliente
 
 from san_blas_app.models import TipoCita
 
@@ -30,7 +31,7 @@ def indice(request):
     resenas = listar_resenas()
     return render(request, "indice.html", {'resenas': resenas})
 
-# Vista de registro de usuario
+# Vista de registro de usuario un administrador también puedo agregar un registro
 def registro(request):
     comunas = listar_comunas_metropolitana() # Comunas para el selector de la vista
 
@@ -246,7 +247,25 @@ def perfil_usuario(request, cliente_id=None):
         cliente = obtener_cliente_por_id(cliente_id) # Obtiene el cliente a través del id
     else:
         cliente = obtener_cliente(request.user) # Obtiene los datos del cliente logeado
+
+    if request.method == 'POST':        
+        cliente_id = request.POST.get('id_cliente')
+        action = request.POST.get('action')
+        # Botón de eliminar
+        if action == 'eliminar':
+            return redirect('confirmacion_cliente', cliente_id=cliente_id)
+    
     return render(request, "perfil_usuario.html", {"cliente": cliente}) # Retorna la vista y pasa el usuario al contexto
+
+# Se emepla para confirmar eliminación de cliente por parte del administrador
+def confirmacion_cliente(request, cliente_id):
+
+    cliente = obtener_cliente_por_id(cliente_id) # Obtiene el cliente en cuestión
+    # Si hay confirmación de la eliminación
+    if request.method == 'POST':
+        eliminar_cliente(cliente_id)
+        return redirect('clientes')
+    return render(request, "confirmacion_cliente.html", {'cliente': cliente})
 
 # Vista de edición de perfil. Si es superusuario viene con id de cliente como parámetro
 @login_required
@@ -551,9 +570,10 @@ def clientes(request):
 # Vista de listado de pacientes con buscador
 @login_required
 def pacientes(request):
+
     query = request.GET.get('filtro')
     message = None
-    conteo = None
+    conteo = None    
 
     if query:
         pacientes = obtener_pacientes_filtrados(query) # Obtiene listado de pacientes según filtro de búsqueda
@@ -576,8 +596,26 @@ def pacientes(request):
 @login_required
 def perfil_paciente(request, mascota_id):
 
+    if request.method == 'POST':        
+        paciente_id = request.POST.get('paciente_id')
+        # cliente_id = request.POST.get('cliente_id')
+        action = request.POST.get('action')
+        # Botón de eliminar
+        if action == 'eliminar':
+            return redirect('confirmacion_mascota', paciente_id=paciente_id) #, cliente_id=cliente_id)
+        
     paciente = obtener_paciente(mascota_id)
     return render(request, "perfil_paciente.html", {'paciente': paciente})
+
+# Página de confirmación de eliminación
+@login_required
+def confirmacion_mascota(request, paciente_id):
+    paciente = obtener_paciente(paciente_id) # Se requiere obtener el paciente para acción de volver
+    # Si hay confirmación de la eliminación
+    if request.method == 'POST':
+        eliminar_paciente(paciente_id)
+        return redirect('pacientes')
+    return render(request, "confirmacion_mascota.html", {'paciente': paciente})
 
 
 ##########################################################################################################################
