@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div class="container">
+    <section id="registro">
+        <div class="container">
+            <div class="mx-auto text-justify" style="max-width: 600px;">
+                <!-- Contenedor de advertencia -->
+                <div class="card shadow-lg p-5">
+                    <h2 class="text-center">¡Atención!</h2>
+                    <hr>
+                    <p class="text-center"><strong>¡Esta acción no puede deshacerse!</strong>
+                        <br> El cliente y toda su información asociada serán eliminados<br>
+                        [ mascotas, reservas, consultas y vacunas]<br><br>¿Desea continuar?</p>
+                                      
+                    <!-- Botones de acción -->
+                    <div class="d-flex justify-content-center">
+                        <form id="delete-form" action="" method="post" class="me-2">
+                            {% csrf_token %}
+                            <button style="background-color: red; border-color: red; color: white;" type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+                        </form>
+                        <a href="{% url 'perfil_usuario' cliente.id %}" class="btn btn-secondary">Volver al Perfil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Script para mostrar alerta de confirmación -->
+<script>
+    document.getElementById('delete-form').addEventListener('submit', function(event) {
+        alert('Cliente eliminado')
+    });
+</script>
+{% endblock %}

@@ -7,10 +7,15 @@
             <div class="mx-auto text-justify" style="max-width: 600px;">
                 <!-- Formulario de registro de mascota -->
                 <div class="card shadow-lg p-5">
-                    <h2>Registro de Mascota</h2>
-                    <hr><br>
-                    <p>Completa el formulario para registrar mascota.</p>
-                    <br>
+                    
+                    {% if user.is_superuser %}
+                        <h2>Registro de Paciente</h2>
+                        <hr>
+                    {% else %}
+                        <h2>Registro de Mascota</h2>
+                        <hr>
+                    {% endif %}                    
+                                        
                     <!-- Mensaje de éxito -->
                     {% if success_message %}
                         <div class="alert alert-success" role="alert">
@@ -23,27 +28,42 @@
                             <center>{{ error_message }}</center>
                         </div>
                     {% endif %}
+
+                    {% if user.is_superuser %}
+                        <br>
+                        <p>Completa el formulario para registrar paciente.</p>
+                    {% else %}
+                        <br>
+                        <p>Completa el formulario para registrar mascota.</p>
+                    {% endif %}
+
+
                     <form action="" method="post">
                         {% csrf_token %}
 
                         <!-- Falta implementar la funcionalidad cuando es administrador -->
                         {% if user.is_superuser %}
                             <div class="mb-3">
-                                <label for="rut" class="form-label">Rut Cliente</label>
+                                <label for="rut" class="form-label">Rut | Nombre de Cliente</label>
                                 <select class="form-control" id="rut" name="rut" required>
-                                    <option value="">Selecciona el rut</option>
-                                    <option value="rut1">1111-1</option>
-                                    <option value="rut2">2222-2</option>
+                                    <option value="">Seleccione opción</option>
+                                    {% for cliente in clientes %}
+                                        <option value="{{ cliente.rut }}">{{ cliente.rut }} | {{cliente.usuario.first_name|title}} {{ cliente.usuario.last_name|title }}</option>
+                                    {% endfor %}                                                                        
                                 </select>
                             </div>
                         {% endif %}
 
-                        <div class="mb-3">
+                        <div class="mb-3">                            
                             <label for="chip" class="form-label">Chip</label>
                             <input type="text" class="form-control" placeholder="Ingresa chip" id="chip" name="chip" required>
                         </div>
                         <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre</label>
+                            {% if user.is_superuser %}
+                                <label for="nombre" class="form-label">Nombre Paciente</label>
+                            {% else %}
+                                <label for="nombre" class="form-label">Nombre Mascota</label>
+                            {% endif %}                            
                             <input type="text" class="form-control" placeholder="Ingresa nombre" id="nombre" name="nombre" required>
                         </div>
                         <div class="mb-3">
