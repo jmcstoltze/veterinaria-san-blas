@@ -68,12 +68,20 @@ def breadcrumbs(context):
             {'title': 'Mascotas', 'url': None}
         ]
     elif url_name == 'registro_mascota':
-        breadcrumbs = [
-            {'title': 'Inicio', 'url': '/home'},
-            {'title': 'Dashboard', 'url': '/home/dashboard'},
-            {'title': 'Mascotas', 'url': '/home/dashboard/mis-mascotas'},
-            {'title': 'Registro Mascota', 'url': None},
-        ]
+        if request.user.is_superuser: # Para el caso de superusuario
+            breadcrumbs = [
+                {'title': 'Inicio', 'url': '/home'},
+                {'title': 'Dashboard', 'url': '/home/dashboard-admin'},
+                {'title': 'Pacientes', 'url': '/home/dashboard-admin/pacientes'},
+                {'title': 'Registrar Paciente', 'url': None},
+            ]
+        else:
+            breadcrumbs = [
+                {'title': 'Inicio', 'url': '/home'},
+                {'title': 'Dashboard', 'url': '/home/dashboard'},
+                {'title': 'Mascotas', 'url': '/home/dashboard/mis-mascotas'},
+                {'title': 'Registro Mascota', 'url': None},
+            ]
     elif url_name == 'reservar_hora':
         if request.user.is_superuser: # Para el caso de superusuario
             breadcrumbs = [

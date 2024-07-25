@@ -95,6 +95,51 @@ def crear_mascota(nombre, especie, edad, sexo, raza, esterilizada, usuario, chip
     )
     return mascota  # Retorna la mascota creada
 
+def crear_mascota_rut_cliente(nombre, especie, edad, sexo, raza, esterilizada, rut, chip):
+    #Obtiene el cliente asociado al rut de cliente
+    cliente = Cliente.objects.get(rut=rut)
+    print(rut)
+    print(cliente)
+    # Crea la mascota asociada al cliente
+    mascota = Mascota.objects.create(
+        chip=chip,
+        nombre=nombre.title(),
+        especie=especie,
+        edad=edad,
+        sexo=sexo,
+        raza=raza.capitalize(),
+        esterilizada=esterilizada,
+        cliente=cliente
+    )
+    return mascota  # Retorna la mascota creada
+
+''' PARA DEPURACIÓN DE ERROR
+def crear_mascota_rut_cliente(nombre, especie, edad, sexo, raza, esterilizada, rut, chip):
+    try:
+        # Obtiene el cliente asociado al rut de cliente
+        cliente = Cliente.objects.get(rut=rut)
+        # print(f"RUT: {rut}")
+        # print(f"Cliente encontrado: {cliente}") #### Mensajes de depuración
+        
+        # Crea la mascota asociada al cliente
+        mascota = Mascota.objects.create(
+            chip=chip,
+            nombre=nombre.title(),
+            especie=especie,
+            edad=edad,
+            sexo=sexo,
+            raza=raza.capitalize(),
+            esterilizada=esterilizada,
+            cliente=cliente
+        )
+        return mascota  # Retorna la mascota creada
+    except Cliente.DoesNotExist:
+        print(f"Cliente con RUT {rut} no encontrado.")
+        return None  # O una lógica alternativa en caso de que el cliente no exista
+    except Exception as e:
+        print(f"Error inesperado: {str(e)}")
+        return None  # O manejar el error de otra manera adecuada '''
+
 def crear_reserva(tipo_id, horario_id, mascota_id):
     # Obtiene el tipo de cita, el horario y la mascota
     tipo_cita = TipoCita.objects.get(pk=tipo_id)
@@ -201,7 +246,11 @@ def obtener_usuario(username):
         return user # Retorna el usuario
     except User.DoesNotExist:
         return None
-    
+
+def obtener_usuario_rut(rut):
+    cliente = Cliente.objects.get(rut=rut)
+    return cliente.usuario
+
 def obtener_cliente(user):
     try:
         cliente = Cliente.objects.get(usuario=user) # Obtiene cliente en base al usuario
@@ -283,10 +332,21 @@ def obtener_mascotas():
 def obtener_mascota(id):
     return Mascota.objects.get(id=id) # Retorna mascota de un id específico
 
+''' Se comenta para manejo de excepción ---------------------------------------
 def mascota_existe(user, nombre_mascota):
     cliente = Cliente.objects.get(usuario=user)
     nombre_mascota = nombre_mascota.title()
-    return Mascota.objects.filter(cliente=cliente, nombre=nombre_mascota).exists() # True si la mascota existe
+    return Mascota.objects.filter(cliente=cliente, nombre=nombre_mascota).exists() # True si la mascota existe '''
+
+# Esta función se creó porque la original arrojaba error con el superusuario.
+def mascota_existe(user, nombre):
+    try:
+        cliente = Cliente.objects.get(usuario=user)
+        nombre_mascota = nombre_mascota.title()
+        return Mascota.objects.filter(cliente=cliente, nombre=nombre_mascota).exists() # True si la mascota existe
+    except Cliente.DoesNotExist:
+        return False # Al ser superusuario arroja que el cliente no existe, puesto que superusuario no tiene cliente asociado
+
 
 def mascota_existe_global(nombre_mascota, rut_cliente):
     cliente = Cliente.objects.get(rut=rut_cliente)

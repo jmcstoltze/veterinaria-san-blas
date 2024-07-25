@@ -1,3 +1,5 @@
+import traceback
+
 from django.db import IntegrityError
 from django.db.models import DateField
 from django.db.models.functions import TruncDate
@@ -5,10 +7,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from san_blas_app.services import crear_cliente, crear_mascota, crear_reserva, crear_consulta, crear_vacuna
+from san_blas_app.services import crear_cliente, crear_mascota, crear_mascota_rut_cliente, crear_reserva, crear_consulta, crear_vacuna
 from san_blas_app.services import listar_comunas_metropolitana, guardar_formulario_contacto, registrar_suscripcion
 from san_blas_app.services import obtener_clientes, obtener_clientes_filtrados, obtener_reservas_cliente, eliminar_reserva
-from san_blas_app.services import actualizar_usuario, obtener_pacientes, obtener_pacientes_filtrados
+from san_blas_app.services import actualizar_usuario, obtener_pacientes, obtener_pacientes_filtrados, obtener_usuario_rut
 from san_blas_app.services import listar_resenas, crear_resena
 from san_blas_app.services import nombre_usuario_existe, mascota_existe, mascota_existe_global, obtener_listado_chips
 from san_blas_app.services import obtener_usuario,obtener_primer_nombre_usuario, obtener_ruts_clientes, obtener_cliente
@@ -124,16 +126,22 @@ def mascotas(request):
         return render(request, "mascotas.html", {'mascotas': mascotas, 'message': message})
     return render(request, "mascotas.html", {'mascotas': mascotas}) # Pasa como contexto las mascotas
 
+# Tanta para usuario como para administrador
 @login_required
 def registro_mascota(request):
     # El listado de ruts de clientes debe estar disponible, en caso de que el usuario sea el administrador
-    listado_ruts = obtener_ruts_clientes()
+    # listado_ruts = obtener_ruts_clientes() ################ SE DECIDE TRABAJAR CON TODOS LOS CLIENTES COMO OBJETO
+
+    # Se obtienen todos los clientes
+    clientes = obtener_clientes()
+
     # Obtiene listado de todos los chips de mascotas ingresados
     listado_chips = obtener_listado_chips() 
 
     if request.method == 'POST':
         # Obtiene los datos del formulario
         rut = request.POST.get('rut', None)
+        # print(rut)        
         chip = request.POST.get('chip', None)
         nombre = request.POST.get('nombre')
         especie = request.POST.get('especie')
@@ -150,7 +158,7 @@ def registro_mascota(request):
             # Cuando la solicitud la realiza el administrador, verifica si el cliente ya registra la misma
             if request.user.is_superuser and mascota_existe_global(nombre, rut):
                 error_message = 'Cliente registra una mascota con igual nombre'
-                return render(request, "registro_mascota.html", {'error_message': error_message, 'listado_ruts': listado_ruts}) 
+                return render(request, "registro_mascota.html", {'error_message': error_message, 'clientes': clientes}) 
             # Si se trata de un cliente la verificación se hace en base al usuario logeado
             elif mascota_existe(request.user, nombre):
                 error_message = 'Ya tienes una mascota registrada con este nombre'
@@ -160,15 +168,29 @@ def registro_mascota(request):
                 error_message = 'El chip ingresado ya existe en los registros'
                 return render(request, "registro_mascota.html", {'error_message': error_message})
             
-            # Crea la mascota con los datos ingresados
-            crear_mascota(nombre=nombre, especie=especie, edad=edad, sexo=sexo, raza=raza, esterilizada=esterilizada, usuario=request.user, chip=chip)
+            # Crea la mascota para usuario administrador
+            if request.user.is_superuser:
+                # print(rut) mensajes de depuración
+                # print('se ingreso acá')
+
+                usuario = obtener_usuario_rut(rut=rut)
+                # print(usuario.username)
+
+                crear_mascota_rut_cliente(nombre=nombre, especie=especie, edad=edad, sexo=sexo, raza=raza, esterilizada=esterilizada, rut=rut, chip=chip)
+            else:
+                # Crea la mascota con los datos ingresados para usuario cliente
+                crear_mascota(nombre=nombre, especie=especie, edad=edad, sexo=sexo, raza=raza, esterilizada=esterilizada, usuario=request.user, chip=chip)
+            
+            
             success_message = '¡Registro exitoso!'
             # Envía mensaje de éxito a la misma vista
-            return render(request, "registro_mascota.html", {'success_message': success_message})
+            return render(request, "registro_mascota.html", {'success_message': success_message, 'clientes': clientes})
         except Exception as e:
+            print('ingreso acá en la excepción')
+            print(traceback.format_exc())
             return render(request, "registro_mascota.html", {'error_message': str(e)})
 
-    return render(request, "registro_mascota.html", {'listado': listado_ruts})
+    return render(request, "registro_mascota.html", {'clientes': clientes})
 
 @login_required
 def vacunatorio(request):
