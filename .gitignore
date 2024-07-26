@@ -1,5 +1,11 @@
 # Entorno virtual
-# vdjango/
+vdjango/
+
+# Ignorar archivos .pyc
+*.pyc
+
+# Ignorar carpetas __pycache__
+__pycache__/
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows,linux,macos,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,macos,python
