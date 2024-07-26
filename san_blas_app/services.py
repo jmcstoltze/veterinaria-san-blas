@@ -560,7 +560,7 @@ def eliminar_cliente(id):
     direccion = Direccion.objects.get(cliente=cliente)
 
     # Se obtienen las reseñas del usuario
-    resenas = Resena.objects.get(usuario=cliente.usuario)
+    resenas = Resena.objects.filter(usuario=cliente.usuario)
     resenas.delete()
 
     # Obtiene las mascotas del cliente
