@@ -8,15 +8,19 @@
                 <!-- Formulario de registro de mascota -->
                 <div class="card shadow-lg p-5">
                     <h2>Registro de Vacuna</h2>
-                    <hr><br>
-                    <p>Completa el formulario para registrar vacuna.</p>
-                    <br>
+                    <hr><br>                    
                     <!-- Mensaje de éxito -->
                     {% if success_message %}
                         <div class="alert alert-success" role="alert">
-                            <center>{{ success_message }}</center>
-                        </div>
-                    {% endif %}
+                            <center>
+                                {{ success_message }} <br><br>
+                                <strong>Proxima fecha de vacunación: {{ vacuna.proxima_fecha|date:"d-m-y" }}</strong>
+                            </center>
+                        </div>                    
+                    {% else %}
+                        <p>Completa el formulario para registrar vacuna.</p>
+                    {% endif %}                    
+                    <br>
                     <!-- Mensaje de error -->
                     {% if error_message %}
                         <div class="alert alert-danger" role="alert">
@@ -27,7 +31,7 @@
                         {% csrf_token %}                        
                         <div class="mb-3">
                             <label for="type" class="form-label">Tipo de vacuna</label>
-                            <select class="form-control" id="typt" name="type" required>
+                            <select class="form-control" id="typt" name="type" required {% if vacuna_registrada %}disabled{% endif %}>
                                 <option value="">Selecciona tipo</option>
                                 {% for tipo in tipos_vacuna %}
                                     <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>                                

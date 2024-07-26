@@ -1,3 +1,5 @@
+import traceback
+
 from django.db import IntegrityError
 from django.db.models import DateField
 from django.db.models.functions import TruncDate
@@ -5,16 +7,19 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from san_blas_app.services import crear_cliente, crear_mascota, crear_reserva, crear_consulta, crear_vacuna
+from san_blas_app.services import crear_cliente, crear_mascota, crear_mascota_rut_cliente, crear_reserva, crear_consulta, crear_vacuna
 from san_blas_app.services import listar_comunas_metropolitana, guardar_formulario_contacto, registrar_suscripcion
-from san_blas_app.services import obtener_reservas_cliente, eliminar_reserva
-from san_blas_app.services import actualizar_usuario
+from san_blas_app.services import obtener_clientes, obtener_clientes_filtrados, obtener_reservas_cliente, eliminar_reserva
+from san_blas_app.services import actualizar_usuario, obtener_pacientes, obtener_pacientes_filtrados, obtener_usuario_rut
 from san_blas_app.services import listar_resenas, crear_resena
 from san_blas_app.services import nombre_usuario_existe, mascota_existe, mascota_existe_global, obtener_listado_chips
 from san_blas_app.services import obtener_usuario,obtener_primer_nombre_usuario, obtener_ruts_clientes, obtener_cliente
 from san_blas_app.services import obtener_horarios_disponibles, obtener_horarios_reservados, obtener_horarios_disponibles_sin_tope
-from san_blas_app.services import obtener_mascotas_cliente, obtener_mascotas,obtener_mascota
-from san_blas_app.services import obtener_tipos_cita, obtener_tipos_vacuna, obtener_vacunas_mascotas, obtener_especie_mascota, verificar_vacuna_registrada, obtener_tipos_vacuna_todos
+from san_blas_app.services import obtener_horarios_reservados_filtrados, obtener_horarios_disponibles_filtrados, obtener_cliente_por_id
+from san_blas_app.services import obtener_mascotas_cliente, obtener_mascotas,obtener_mascota, obtener_paciente
+from san_blas_app.services import obtener_tipos_cita, obtener_tipos_vacuna, obtener_vacunas_mascotas, obtener_especie_mascota
+from san_blas_app.services import verificar_vacuna_registrada, obtener_tipos_vacuna_todos
+from san_blas_app.services import eliminar_paciente, eliminar_cliente
 
 from san_blas_app.models import TipoCita
 
@@ -26,7 +31,7 @@ def indice(request):
     resenas = listar_resenas()
     return render(request, "indice.html", {'resenas': resenas})
 
-# Vista de registro de usuario
+# Vista de registro de usuario un administrador también puedo agregar un registro
 def registro(request):
     comunas = listar_comunas_metropolitana() # Comunas para el selector de la vista
 
@@ -122,16 +127,22 @@ def mascotas(request):
         return render(request, "mascotas.html", {'mascotas': mascotas, 'message': message})
     return render(request, "mascotas.html", {'mascotas': mascotas}) # Pasa como contexto las mascotas
 
+# Tanta para usuario como para administrador
 @login_required
 def registro_mascota(request):
     # El listado de ruts de clientes debe estar disponible, en caso de que el usuario sea el administrador
-    listado_ruts = obtener_ruts_clientes()
+    # listado_ruts = obtener_ruts_clientes() ################ SE DECIDE TRABAJAR CON TODOS LOS CLIENTES COMO OBJETO
+
+    # Se obtienen todos los clientes
+    clientes = obtener_clientes()
+
     # Obtiene listado de todos los chips de mascotas ingresados
     listado_chips = obtener_listado_chips() 
 
     if request.method == 'POST':
         # Obtiene los datos del formulario
         rut = request.POST.get('rut', None)
+        # print(rut)        
         chip = request.POST.get('chip', None)
         nombre = request.POST.get('nombre')
         especie = request.POST.get('especie')
@@ -148,7 +159,7 @@ def registro_mascota(request):
             # Cuando la solicitud la realiza el administrador, verifica si el cliente ya registra la misma
             if request.user.is_superuser and mascota_existe_global(nombre, rut):
                 error_message = 'Cliente registra una mascota con igual nombre'
-                return render(request, "registro_mascota.html", {'error_message': error_message, 'listado_ruts': listado_ruts}) 
+                return render(request, "registro_mascota.html", {'error_message': error_message, 'clientes': clientes}) 
             # Si se trata de un cliente la verificación se hace en base al usuario logeado
             elif mascota_existe(request.user, nombre):
                 error_message = 'Ya tienes una mascota registrada con este nombre'
@@ -158,27 +169,113 @@ def registro_mascota(request):
                 error_message = 'El chip ingresado ya existe en los registros'
                 return render(request, "registro_mascota.html", {'error_message': error_message})
             
-            # Crea la mascota con los datos ingresados
-            crear_mascota(nombre=nombre, especie=especie, edad=edad, sexo=sexo, raza=raza, esterilizada=esterilizada, usuario=request.user, chip=chip)
+            # Crea la mascota para usuario administrador
+            if request.user.is_superuser:
+                # print(rut) mensajes de depuración
+                # print('se ingreso acá')
+
+                usuario = obtener_usuario_rut(rut=rut)
+                # print(usuario.username)
+
+                crear_mascota_rut_cliente(nombre=nombre, especie=especie, edad=edad, sexo=sexo, raza=raza, esterilizada=esterilizada, rut=rut, chip=chip)
+            else:
+                # Crea la mascota con los datos ingresados para usuario cliente
+                crear_mascota(nombre=nombre, especie=especie, edad=edad, sexo=sexo, raza=raza, esterilizada=esterilizada, usuario=request.user, chip=chip)
+            
+            
             success_message = '¡Registro exitoso!'
             # Envía mensaje de éxito a la misma vista
-            return render(request, "registro_mascota.html", {'success_message': success_message})
+            return render(request, "registro_mascota.html", {'success_message': success_message, 'clientes': clientes})
         except Exception as e:
+            print('ingreso acá en la excepción')
+            print(traceback.format_exc())
             return render(request, "registro_mascota.html", {'error_message': str(e)})
 
-    return render(request, "registro_mascota.html", {'listado': listado_ruts})
+    return render(request, "registro_mascota.html", {'clientes': clientes})
+
+@login_required
+def vacunatorio(request):
+    mascotas = obtener_mascotas_cliente(request.user) # Obtiene mascota cliente
+
+    # Si no hay mascotas muestra mensaje
+    if not mascotas:
+        message = 'No tienes mascotas registradas'
+        return render(request, "vacunas_mascota.html", {'message': message})
+
+    # Toma el id de la mascota desde el formulario
+    if request.method == "POST":
+        mascota_id = request.POST.get('mascota')
+        # Redirige a la siguiente vista con el submit pasando como parámetro el id de la mascota
+        return redirect('vacunas_mascota', mascota_id=mascota_id)
+    # El listado de mascotas del cliente es parte del contexto
+    return render(request, "vacunatorio.html", {'mascotas' :mascotas})
+
+@login_required
+def vacunas_mascota(request, mascota_id):
+    tipos_vacuna = obtener_tipos_vacuna_todos()
+    vacunas = obtener_vacunas_mascotas(mascota_id)
+    mascota = obtener_mascota(mascota_id)
+
+    if not vacunas:
+        message = 'No existen vacunas registradas'
+
+        return render(request, "vacunas_mascota.html", {'message': message, 'mascota': mascota})
+
+    # Ordena las vacunas por tipo y fecha, indicando la
+    # próxima fecha de la última vacuna aplicada de cada tipo
+    vacunas_por_tipo = {}
+    for tipo in tipos_vacuna:
+        vacunas_tipo = vacunas.filter(tipo=tipo).order_by('-fecha')
+        if vacunas_tipo.exists():
+            vacunas_por_tipo[tipo.tipo] = {
+                'vacunas': vacunas_tipo,
+                'proxima_fecha': vacunas_tipo.first().proxima_fecha
+            }
+    contexto = {
+        'mascota': mascota,
+        'vacunas_por_tipo': vacunas_por_tipo
+    }
+    # Renderiza la vista entregando la mascota al contexto y sus vacunas clasficadas
+    return render(request, "vacunas_mascota.html", contexto)
 
 # Vista de perfil de usuario
+# Cuando lo accede el administrador, viene con el id de cliente como parámetro
 @login_required
-def perfil_usuario(request):
-    cliente = obtener_cliente(request.user) # Obtiene los datos del cliente logeado
+def perfil_usuario(request, cliente_id=None):
+
+    if request.user.is_superuser:
+        cliente = obtener_cliente_por_id(cliente_id) # Obtiene el cliente a través del id
+    else:
+        cliente = obtener_cliente(request.user) # Obtiene los datos del cliente logeado
+
+    if request.method == 'POST':        
+        cliente_id = request.POST.get('id_cliente')
+        action = request.POST.get('action')
+        # Botón de eliminar
+        if action == 'eliminar':
+            return redirect('confirmacion_cliente', cliente_id=cliente_id)
+    
     return render(request, "perfil_usuario.html", {"cliente": cliente}) # Retorna la vista y pasa el usuario al contexto
 
-# Vista de edición de perfil
+# Se emepla para confirmar eliminación de cliente por parte del administrador
+def confirmacion_cliente(request, cliente_id):
+
+    cliente = obtener_cliente_por_id(cliente_id) # Obtiene el cliente en cuestión
+    # Si hay confirmación de la eliminación
+    if request.method == 'POST':
+        eliminar_cliente(cliente_id)
+        return redirect('clientes')
+    return render(request, "confirmacion_cliente.html", {'cliente': cliente})
+
+# Vista de edición de perfil. Si es superusuario viene con id de cliente como parámetro
 @login_required
-def editar_usuario(request):
+def editar_usuario(request, cliente_id=None):
     comunas = listar_comunas_metropolitana() # Obtiene comunas de la región metropolitana
-    cliente = obtener_cliente(request.user) # Obtiene los datos del cliente del usuario logeado
+
+    if request.user.is_superuser:
+        cliente = obtener_cliente_por_id(cliente_id) # Obtiene el cliente a través del id
+    else:
+        cliente = obtener_cliente(request.user) # Obtiene los datos del cliente del usuario logeado
 
     if request.method == "POST":
         # Obtiene los datos del formulario
@@ -233,6 +330,23 @@ def citas_usuario(request):
         return render(request, "agendamientos.html", {'reservas': reservas, 'empty_message': empty_message})
     return render(request, "agendamientos.html", {'reservas': reservas})
 
+@login_required
+def resenas_usuarios(request):
+
+    if request.method == 'POST':
+        comentario = request.POST.get('comentario')
+        calificacion = request.POST.get('calificacion')
+
+        crear_resena(request.user, comentario, calificacion) # Crea la reseña
+        succes_message = 'Comentario posteado con éxito'
+
+        resenas = listar_resenas() # Lista las reseñas existentes
+        return render(request, "resenas.html", {'resenas': resenas, 'success_message': succes_message}) # Renderiza con las reseñas existentes
+
+    resenas = listar_resenas() # Lista las reseñas existentes
+    
+    return render(request, "resenas.html", {'resenas': resenas}) # Renderiza con las reseñas existentes
+
 
 ##########################################################################################################################
 ############# Sesión de administrador o superusuario #####################################################################
@@ -243,11 +357,32 @@ def dashboard_admin(request):
 
 @login_required
 def agenda(request):
-    horarios_disponibles = obtener_horarios_disponibles()
-    horarios_reservados = obtener_horarios_reservados()
+    # Obtiene el término de búsqueda
+    query = request.GET.get('filtro')
+    horarios_disponibles = []
+    message = None
+    conteo = 0
+
+    # Filtra los horarios disponibles y reservados basados en la búsqueda
+    if query:
+        # horarios_disponibles = obtener_horarios_disponibles_filtrados(query) Se necesitan?? Tal vez no.
+        horarios_reservados = obtener_horarios_reservados_filtrados(query)
+        # conteo = len(horarios_disponibles) + len(horarios_reservados)
+        conteo = horarios_reservados.count()
+
+        # if not horarios_disponibles.exists() and not horarios_reservados.exists():
+
+        if not horarios_reservados.exists():
+            message = 'No existen coincidencias en la búsqueda'
+
+    # Si no hay una solicitud de búsqueda obtiene los horarios disponibles y reservados 
+    else:
+        horarios_disponibles = obtener_horarios_disponibles()
+        horarios_reservados = obtener_horarios_reservados()
 
     # Lista de diccionarios que se pasará al contexto
     citas = []
+    
     
     # Se añaden horarios disponibles
     for horario in horarios_disponibles:
@@ -266,6 +401,21 @@ def agenda(request):
 
     # Ordena citas por fecha y hora
     citas.sort(key=lambda x: x['fecha'])
+
+    # Si hay conteo (Se solicitó búsqueda y hay coincidencias) 
+    if conteo != 0:
+        return render(request, "agenda.html", {
+            'citas': citas,
+            'conteo': conteo
+        })    
+    # Si hay mensaje (Se solicitó búsqueda pero no hay coincidencias)
+    if message != None:
+        return render(request, "agenda.html", {
+            'citas': citas,
+            'message': message
+        })
+
+    # No hay búsqueda
     return render(request, "agenda.html", {'citas': citas}) # Al contexto se pasa el conjunto de citas reservadas y no reservadas
 
 @login_required
@@ -365,22 +515,20 @@ def registro_vacuna(request, consulta_id, mascota_id):
     especie = obtener_especie_mascota(mascota_id) # Obtiene especie de la mascota
     # Obtiene tipos de vacunas para la especie
     tipos_vacuna = obtener_tipos_vacuna(especie)
-
     vacuna_registrada = verificar_vacuna_registrada(mascota_id, consulta_id) # Verificación para que la vacuna no sea registrada más de una vez 
-
     if request.method == 'POST':
-        tipo_id = request.POST.get('type')
-        
+        tipo_id = request.POST.get('type')        
         # Si la vacuna no ha sido registrada
         if not vacuna_registrada:
             try:
-                crear_vacuna(tipo_id, mascota_id, consulta_id)
+                vacuna = crear_vacuna(tipo_id, mascota_id, consulta_id)
                 success_message = 'Vacuna registrada exitosamente.'
-                vacuna_registrada = True # Cambia el estado a registrada con True
+                vacuna_registrada = True # Cambia el estado a registrada con True                
                 return render(request, "registro_vacuna.html", {
                     'tipos_vacuna': tipos_vacuna,
                     'success_message': success_message,
-                    'vacuna_registrada': vacuna_registrada})        
+                    'vacuna_registrada': vacuna_registrada,
+                    'vacuna': vacuna})        
             except Exception as e:
                 error_message = str(e)
                 return render(request, "registro_vacuna.html", {
@@ -396,67 +544,78 @@ def registro_vacuna(request, consulta_id, mascota_id):
 
     return render(request, "registro_vacuna.html", {'tipos_vacuna': tipos_vacuna, 'vacuna_registrada': vacuna_registrada})
 
+# Vista de listado de clientes con buscador
 @login_required
-def vacunatorio(request):
-    mascotas = obtener_mascotas_cliente(request.user) # Obtiene mascota cliente
+def clientes(request):
+    query = request.GET.get('filtro')
+    message = None
 
-    # Si no hay mascotas muestra mensaje
-    if not mascotas:
-        message = 'No tienes mascotas registradas'
-        return render(request, "vacunas_mascota.html", {'message': message})
+    if query:
+        clientes = obtener_clientes_filtrados(query) # Obtiene listado de clientes según filtro de búsqueda
+        conteo = clientes.count()  # Obtiene la cantidad de resultados
 
-    # Toma el id de la mascota desde el formulario
-    if request.method == "POST":
-        mascota_id = request.POST.get('mascota')
-        # Redirige a la siguiente vista con el submit pasando como parámetro el id de la mascota
-        return redirect('vacunas_mascota', mascota_id=mascota_id)
-    # El listado de mascotas del cliente es parte del contexto
-    return render(request, "vacunatorio.html", {'mascotas' :mascotas})
+        # Si no se obtienen clientes en la búsqueda
+        if not clientes.exists():
+            message = 'No existen coincidencias en la búsqueda'
+        return render(request, "clientes.html", {'clientes': clientes,
+                                                 'message': message,
+                                                 'conteo': conteo})
+    else:
+        clientes = obtener_clientes() # Llama al listado de clientes
+    # Si no hay clientes registrados debería indicarlo
+    if not clientes.exists():
+        message = 'No hay clientes ingresados'
+    return render(request, "clientes.html", {'clientes': clientes, 'message': message})
+
+# Vista de listado de pacientes con buscador
+@login_required
+def pacientes(request):
+
+    query = request.GET.get('filtro')
+    message = None
+    conteo = None    
+
+    if query:
+        pacientes = obtener_pacientes_filtrados(query) # Obtiene listado de pacientes según filtro de búsqueda
+        conteo = pacientes.count()  # Obtiene la cantidad de resultados
+
+        # Si no se obtienen clientes en la búsqueda
+        if not pacientes.exists():
+            message = 'No existen coincidencias en la búsqueda'
+        return render(request, "pacientes.html", {'pacientes': pacientes,
+                                                 'message': message,
+                                                 'conteo': conteo})
+    else:
+        pacientes = obtener_pacientes() # Llama al listado de pacientes
+    # Si no hay pacientes registrados debería indicarlo
+    if not pacientes.exists():
+        message = 'No hay pacientes ingresados'
+
+    return render(request, "pacientes.html", {'pacientes': pacientes, 'message': message, 'conteo': conteo})
 
 @login_required
-def vacunas_mascota(request, mascota_id):
-    tipos_vacuna = obtener_tipos_vacuna_todos()
-    vacunas = obtener_vacunas_mascotas(mascota_id)
-    mascota = obtener_mascota(mascota_id)
+def perfil_paciente(request, mascota_id):
 
-    if not vacunas:
-        message = 'No existen vacunas registradas'
+    if request.method == 'POST':        
+        paciente_id = request.POST.get('paciente_id')
+        # cliente_id = request.POST.get('cliente_id')
+        action = request.POST.get('action')
+        # Botón de eliminar
+        if action == 'eliminar':
+            return redirect('confirmacion_mascota', paciente_id=paciente_id) #, cliente_id=cliente_id)
+        
+    paciente = obtener_paciente(mascota_id)
+    return render(request, "perfil_paciente.html", {'paciente': paciente})
 
-        return render(request, "vacunas_mascota.html", {'message': message, 'mascota': mascota})
-
-    # Ordena las vacunas por tipo y fecha, indicando la
-    # próxima fecha de la última vacuna aplicada de cada tipo
-    vacunas_por_tipo = {}
-    for tipo in tipos_vacuna:
-        vacunas_tipo = vacunas.filter(tipo=tipo).order_by('-fecha')
-        if vacunas_tipo.exists():
-            vacunas_por_tipo[tipo.tipo] = {
-                'vacunas': vacunas_tipo,
-                'proxima_fecha': vacunas_tipo.first().proxima_fecha
-            }
-    contexto = {
-        'mascota': mascota,
-        'vacunas_por_tipo': vacunas_por_tipo
-    }
-    # Renderiza la vista entregando la mascota al contexto y sus vacunas clasficadas
-    return render(request, "vacunas_mascota.html", contexto)
-
+# Página de confirmación de eliminación
 @login_required
-def resenas_usuarios(request):
-
+def confirmacion_mascota(request, paciente_id):
+    paciente = obtener_paciente(paciente_id) # Se requiere obtener el paciente para acción de volver
+    # Si hay confirmación de la eliminación
     if request.method == 'POST':
-        comentario = request.POST.get('comentario')
-        calificacion = request.POST.get('calificacion')
-
-        crear_resena(request.user, comentario, calificacion) # Crea la reseña
-        succes_message = 'Comentario posteado con éxito'
-
-        resenas = listar_resenas() # Lista las reseñas existentes
-        return render(request, "resenas.html", {'resenas': resenas, 'success_message': succes_message}) # Renderiza con las reseñas existentes
-
-    resenas = listar_resenas() # Lista las reseñas existentes
-    
-    return render(request, "resenas.html", {'resenas': resenas}) # Renderiza con las reseñas existentes
+        eliminar_paciente(paciente_id)
+        return redirect('pacientes')
+    return render(request, "confirmacion_mascota.html", {'paciente': paciente})
 
 
 ##########################################################################################################################

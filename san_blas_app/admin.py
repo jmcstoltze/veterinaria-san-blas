@@ -99,7 +99,7 @@ class Consulta(admin.ModelAdmin):
         response.write('\ufeff') # Manejo de caracteres especiales
 
         writer = csv.writer(response)
-        writer.writerow(["Fecha", "Hora", "Tipo", "Nombre Mascota", "Especie", "Descripción / Motivo", "Evaluación / Curso ", "Antecedentes", "Examen / Observaciones", "Diagnóstico / Prediagnóstico", "Tratamiento / Indicaciones", "Nombre Cliente", "Rut Cliente"])
+        writer.writerow(["Fecha", "Tipo", "Nombre Mascota", "Especie", "Descripción / Motivo", "Evaluación / Curso ", "Antecedentes", "Examen / Observaciones", "Diagnóstico / Prediagnóstico", "Tratamiento / Indicaciones", "Nombre Cliente", "Rut Cliente"])
         
         for consulta in queryset:            
             # Dueño de la mascota

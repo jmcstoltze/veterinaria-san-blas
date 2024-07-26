@@ -9,9 +9,7 @@
                 <!-- Formulario de contacto -->
                 <div class="card shadow-lg p-5">
                     <h2>Agendamiento de Cita</h2>
-                    <hr><br>
-                    <p>Selecciona la información requerida para la cita</p>                        
-                    <br>
+                    <hr>
 
                     <!-- Mensaje de éxito -->
                     {% if success_message %}
@@ -25,6 +23,10 @@
                             <center>{{ error_message }}</center>
                         </div>
                     {% endif %}
+
+                    <br>
+                    <p>Selecciona la información requerida para la cita</p>                        
+                    <br>
 
                     <form action="" method="post">
                         

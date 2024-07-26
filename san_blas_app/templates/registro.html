@@ -8,9 +8,7 @@
                 <!-- Formulario de registro -->
                 <div class="card shadow-lg p-5">
                     <h2>Formulario de Registro</h2>
-                    <hr><br>
-                <p>Completa el formulario para registrarte.</p>
-                <br>
+                    <hr>
                 
                 <!-- Mensaje de éxito -->
                 {% if success_message %}
@@ -24,6 +22,10 @@
                         <center>{{ error_message }}</center>
                     </div>
                 {% endif %}
+
+                <br>
+                <p>Completa el formulario para registrarte.</p>
+                <br>
 
                 <form action="" method="POST">
                     {% csrf_token %}
@@ -81,7 +83,11 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                    {% if user.is_superuser %}
+                        <button type="submit" class="btn btn-primary">Registrar Cliente</button>
+                    {% else %}    
+                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                    {% endif %}                    
                 </form>                            
             </div>
         </div>                 

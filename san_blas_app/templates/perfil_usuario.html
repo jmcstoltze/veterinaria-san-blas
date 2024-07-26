@@ -10,7 +10,13 @@
 
                     <!-- Perfil de usuario -->
                     <div class="card shadow-lg p-5">
-                        <h2>Perfil de Usuario</h2>
+                        
+                        {% if user.is_superuser %}
+                            <h2>Perfil de Cliente</h2>
+                        {% else %}
+                            <h2>Perfil de Usuario</h2>
+                        {% endif %}
+                        
                         <hr><br>
                                                                             
                         <!-- Campos subdivididos -->
@@ -36,19 +42,38 @@
                                         {{ cliente.direccion.comuna.nombre_comuna }}, {{ cliente.direccion.comuna.region.nombre_region }}
                                     </p>                                
                             </span>
-                            <span class="list-group-item list-group-item-action">
-                                
-                                <p>
-                                    <a href="{% url 'reservar_hora' %}">Reservar cita | </a>
-                                    <a href="{% url 'mascotas' %}">Tus mascotas | </a>
-                                    <a href="">Deja tus comentarios | </a>
-                                    <a href="{% url 'dashboard' %}">Volver</a>
-                                </p>
-                                
+                            <span class="list-group-item list-group-item-action">                                                            
+                                {% if user.is_superuser %}
+                                    <p>
+                                        <a href="{% url 'reservar_hora' %}">Agendar hora | </a>
+                                        <a href="{% url 'pacientes' %}">Pacientes | </a>                                        
+                                        <a href="{% url 'clientes' %}">Volver</a>
+                                    </p>
+                                {% else %}
+                                    <p>
+                                        <a href="{% url 'reservar_hora' %}">Reservar cita | </a>
+                                        <a href="{% url 'mascotas' %}">Tus mascotas | </a>
+                                        <a href="{% url 'resenas_usuarios' %}">Deja tus comentarios | </a>
+                                        <a href="{% url 'dashboard' %}">Volver</a>
+                                    </p>                            
+                                {% endif %}                                                                
                             </span>                                  
-                        </div>
+                        </div>                       
                         <br>
-                        <a href="{% url 'editar_usuario' %}" class="btn btn-primary">Editar información</a>
+                        {% if user.is_superuser %}
+                            <a href="{% url 'editar_usuario' cliente.id %}" class="btn btn-primary">Editar información</a><br>
+                            <!-- <a href="{% url 'confirmacion_cliente' cliente.id %}" class="btn btn-primary" style="background-color: red; border-color: red;">Eliminar cliente</a> -->
+
+                            <!-- Eliminar -->
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="eliminar">                                
+                                <input type="hidden" name="id_cliente" value="{{ cliente.id }}">                                                
+                                <button type="submit" class="btn btn-primary" style="background-color: red; border-color: red; width: 100%;">Eliminar</button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'editar_usuario' %}" class="btn btn-primary">Editar información</a>
+                        {% endif %}                        
                     </div>                        
                 </div>
             </div>            

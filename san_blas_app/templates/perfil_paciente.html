@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div>
+    <content id="perfil_paciente">
+            <div class="container">                
+                <div class="mx-auto text-justify" style="max-width: 600px;">
+
+                    <!-- Perfil de Mascota -->
+                    <div class="card shadow-lg p-5">
+                        
+                        {% if user.is_superuser %}
+                            <h2>Perfil de Paciente</h2>
+                        {% else %}
+                            <h2>Perfil de Mascota</h2>
+                        {% endif %}
+                                                
+                        <hr><br>
+                                                                            
+                        <!-- Campos subdivididos -->
+                        <div class="list-group">
+                            <span class="list-group-item list-group-item-action">                                    
+                                    <h5 class="mb-1">Nombre</h5>
+                                    <p class="mb-1">{{ paciente.nombre }}</p>                                        
+                            </span>
+                            <span class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Chip</h5>
+                                    <p class="mb-1">{{ paciente.chip }}</p>                                    
+                            </span>
+                            <span class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Información</h5>
+                                    <p class="mb-1">Especie: {{ paciente.especie }}</p>
+                                    <p class="mb-1">Raza: {{ paciente.raza }}</p>
+                                    <p class="mb-1">Edad: {{ paciente.edad }}</p>
+                                    <p class="mb-1">Sexo: {{ paciente.sexo }}</p>
+                                    <p class="mb-1">Esterilización: {% if paciente.esterilizada %}Sí {% else %}No{% endif %}</p>
+                            </span>
+                            {% if user.is_superuser %}
+                                <a href="{% url 'perfil_usuario' paciente.cliente.id %}" class="list-group-item list-group-item-action">
+                                    <h5 class="mb-1">Información Cliente</h5>
+                                        <p class="mb-1">Nombre: {{ paciente.cliente.usuario.first_name }} {{ paciente.cliente.usuario.last_name }}</p>
+                                        <p class="mb-1">Rut: {{ paciente.cliente.rut }}</p>
+                                        <p class="mb-1">Email: {{ paciente.cliente.usuario.email }}</p>
+                                        <p class="mb-1">Teléfono: +56{{ paciente.cliente.telefono }}</p>
+                                        <p class="mb-1">Dirección:
+                                            {{ paciente.cliente.direccion.calle }} {{ paciente.cliente.direccion.numero }}, {% if paciente.cliente.direccion.dpto %}{{ paciente.cliente.direccion.depto }}, {% endif %} {{ paciente.cliente.direccion.comuna.nombre_comuna }}</p>                                        
+                                </a>
+                            {% endif %}
+                            <span class="list-group-item list-group-item-action">                                    
+                                {% if user.is_superuser %}                                
+                                    <p>
+                                        <a href="{% url 'consulta' %}">Formulario de consulta | </a>
+                                        <a href="{% url 'reservar_hora' %}">Agendar consulta  | </a>                                        
+                                        <a href="{% url 'pacientes' %}">Volver</a>
+                                    </p>
+                                {% else %}
+                                    <p>
+                                        <a href="{% url 'reservar_hora' %}">Reservar cita | </a>
+                                        <a href="{% url 'resenas_usuarios' %}">Deja tus comentarios | </a>                                        
+                                        <a href="{% url 'mascotas' %}">Volver</a>                                       
+                                    </p>
+                                {% endif %}
+                                
+                            </span>                                  
+                        </div>
+                        <br>
+                        {% if user.is_superuser %}
+                            <a href="" class="btn btn-primary">Editar información</a>
+                            <br>
+                            <!--
+                            <a href="" class="btn btn-delete" style="background-color: red; border-color: red; color: white;">Eliminar paciente</a> -->
+
+                            <!-- Eliminar -->
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="eliminar">
+                                <!-- <input type="hidden" name="cliente_id" value="{{ paciente.cliente.id }}"> -->
+                                <input type="hidden" name="paciente_id" value="{{ paciente.id }}">                                                
+                                <button type="submit" class="btn btn-primary" style="background-color: red; border-color: red; width: 100%;">Eliminar</button>
+                            </form>
+                        {% else %}
+                            <a href="" class="btn btn-primary">Editar información</a>
+                        {% endif %}
+                        
+                    </div>                        
+                </div>
+            </div>            
+    </content>
+</div>
+{% endblock %}
