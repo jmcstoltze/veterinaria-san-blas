@@ -11,10 +11,10 @@ Es una aplicación diseñada para gestionar diversos aspectos de la atención ve
 ## Screenshots
 
 ![Captura de pantalla 1](screenshots/captura_1.jpg)
-<div style="text-align: center;">
+<p align="center">
     <img src="screenshots/captura_3.jpg" alt="Captura de pantalla 3" width="200"/>
     <img src="screenshots/captura_4.jpg" alt="Captura de pantalla 4" width="200"/>
-</div>
+</p>
 
 ## Instalación
 
