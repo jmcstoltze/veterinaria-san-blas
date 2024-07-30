@@ -6,7 +6,7 @@
             "fecha": "2024-07-01",
             "calificacion": 5,
             "comentario": "Me encantó este lugar, excelente atención al cliente.",
-            "usuario": 1
+            "usuario": 6
         }
     },
     {
@@ -16,7 +16,7 @@
             "fecha": "2024-07-02",
             "calificacion": 4,
             "comentario": "Buena experiencia en general.",
-            "usuario": 2
+            "usuario": 6
         }
     },
     {
@@ -26,7 +26,7 @@
             "fecha": "2024-07-03",
             "calificacion": 5,
             "comentario": "Excelente servicio, me explicaron todo detalladamente.",
-            "usuario": 4
+            "usuario": 7
         }
     },
     {
@@ -36,7 +36,7 @@
             "fecha": "2024-07-04",
             "calificacion": 4,
             "comentario": "Muy buen trato hacia mi mascota, volveré.",
-            "usuario": 1
+            "usuario": 7
         }
     }
 ]
