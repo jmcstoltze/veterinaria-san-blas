@@ -82,6 +82,14 @@ def crear_mascota(nombre, especie, edad, sexo, raza, esterilizada, usuario, chip
     # Obtiene el cliente asociado al usuario
     cliente = Cliente.objects.get(usuario=usuario)
 
+    # Si el chip es una cadena vacía, se establece como None
+    # if chip == "":
+        # chip = None
+
+    # Si el chip es una cadena vacía o solo espacios en blanco, se establece como None
+    if chip and not chip.strip():
+        chip = None
+
     # Crea la mascota asociada al cliente
     mascota = Mascota.objects.create(
         chip=chip,
