@@ -11,17 +11,17 @@ Es una aplicación diseñada para gestionar diversos aspectos de la atención ve
 ## Screenshots
 
 ![Captura de pantalla 1](screenshots/captura_1.jpg)
-![Captura de pantalla 2](screenshots/captura_2.jpg)
-<img src="screenshots/captura_3.jpg" alt="Captura de pantalla 3" width="200"/>
-<img src="screenshots/captura_4.jpg" alt="Captura de pantalla 4" width="200"/>
-![Captura de pantalla 5](screenshots/captura_5.jpg)
+<div style="text-align: center;">
+    <img src="screenshots/captura_3.jpg" alt="Captura de pantalla 3" width="200"/>
+    <img src="screenshots/captura_4.jpg" alt="Captura de pantalla 4" width="200"/>
+</div>
 
 ## Instalación
 
 1. Clonar el repositorio:
 
     ```sh
-    git clone https://github.com/usuario/proyecto-veterinaria-san-blas.git
+    git clone https://github.com/usuario/veterinaria-san-blas.git
     ```
 
 2. Crear y activar un entorno virtual:
