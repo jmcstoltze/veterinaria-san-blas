@@ -11,8 +11,8 @@ Es una aplicación diseñada para gestionar diversos aspectos de la atención ve
 ## Screenshots
 
 ![Captura de pantalla 1](screenshots/captura_1.jpg)
-![Captura de pantalla 2](screenshots/captura_2.jpg)
-![Captura de pantalla 3](screenshots/captura_3.jpg)
+<img src="screenshots/captura_2.jpg" alt="Captura de pantalla 2" width="300"/>
+<img src="screenshots/captura_3.jpg" alt="Captura de pantalla 3" width="300"/>
 ![Captura de pantalla 4](screenshots/captura_4.jpg)
 ![Captura de pantalla 5](screenshots/captura_5.jpg)
 
