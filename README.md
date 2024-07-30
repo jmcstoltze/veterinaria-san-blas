@@ -13,6 +13,7 @@ Es una aplicación diseñada para gestionar diversos aspectos de la atención ve
 ![Captura de pantalla 1](screenshots/captura_1.jpg)
 <p align="center">
     <img src="screenshots/captura_3.jpg" alt="Captura de pantalla 3" width="200"/>
+    <td>&nbsp;&nbsp;&nbsp;</td>
     <img src="screenshots/captura_4.jpg" alt="Captura de pantalla 4" width="200"/>
 </p>
 
